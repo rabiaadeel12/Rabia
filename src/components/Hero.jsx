@@ -33,6 +33,15 @@ export default function Hero() {
           <a className="btn btn--ghost" href="#contact">
             say hi
           </a>
+          <a
+            className="btn btn--ghost"
+            href={profile.cv}
+            download={profile.cvLabel}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <span aria-hidden="true">↓</span> download CV
+          </a>
         </div>
       </div>
 

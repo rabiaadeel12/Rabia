@@ -620,6 +620,7 @@
       <div style="display: flex; flex-wrap: wrap; gap: 0.75rem">
         <a class="btn btn--primary" href="#work">see the work <span aria-hidden="true">→</span></a>
         <a class="btn btn--ghost" href="#contact">say hi</a>
+        <a class="btn btn--ghost" data-cv href="Rabia_Adeel_CV.pdf" download="Rabia_Adeel_CV.pdf" target="_blank" rel="noreferrer noopener"><span aria-hidden="true">↓</span> download CV</a>
       </div>
     </div>
 
@@ -883,10 +884,13 @@
         </p>
       </div>
 
+      <div class="stack-col" style="gap: 1rem; align-items: flex-start">
+      <a class="btn btn--primary" data-cv href="Rabia_Adeel_CV.pdf" download="Rabia_Adeel_CV.pdf" target="_blank" rel="noreferrer noopener"><span aria-hidden="true">↓</span> download CV</a>
       <div class="socials">
         <a class="social" href="https://github.com/rabiaadeel12" target="_blank" rel="noreferrer noopener"><span class="mono dim" aria-hidden="true">⌥</span>GitHub</a>
         <a class="social" href="#contact"><span class="mono dim" aria-hidden="true">in</span>LinkedIn</a>
         <a class="social" href="mailto:rabiadeel12@gmail.com"><span class="mono dim" aria-hidden="true">✉</span>Email</a>
+      </div>
       </div>
     </div>
 
@@ -1189,6 +1193,42 @@
       window.addEventListener("scroll", onRevealScroll, { passive: true });
       window.addEventListener("resize", onRevealScroll);
     }
+
+    /* ---------------------------------------------------- cv download
+       On ordinary hosting the CV link works by itself and this does nothing.
+       Inside the artifact viewer a page may not start its own download, so
+       there the file is handed over through the downloads capability. */
+    (function () {
+      var cvLinks = document.querySelectorAll("[data-cv]");
+      if (!cvLinks.length) return;
+      if (!window.claude || typeof window.claude.use !== "function") return;
+
+      window.claude.use("downloads").then(
+        function (downloads) {
+          if (!downloads) return;
+          Array.prototype.forEach.call(cvLinks, function (link) {
+            link.addEventListener("click", function (event) {
+              event.preventDefault();
+              fetch("Rabia_Adeel_CV.pdf")
+                .then(function (res) {
+                  if (!res.ok) throw new Error(res.status);
+                  return res.blob();
+                })
+                .then(function (blob) {
+                  return downloads.save({
+                    filename: "Rabia_Adeel_CV.pdf",
+                    data: blob
+                  });
+                })
+                .catch(function () {
+                  /* viewer declined, or saving is unavailable in this view */
+                });
+            });
+          });
+        },
+        function () { /* capability unavailable — keep the plain link */ }
+      );
+    })();
 
     /* ---------------------------------------------------- player */
     var PLAYLIST = [

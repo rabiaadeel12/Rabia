@@ -15,6 +15,10 @@ export const profile = {
   location: "Lahore, PK",
   status: "open to AI research + international roles",
   avatarGlyph: "R",
+  // Lives in public/, so it is served from the site root. Replace the file
+  // to update the CV — the filename is what visitors download.
+  cv: "/Rabia_Adeel_CV.pdf",
+  cvLabel: "Rabia_Adeel_CV.pdf",
 };
 
 export const about = {
