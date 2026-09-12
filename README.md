@@ -4,15 +4,12 @@ Interactive pastel-dreamcore portfolio site. Vite + React + Tailwind v4.
 
 ## Run it
 
-Node isn't installed on this machine yet. Grab the LTS build from
-<https://nodejs.org> (the Windows `.msi`), reopen your terminal, then:
-
 ```bash
 npm install
 npm run dev
 ```
 
-That opens `http://localhost:5173`. `npm run build` writes a static site to
+Then open `http://localhost:5173`. `npm run build` writes a static site to
 `dist/`, which you can drop on Vercel, Netlify, Cloudflare Pages, or GitHub
 Pages.
 
