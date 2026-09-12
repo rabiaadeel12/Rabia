@@ -4,7 +4,7 @@ import Marquee from "./components/Marquee.jsx";
 import About from "./components/About.jsx";
 import Stack from "./components/Stack.jsx";
 import Projects from "./components/Projects.jsx";
-import Writing from "./components/Writing.jsx";
+import Research from "./components/Research.jsx";
 import NowPlaying from "./components/NowPlaying.jsx";
 import BlobCatch from "./components/BlobCatch.jsx";
 import Contact from "./components/Contact.jsx";
@@ -28,7 +28,7 @@ export default function App() {
         <About />
         <Stack />
         <Projects />
-        <Writing />
+        <Research />
 
         <section className="shell section" id="currently">
           <div className="stack-col" style={{ gap: "1.6rem" }}>

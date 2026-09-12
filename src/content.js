@@ -2,19 +2,19 @@
    EDIT ME FIRST — everything on the site comes from this one file.
    Nothing here is hard-coded into the components.
 
-   Marked PLACEHOLDER = sample content, swap it for the real thing.
+   Content is drawn from Rabia's CV and from the live sites themselves.
+   Anything still marked PLACEHOLDER needs a real value.
    ============================================================================ */
 
 export const profile = {
-  name: "Rabia", // PLACEHOLDER: add your surname
-  handle: "rabia", // used for the nav brand + footer
-  role: "full-stack dev, mostly building agents",
+  name: "Rabia Adeel",
+  handle: "rabia",
+  role: "final-year CS student · AI/ML developer at NexoDynamix",
   tagline:
     "I build systems that think, decide, and act on their own — then turn them into products people actually use.",
-  // Add your city to show a location chip in the hero. Empty = no chip.
-  location: "",
+  location: "Lahore, PK",
   status: "open to AI research + international roles",
-  avatarGlyph: "R", // the letter in the floating badge
+  avatarGlyph: "R",
 };
 
 export const about = {
@@ -38,55 +38,74 @@ export const howIWork = [
 ];
 
 export const marquee = [
-  "agentic systems",
+  "reinforcement learning",
   "full-stack",
   "react + firebase",
   "python",
-  "llm evals",
-  "mcp",
-  "rag",
-  "mobile",
+  "healthtech",
+  "MERN",
+  "fintech",
+  "data pipelines",
   "research",
   "design that doesn't hurt",
 ];
 
 export const stack = [
   {
-    title: "agentic ai",
+    title: "ai & ml",
     color: "var(--lilac)",
-    items: ["Claude API", "MCP", "tool-calling", "LangGraph", "evals", "RAG"],
+    items: [
+      "Reinforcement Learning",
+      "Machine Learning",
+      "data processing",
+      "Python",
+    ],
   },
   {
     title: "product & web",
     color: "var(--cotton)",
-    items: [
-      "React 19",
-      "Vite",
-      "Tailwind v4",
-      "React Router",
-      "Framer Motion",
-    ],
+    items: ["React", "TypeScript", "Tailwind", "Vite", "Chart.js"],
   },
   {
     title: "server & data",
     color: "var(--sky)",
-    items: ["Firebase", "AWS S3", "Node", "Python", "Postgres"],
+    items: [
+      "Node",
+      "Express",
+      "REST APIs",
+      "Firestore",
+      "MongoDB",
+      "Supabase",
+      "AWS S3",
+    ],
   },
   {
     title: "ship it",
     color: "var(--mint)",
-    items: ["Vercel", "Firebase Hosting", "Git", "GitHub Actions"],
+    items: ["Git", "GitHub", "Vercel", "Firebase Hosting", "Postman", "Figma"],
   },
 ];
 
-/* Real work, pulled from github.com/rabiaadeel12.
-   `link` is the live deployment — leave it "" and the card shows code only. */
+/* `link` is the live deployment — leave it "" and the card shows code only.
+   `repo` works the same way. */
 export const projects = [
+  {
+    title: "NexoHealth",
+    blurb:
+      "The AI-driven records and patient-management platform at NexoDynamix, which I led development on — optimised scheduling, resource allocation, and large-scale handling of sensitive data under healthcare compliance rules.",
+    tags: ["AI/ML", "React", "Firebase", "scheduling"],
+    status: "live",
+    glyph: "◈",
+    gradient: "linear-gradient(140deg, var(--lilac), var(--sky))",
+    link: "https://health.nexodynamix.com",
+    repo: "",
+    note: "sign-in required",
+  },
   {
     title: "Mafaza tul Hayat Hospital",
     blurb:
-      "The full web presence for a non-profit multi-specialty hospital: fifteen departments, twenty-plus consultant profiles with live availability and consultation fees, appointment booking, health-education articles and a gallery — all driven by a ten-module admin dashboard, so staff update the site without a developer.",
-    tags: ["React 19", "Firebase", "AWS S3", "Tailwind v4", "React Router"],
+      "The full web presence for a non-profit multi-specialty hospital: fifteen departments, twenty-plus consultant profiles with live availability and fees, appointment booking, and a patient portal for lab reports — all run from an admin CMS, so staff publish without a developer.",
+    tags: ["React 19", "Firebase", "AWS S3", "role-based auth"],
     status: "live",
     glyph: "✚",
     gradient: "linear-gradient(140deg, var(--mint), var(--sky))",
@@ -94,24 +113,36 @@ export const projects = [
     repo: "https://github.com/rabiaadeel12/hospital",
   },
   {
+    title: "Intelligent Wealth Management",
+    blurb:
+      "My final-year thesis, built as a working product: a reinforcement-learning system for personal finance that tracks assets in real time, categorises spending, and turns portfolio state into recommendations you can act on.",
+    tags: ["Reinforcement Learning", "React", "Firebase", "Chart.js"],
+    status: "research",
+    glyph: "◍",
+    gradient: "linear-gradient(140deg, var(--cotton), var(--lilac))",
+    link: "",
+    repo: "",
+    note: "thesis project — iwmhub.com is offline",
+  },
+  {
     title: "SehatX",
     blurb:
-      "A digital health platform for Pakistan — online consultations, holistic care packages, second opinions, and separate education centres for clinicians and patients, fronting an electronic records product.",
-    tags: ["React", "Tailwind", "Firebase"],
+      "A digital health platform for Pakistan — online consultations, holistic care packages, second opinions, and separate education centres for clinicians and patients, all behind an admin-controlled CMS.",
+    tags: ["React", "Vite", "Firestore", "Firebase Auth"],
     status: "live",
     glyph: "❋",
-    gradient: "linear-gradient(140deg, var(--sky), var(--lilac))",
+    gradient: "linear-gradient(140deg, var(--sky), var(--mint))",
     link: "https://sehatx.com",
     repo: "",
   },
   {
     title: "NexoDynamix",
     blurb:
-      "Company site for an applied-AI venture, presenting three product lines — a reinforcement-learning wealth platform with a WhatsApp assistant, a healthcare CMS, and an ERP — alongside a rotating project showcase.",
+      "The company site for the venture I build at, presenting three product lines — the RL wealth platform, the healthcare CMS, and an ERP — alongside a rotating project showcase.",
     tags: ["React", "Framer Motion", "Tailwind"],
     status: "live",
-    glyph: "◈",
-    gradient: "linear-gradient(140deg, var(--lilac), var(--cotton))",
+    glyph: "▲",
+    gradient: "linear-gradient(140deg, var(--butter), var(--cotton))",
     link: "https://nexodynamix.com",
     repo: "",
   },
@@ -133,7 +164,7 @@ export const projects = [
     tags: ["React", "Vite", "Vercel"],
     status: "live",
     glyph: "☀",
-    gradient: "linear-gradient(140deg, var(--butter), var(--cotton))",
+    gradient: "linear-gradient(140deg, var(--butter), var(--sky))",
     link: "https://intech-solution-alpha.vercel.app",
     repo: "https://github.com/rabiaadeel12/intech-solution",
   },
@@ -144,31 +175,40 @@ export const projects = [
     tags: ["React", "Vite", "Vercel"],
     status: "live",
     glyph: "◎",
-    gradient: "linear-gradient(140deg, var(--sky), var(--lilac))",
+    gradient: "linear-gradient(140deg, var(--cotton), var(--sky))",
     link: "https://sbsolar-jade.vercel.app",
     repo: "https://github.com/rabiaadeel12/Sbsolar",
   },
 ];
 
-/* PLACEHOLDER — sample entries. Use real papers, posts, or talks. */
-export const writing = [
+/* Real credentials from the CV — no invented publications.
+   Add papers here as they're published. */
+export const credentials = [
   {
-    when: "2026 · 03",
-    title: "What a good agent trace looks like",
-    kind: "essay",
-    link: "#",
+    when: "2022 – 26",
+    title: "B.S. (Hons.) Computer Science — NUML, CGPA 3.59",
+    kind: "degree",
   },
   {
-    when: "2025 · 11",
-    title: "Cheap evals beat clever prompts",
-    kind: "essay",
-    link: "#",
+    when: "2026",
+    title:
+      "Thesis — Intelligent Wealth Management System Using Reinforcement Learning",
+    kind: "thesis",
   },
   {
-    when: "2025 · 07",
-    title: "Task decomposition strategies for tool-using agents",
-    kind: "preprint",
-    link: "#",
+    when: "national",
+    title: "HEC Skill Competency Test — 95.3rd percentile",
+    kind: "ranking",
+  },
+  {
+    when: "current",
+    title: "Vice President — ACM NUML Lahore Chapter",
+    kind: "leadership",
+  },
+  {
+    when: "current",
+    title: "Core team — Google Developer Student Clubs, NUML Lahore",
+    kind: "community",
   },
 ];
 
@@ -182,20 +222,19 @@ export const playlist = [
   { title: "Alright", artist: "Kendrick Lamar", seconds: 219, glyph: "✦" },
 ];
 
-/* PLACEHOLDER except GitHub — add your real LinkedIn and Scholar URLs.
-   Leave the email as-is if you'd rather not publish it. */
+/* PLACEHOLDER: LinkedIn. Your phone number is deliberately not here —
+   a public page invites scraping in a way a PDF CV does not. */
 export const socials = [
   { label: "GitHub", href: "https://github.com/rabiaadeel12", glyph: "⌥" },
   { label: "LinkedIn", href: "#", glyph: "in" },
-  { label: "Google Scholar", href: "#", glyph: "✎" },
-  { label: "Email", href: "mailto:you@example.com", glyph: "✉" },
+  { label: "Email", href: "mailto:rabiadeel12@gmail.com", glyph: "✉" },
 ];
 
 export const nav = [
   { label: "about", href: "#about" },
   { label: "stack", href: "#stack" },
   { label: "work", href: "#work" },
-  { label: "writing", href: "#writing" },
+  { label: "research", href: "#research" },
   { label: "currently", href: "#currently" },
   { label: "contact", href: "#contact" },
 ];

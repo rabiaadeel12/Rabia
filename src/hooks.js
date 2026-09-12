@@ -14,6 +14,9 @@ const reducedMotion = () =>
 export function useReveal() {
   useEffect(() => {
     if (reducedMotion()) return;
+    // A zero-height viewport (a hidden pane, a thumbnail capture) would hide
+    // everything and never scroll to reveal it. Leave the page fully visible.
+    if (!window.innerHeight) return;
 
     const targets = Array.from(document.querySelectorAll("[data-reveal]"));
     let pending = targets.filter(
@@ -21,44 +24,62 @@ export function useReveal() {
     );
     if (!pending.length) return;
 
-    pending.forEach((el) => el.classList.add("rv-pre"));
+    const waiting = new Set(pending);
+    waiting.forEach((el) => el.classList.add("rv-pre"));
 
-    /* A scroll sweep rather than an IntersectionObserver: anything at or
-       above the trigger line reveals, including elements the viewer jumped
-       clean past. An observer misses those — a nav anchor or a deep link can
-       move an element from below the fold to above it within a single frame,
-       which is never reported as an intersection, and the section would stay
-       invisible for good. */
+    /* Two mechanisms on purpose, because each covers the other's blind spot.
+       The observer fires off the browser's own frame updates, so it still
+       works where scroll events never arrive. The scroll sweep catches
+       elements the viewer jumped clean past — a nav anchor can move a section
+       from below the fold to above it in one frame, and an intersection that
+       never happened is never reported. Both stop once nothing is waiting. */
     let frame = 0;
 
-    const detach = () => {
+    const teardown = () => {
+      io.disconnect();
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      if (frame) cancelAnimationFrame(frame);
     };
+
+    const reveal = (el) => {
+      if (!waiting.has(el)) return;
+      waiting.delete(el);
+      io.unobserve(el);
+      const delay = Number(el.dataset.revealDelay || 0);
+      window.setTimeout(() => el.classList.remove("rv-pre"), delay);
+      if (!waiting.size) teardown();
+    };
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // in view, or already scrolled past above the viewport
+          if (entry.isIntersecting || entry.boundingClientRect.top < 0) {
+            reveal(entry.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -12% 0px", threshold: 0 }
+    );
 
     const sweep = () => {
       frame = 0;
       const trigger = window.innerHeight * 0.88;
-      pending = pending.filter((el) => {
-        if (el.getBoundingClientRect().top >= trigger) return true;
-        const delay = Number(el.dataset.revealDelay || 0);
-        window.setTimeout(() => el.classList.remove("rv-pre"), delay);
-        return false;
+      Array.from(waiting).forEach((el) => {
+        if (el.getBoundingClientRect().top < trigger) reveal(el);
       });
-      if (!pending.length) detach();
     };
 
     function onScroll() {
       if (!frame) frame = requestAnimationFrame(sweep);
     }
 
+    waiting.forEach((el) => io.observe(el));
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
 
-    return () => {
-      detach();
-      if (frame) cancelAnimationFrame(frame);
-    };
+    return teardown;
   }, []);
 }
 

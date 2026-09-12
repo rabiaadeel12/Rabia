@@ -39,7 +39,7 @@ export default function Hero() {
       <div className="hero__cluster" aria-hidden="true">
         <div className="float-card float-card--a">
           <b className="tabular">{shipped}</b>
-          sites live in production
+          shipped to production
         </div>
         <div className="blob-badge">
           agents
@@ -51,7 +51,7 @@ export default function Hero() {
           finish
         </div>
         <div className="float-card float-card--b">
-          healthtech · clean energy
+          healthtech · fintech
           <b>research</b>
         </div>
         <div className="float-card float-card--c">

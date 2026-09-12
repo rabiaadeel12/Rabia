@@ -52,6 +52,12 @@ export default function Projects() {
                 ))}
               </div>
 
+              {project.note && (
+                <p className="mono dim" style={{ fontSize: "0.7rem" }}>
+                  {project.note}
+                </p>
+              )}
+
               <div style={{ display: "flex", gap: "1.2rem", marginTop: "auto", paddingTop: "0.4rem" }}>
                 {project.link && (
                   <a
