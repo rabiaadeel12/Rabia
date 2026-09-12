@@ -1,0 +1,1462 @@
+<!doctype html>
+<!--
+  Zero-build version of the portfolio. No npm, no bundler — double-click it.
+  The React source in ../src is the one to edit long-term; this file is a
+  self-contained mirror of it for quick sharing and static hosting.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta
+  name="description"
+  content="Full-stack developer building agentic AI systems — selected work, writing, and research."
+/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%AB%A7%3C/text%3E%3C/svg%3E" />
+<title>Rabia Builds Agents</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Outfit:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap"
+/>
+
+<style>
+  /* ==========================================================
+     sticker-book dreamcore — tokens
+     ========================================================== */
+  :root {
+    color-scheme: light;
+    --ground: #fbf6ff;
+    --ground-2: #f3e9ff;
+    --surface: #ffffff;
+    --surface-2: #fbf3ff;
+    --ink: #2e2148;
+    --ink-soft: #5c4b80;
+    --muted: #8a7aa8;
+    --line: #e6d9f7;
+    --lilac: #b49bff;
+    --cotton: #ff9ecf;
+    --sky: #8fd4ff;
+    --mint: #9febcf;
+    --butter: #ffe08a;
+    --on-accent: #2e2148;
+    --aura-1: #c9b6ff;
+    --aura-2: #ffc6e6;
+    --aura-3: #b8e6ff;
+    --aura-strength: 0.55;
+    --dot: rgba(120, 90, 180, 0.14);
+    --sticker-edge: #ffffff;
+    --shadow-sticker: 0 20px 44px -26px rgba(70, 40, 120, 0.5);
+    --shadow-soft: 0 10px 26px -18px rgba(70, 40, 120, 0.42);
+    --r-sm: 12px;
+    --r-md: 20px;
+    --r-lg: 30px;
+    --r-pill: 999px;
+    --font-display: "Baloo 2", "Trebuchet MS", system-ui, sans-serif;
+    --font-body: "Outfit", "Segoe UI", system-ui, sans-serif;
+    --font-mono: "Space Mono", ui-monospace, "Cascadia Mono", monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --ground: #15102a;
+      --ground-2: #1c1438;
+      --surface: #221a3d;
+      --surface-2: #2a2049;
+      --ink: #f3ecff;
+      --ink-soft: #c9bce8;
+      --muted: #9c8cc0;
+      --line: #372a5c;
+      --lilac: #c3aeff;
+      --cotton: #ffaeda;
+      --sky: #9edbff;
+      --mint: #a9f0d7;
+      --butter: #ffe7a3;
+      --on-accent: #1a1230;
+      --aura-1: #6b4bc7;
+      --aura-2: #a8407c;
+      --aura-3: #2e6c9e;
+      --aura-strength: 0.45;
+      --dot: rgba(190, 160, 255, 0.1);
+      --sticker-edge: #2a2049;
+      --shadow-sticker: 0 22px 48px -26px rgba(0, 0, 0, 0.7);
+      --shadow-soft: 0 12px 28px -18px rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --ground: #15102a;
+    --ground-2: #1c1438;
+    --surface: #221a3d;
+    --surface-2: #2a2049;
+    --ink: #f3ecff;
+    --ink-soft: #c9bce8;
+    --muted: #9c8cc0;
+    --line: #372a5c;
+    --lilac: #c3aeff;
+    --cotton: #ffaeda;
+    --sky: #9edbff;
+    --mint: #a9f0d7;
+    --butter: #ffe7a3;
+    --on-accent: #1a1230;
+    --aura-1: #6b4bc7;
+    --aura-2: #a8407c;
+    --aura-3: #2e6c9e;
+    --aura-strength: 0.45;
+    --dot: rgba(190, 160, 255, 0.1);
+    --sticker-edge: #2a2049;
+    --shadow-sticker: 0 22px 48px -26px rgba(0, 0, 0, 0.7);
+    --shadow-soft: 0 12px 28px -18px rgba(0, 0, 0, 0.6);
+  }
+
+  /* ========================================================== base */
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.65;
+    font-weight: 350;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: radial-gradient(var(--dot) 1.2px, transparent 1.3px);
+    background-size: 22px 22px;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  p { margin: 0; }
+  a { color: inherit; text-decoration: none; }
+
+  :focus-visible {
+    outline: 3px solid var(--lilac);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  ::selection { background: var(--cotton); color: var(--on-accent); }
+
+  /* ========================================================== layout */
+  .page { position: relative; z-index: 1; }
+  .shell { width: min(1120px, 100% - 2.5rem); margin-inline: auto; }
+  .section { padding-block: clamp(4rem, 9vw, 7.5rem); }
+  .stack-col { display: flex; flex-direction: column; }
+
+  /* ========================================================== auras */
+  .aura-field {
+    position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
+  }
+  .aura { position: absolute; border-radius: 50%; filter: blur(90px); opacity: var(--aura-strength); }
+  .aura--1 { width: 46vw; height: 46vw; background: var(--aura-1); top: -12vw; left: -10vw; animation: drift-a 26s ease-in-out infinite alternate; }
+  .aura--2 { width: 38vw; height: 38vw; background: var(--aura-2); top: 28vh; right: -12vw; animation: drift-b 31s ease-in-out infinite alternate; }
+  .aura--3 { width: 34vw; height: 34vw; background: var(--aura-3); bottom: -10vw; left: 26vw; animation: drift-a 36s ease-in-out infinite alternate-reverse; }
+  @keyframes drift-a { to { transform: translate3d(6vw, 5vh, 0) scale(1.12); } }
+  @keyframes drift-b { to { transform: translate3d(-7vw, -4vh, 0) scale(1.08); } }
+
+  /* ========================================================== stickers */
+  .sticker {
+    position: relative;
+    background: var(--surface);
+    border: 3px solid var(--sticker-edge);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-sticker);
+    padding: 1.6rem 1.7rem;
+  }
+  .sticker--tilt-l { transform: rotate(-1.2deg); }
+  .sticker--tilt-r { transform: rotate(1.1deg); }
+  .sticker--tinted { background: var(--surface-2); }
+
+  .tape {
+    position: absolute;
+    top: -13px; left: 26px;
+    padding: 0.15rem 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--on-accent);
+    background: var(--butter);
+    border-radius: var(--r-pill);
+    transform: rotate(-2deg);
+  }
+
+  /* ========================================================== type */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.16em;
+    text-transform: lowercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .eyebrow::before {
+    content: ""; width: 26px; height: 3px; border-radius: 2px;
+    background: var(--cotton); flex: none;
+  }
+
+  .h-xl { font-size: clamp(2.9rem, 9.5vw, 6rem); }
+  .h-lg { font-size: clamp(2.1rem, 5.4vw, 3.4rem); }
+  .h-md { font-size: clamp(1.35rem, 2.6vw, 1.7rem); }
+
+  .lead { font-size: clamp(1.05rem, 1.7vw, 1.22rem); color: var(--ink-soft); max-width: 62ch; }
+  .prose-soft { color: var(--ink-soft); max-width: 64ch; }
+  .dim { color: var(--muted); }
+  .mono { font-family: var(--font-mono); }
+  .tabular { font-variant-numeric: tabular-nums; }
+
+  .gradient-text {
+    background: linear-gradient(100deg, var(--lilac), var(--cotton) 45%, var(--sky));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* ========================================================== chips + buttons */
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    padding: 0.28rem 0.65rem;
+    border-radius: var(--r-pill);
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+  .chip--lilac { background: color-mix(in srgb, var(--lilac) 30%, var(--surface)); border-color: transparent; color: var(--ink); }
+  .chip--mint { background: color-mix(in srgb, var(--mint) 40%, var(--surface)); border-color: transparent; color: var(--ink); }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    font-family: var(--font-display); font-weight: 700; font-size: 1rem;
+    padding: 0.72rem 1.5rem;
+    border-radius: var(--r-pill);
+    border: 3px solid var(--sticker-edge);
+    cursor: pointer;
+    transition: transform 0.18s cubic-bezier(0.34, 1.4, 0.64, 1), box-shadow 0.18s ease;
+    box-shadow: var(--shadow-soft);
+  }
+  .btn:hover { transform: translateY(-3px) rotate(-1deg); }
+  .btn:active { transform: translateY(0) scale(0.98); }
+  .btn--primary { background: linear-gradient(135deg, var(--lilac), var(--cotton)); color: var(--on-accent); }
+  .btn--ghost { background: var(--surface); color: var(--ink); border-color: var(--line); }
+  .btn--icon {
+    padding: 0; width: 2.6rem; height: 2.6rem; justify-content: center;
+    border-radius: 50%; background: var(--surface-2); color: var(--ink);
+    border-color: var(--line); box-shadow: none; font-size: 0.85rem;
+  }
+  .btn--play {
+    width: 3.2rem; height: 3.2rem; padding: 0; justify-content: center; border-radius: 50%;
+  }
+
+  /* ========================================================== nav */
+  .nav {
+    position: fixed; top: 0.9rem; left: 50%; transform: translateX(-50%);
+    z-index: 40; display: flex; align-items: center; gap: 0.2rem;
+    padding: 0.4rem 0.5rem; border-radius: var(--r-pill);
+    background: color-mix(in srgb, var(--surface) 78%, transparent);
+    backdrop-filter: blur(14px) saturate(1.3);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-soft);
+    max-width: calc(100% - 1.6rem);
+  }
+  .nav a {
+    font-size: 0.86rem; font-weight: 500; padding: 0.38rem 0.8rem;
+    border-radius: var(--r-pill); color: var(--ink-soft);
+    transition: background 0.16s ease, color 0.16s ease; white-space: nowrap;
+  }
+  .nav a:hover { background: var(--surface-2); color: var(--ink); }
+  .nav a.is-active { background: color-mix(in srgb, var(--lilac) 32%, var(--surface)); color: var(--ink); }
+  .nav__brand { font-family: var(--font-display); font-weight: 800; padding-inline: 0.7rem 0.55rem; font-size: 1rem; }
+
+  @media (max-width: 760px) {
+    .nav a:not(.nav__brand) { padding-inline: 0.5rem; font-size: 0.78rem; }
+    .nav__hide-sm { display: none; }
+  }
+
+  .progress {
+    position: fixed; top: 0; left: 0; height: 3px; z-index: 50; width: 0;
+    background: linear-gradient(90deg, var(--lilac), var(--cotton), var(--sky));
+    border-radius: 0 2px 2px 0;
+  }
+
+  /* ========================================================== hero */
+  .hero {
+    padding-top: clamp(6.5rem, 14vw, 9rem);
+    padding-bottom: clamp(2.5rem, 6vw, 4rem);
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  @media (max-width: 900px) { .hero { grid-template-columns: 1fr; } }
+
+  .hero__name { display: block; }
+
+  .wave { display: inline-block; transform-origin: 70% 80%; animation: wave 2.6s ease-in-out infinite; }
+  @keyframes wave {
+    0%, 60%, 100% { transform: rotate(0deg); }
+    10% { transform: rotate(14deg); }
+    20% { transform: rotate(-8deg); }
+    30% { transform: rotate(14deg); }
+    40% { transform: rotate(-4deg); }
+  }
+
+  .hero__cluster { position: relative; min-height: 348px; }
+
+  .float-card {
+    position: absolute;
+    background: var(--surface);
+    border: 3px solid var(--sticker-edge);
+    border-radius: var(--r-md);
+    box-shadow: var(--shadow-sticker);
+    padding: 0.85rem 1.05rem;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--ink-soft);
+    animation: bob 7s ease-in-out infinite;
+  }
+  .float-card b {
+    font-family: var(--font-display); font-size: 1.5rem;
+    color: var(--ink); display: block; line-height: 1.1;
+  }
+  /* three bands, so the cards and the blob never collide as the column narrows */
+  .float-card--a { top: 0; left: 0; transform: rotate(-4deg); }
+  .float-card--b { top: 132px; left: 8px; transform: rotate(3deg); animation-delay: -2.2s; }
+  .float-card--c { bottom: 0; right: 4px; transform: rotate(2deg); animation-delay: -4.4s; }
+  @keyframes bob { 50% { translate: 0 -12px; } }
+
+  .blob-badge {
+    position: absolute; top: 0; right: 0;
+    width: 124px; height: 124px;
+    display: grid; place-items: center; text-align: center;
+    font-family: var(--font-display); font-weight: 800;
+    font-size: 0.82rem; line-height: 1.15;
+    color: var(--on-accent);
+    background: linear-gradient(140deg, var(--butter), var(--cotton));
+    border-radius: 46% 54% 58% 42% / 52% 44% 56% 48%;
+    animation: morph 12s ease-in-out infinite;
+  }
+  @keyframes morph {
+    50% { border-radius: 56% 44% 42% 58% / 44% 56% 46% 54%; rotate: 8deg; }
+  }
+
+  /* ========================================================== marquee */
+  .marquee-band {
+    position: relative; z-index: 1;
+    transform: rotate(-2deg) scale(1.04);
+    background: linear-gradient(90deg, var(--lilac), var(--cotton) 40%, var(--butter) 70%, var(--sky));
+    border-block: 3px solid var(--sticker-edge);
+    padding-block: 0.7rem;
+    overflow: hidden;
+    margin-block: clamp(1.5rem, 4vw, 3rem);
+  }
+  .marquee { display: flex; width: max-content; animation: slide 34s linear infinite; }
+  .marquee-band:hover .marquee { animation-play-state: paused; }
+  .marquee__group {
+    display: flex; align-items: center; gap: 2.2rem; padding-right: 2.2rem;
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    color: var(--on-accent); white-space: nowrap;
+  }
+  .marquee__dot { width: 9px; height: 9px; border-radius: 50%; background: var(--on-accent); opacity: 0.55; flex: none; }
+  @keyframes slide { to { transform: translateX(-50%); } }
+
+  /* ========================================================== about */
+  .about {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 3.5rem);
+    align-items: start;
+  }
+  @media (max-width: 880px) { .about { grid-template-columns: 1fr; } }
+
+  .loop { display: flex; flex-direction: column; gap: 0.5rem; }
+  .loop__step {
+    display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.75rem;
+    align-items: baseline; font-family: var(--font-mono); font-size: 0.82rem;
+    color: var(--ink-soft); padding: 0.55rem 0.7rem;
+    border-radius: var(--r-sm); background: var(--surface-2);
+  }
+  .loop__key { color: var(--ink); font-weight: 700; }
+  .loop__arrow { font-family: var(--font-mono); color: var(--muted); text-align: center; font-size: 0.8rem; line-height: 1.4; }
+
+  /* ========================================================== stack */
+  .stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.1rem; }
+  .stack-card {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--r-md); padding: 1.2rem 1.25rem;
+    display: flex; flex-direction: column; gap: 0.8rem;
+  }
+  .stack-card__title {
+    font-family: var(--font-display); font-weight: 700; font-size: 1.05rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .swatch { width: 13px; height: 13px; border-radius: 4px; flex: none; }
+
+  /* ========================================================== projects */
+  .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(1.4rem, 3vw, 2rem); }
+  .project {
+    display: flex; flex-direction: column; gap: 0.85rem;
+    transition: transform 0.22s cubic-bezier(0.34, 1.3, 0.64, 1), box-shadow 0.22s ease;
+  }
+  .project:hover { transform: rotate(0deg) translateY(-6px); box-shadow: 0 28px 54px -26px rgba(70, 40, 120, 0.55); }
+  .project__thumb {
+    height: 132px; border-radius: var(--r-md); display: grid; place-items: center;
+    font-family: var(--font-display); font-weight: 800; font-size: 2.4rem;
+    color: var(--on-accent); overflow: hidden;
+  }
+  .project__head { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; }
+
+  .status {
+    font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 0.2rem 0.55rem; border-radius: var(--r-pill); flex: none;
+  }
+  .status--live { background: color-mix(in srgb, var(--mint) 55%, var(--surface)); color: var(--on-accent); }
+  .status--wip { background: color-mix(in srgb, var(--butter) 60%, var(--surface)); color: var(--on-accent); }
+
+  .link-arrow {
+    font-weight: 600; font-size: 0.9rem; color: var(--ink);
+    display: inline-flex; gap: 0.35rem; align-items: center;
+    border-bottom: 2px solid color-mix(in srgb, var(--lilac) 60%, transparent);
+    width: fit-content; padding-bottom: 1px;
+  }
+  .link-arrow span { transition: translate 0.16s ease; }
+  .link-arrow:hover span { translate: 4px 0; }
+
+  /* ========================================================== writing */
+  .writing { display: flex; flex-direction: column; }
+  .writing__row {
+    display: grid; grid-template-columns: 6.5rem minmax(0, 1fr) auto;
+    gap: 1.2rem; align-items: baseline; padding-block: 1.05rem;
+    border-top: 1px solid var(--line);
+  }
+  .writing__row:last-child { border-bottom: 1px solid var(--line); }
+  .writing__row:hover .writing__title { color: var(--ink); }
+  .writing__when { font-family: var(--font-mono); font-size: 0.76rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .writing__title { font-family: var(--font-display); font-weight: 700; font-size: 1.08rem; color: var(--ink-soft); transition: color 0.16s ease; }
+  @media (max-width: 640px) { .writing__row { grid-template-columns: 1fr; gap: 0.3rem; } }
+
+  /* ========================================================== currently */
+  .currently {
+    display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: clamp(1.4rem, 3vw, 2rem); align-items: stretch;
+  }
+  @media (max-width: 900px) { .currently { grid-template-columns: 1fr; } }
+  .currently > * { display: flex; min-width: 0; }
+  .currently > * > * { flex: 1; min-width: 0; }
+
+  .player {
+    background: linear-gradient(165deg, color-mix(in srgb, var(--lilac) 26%, var(--surface)), var(--surface));
+    border: 3px solid var(--sticker-edge);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-sticker);
+    padding: 1.4rem;
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .player__art { aspect-ratio: 1; border-radius: var(--r-md); position: relative; overflow: hidden; display: grid; place-items: center; }
+  .player__art-glyph {
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(2.5rem, 7vw, 3.6rem); color: var(--on-accent);
+    opacity: 0.85; text-align: center; padding: 1rem; line-height: 1;
+  }
+  .player__title { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; line-height: 1.2; }
+  .player__artist { font-size: 0.9rem; color: var(--muted); }
+  .player__bar { height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; }
+  .player__bar span { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--cotton), var(--lilac)); }
+  .player__times { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .player__controls { display: flex; align-items: center; justify-content: center; gap: 0.6rem; }
+
+  .eq { display: flex; align-items: flex-end; gap: 3px; height: 18px; flex: none; }
+  .eq i { width: 3px; background: var(--cotton); border-radius: 2px; height: 30%; animation: bounce 900ms ease-in-out infinite; }
+  .eq i:nth-child(2) { animation-delay: 150ms; background: var(--lilac); }
+  .eq i:nth-child(3) { animation-delay: 300ms; background: var(--sky); }
+  .eq i:nth-child(4) { animation-delay: 450ms; background: var(--mint); }
+  .eq i:nth-child(5) { animation-delay: 600ms; background: var(--butter); }
+  .eq[data-paused="true"] i { animation-play-state: paused; }
+  @keyframes bounce { 50% { height: 100%; } }
+
+  .arcade {
+    background: var(--surface);
+    border: 3px solid var(--sticker-edge);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-sticker);
+    padding: 1.1rem;
+    display: flex; flex-direction: column; gap: 0.9rem;
+  }
+  .arcade__bar { display: flex; align-items: center; justify-content: space-between; gap: 0.8rem; flex-wrap: wrap; }
+  .arcade__scores { display: flex; gap: 1.2rem; font-family: var(--font-mono); font-size: 0.76rem; color: var(--muted); }
+  .arcade__scores b {
+    display: block; font-family: var(--font-display); font-size: 1.35rem;
+    color: var(--ink); line-height: 1.1; font-variant-numeric: tabular-nums;
+  }
+  .arcade__screen {
+    position: relative; border-radius: var(--r-md); overflow: hidden;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--sky) 22%, var(--surface-2)), color-mix(in srgb, var(--cotton) 16%, var(--surface-2)));
+    border: 1px solid var(--line); touch-action: none;
+  }
+  .arcade__screen canvas { display: block; width: 100%; height: auto; }
+  .arcade__overlay {
+    position: absolute; inset: 0; display: grid; place-items: center;
+    text-align: center; padding: 1.2rem;
+    background: color-mix(in srgb, var(--surface) 70%, transparent);
+    backdrop-filter: blur(3px);
+  }
+  .arcade__overlay > div { display: flex; flex-direction: column; align-items: center; gap: 0.7rem; }
+  .arcade__overlay[hidden] { display: none !important; }
+  .arcade__hint { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); }
+  .arcade__result { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; }
+
+  /* ========================================================== contact */
+  .contact { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
+  @media (max-width: 760px) { .contact { grid-template-columns: 1fr; } }
+
+  .socials { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .social {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.6rem 1.05rem; border-radius: var(--r-pill);
+    background: var(--surface); border: 1px solid var(--line);
+    font-weight: 500; font-size: 0.92rem;
+    transition: transform 0.16s ease, background 0.16s ease;
+  }
+  .social:hover { transform: translateY(-2px); background: var(--surface-2); }
+
+  .footer {
+    border-top: 1px solid var(--line);
+    padding-block: 2rem 2.5rem;
+    display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem;
+    justify-content: space-between; align-items: center;
+    font-size: 0.84rem; color: var(--muted);
+  }
+
+  /* ========================================================== reveal */
+  [data-reveal] { transition: opacity 0.6s ease, translate 0.6s cubic-bezier(0.22, 0.9, 0.3, 1); }
+  .rv-pre { opacity: 0.001; translate: 0 26px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    .rv-pre { opacity: 1; translate: none; }
+    .marquee { animation: none; }
+  }
+
+  .visually-hidden {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip-path: inset(50%); white-space: nowrap;
+  }
+</style>
+
+</head>
+<body>
+
+<div class="aura-field" aria-hidden="true">
+  <div class="aura aura--1"></div>
+  <div class="aura aura--2"></div>
+  <div class="aura aura--3"></div>
+</div>
+
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Sections">
+  <a class="nav__brand" href="#top">rabia<span style="color: var(--cotton)">.</span></a>
+  <a href="#about">about</a>
+  <a href="#stack">stack</a>
+  <a href="#work">work</a>
+  <a href="#writing" class="nav__hide-sm">writing</a>
+  <a href="#currently" class="nav__hide-sm">currently</a>
+  <a href="#contact" class="nav__hide-sm">contact</a>
+</nav>
+
+<div class="page">
+  <header class="shell hero" id="top">
+    <div class="stack-col" style="gap: 1.5rem">
+      <p class="eyebrow">hey, i'm <span class="wave" aria-hidden="true">👋</span></p>
+
+      <h1 class="h-xl">
+        <span class="hero__name">Rabia</span>
+        <span class="gradient-text">builds agents.</span>
+      </h1>
+
+      <p class="lead">
+        I build systems that think, decide, and act on their own — then turn
+        them into products people actually use.
+      </p>
+
+      <div class="chip-row" style="gap: 0.55rem">
+        <span class="chip chip--lilac">full-stack dev, mostly building agents</span>
+        <span class="chip chip--mint">open to AI research + international roles</span>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 0.75rem">
+        <a class="btn btn--primary" href="#work">see the work <span aria-hidden="true">→</span></a>
+        <a class="btn btn--ghost" href="#contact">say hi</a>
+      </div>
+    </div>
+
+    <div class="hero__cluster" aria-hidden="true">
+      <div class="float-card float-card--a"><b class="tabular">2</b>things shipped</div>
+      <div class="blob-badge">agents<br />that<br />actually<br />finish</div>
+      <div class="float-card float-card--b"><b class="tabular">3</b>papers &amp; posts</div>
+      <div class="float-card float-card--c">plan → act → observe<b>the loop</b></div>
+    </div>
+  </header>
+
+  <div class="marquee-band">
+    <div class="marquee" id="marquee"></div>
+    <span class="visually-hidden">
+      agentic systems, full-stack, react and node, python, llm evals, mcp, rag,
+      mobile, research, design that doesn't hurt
+    </span>
+  </div>
+
+  <section class="shell section about" id="about">
+    <div class="stack-col" style="gap: 1.4rem" data-reveal>
+      <p class="eyebrow">about me</p>
+      <h2 class="h-lg">I like problems that<br />don't have obvious answers.</h2>
+      <div class="stack-col prose-soft" style="gap: 1.1rem">
+        <p>
+          I'm a full-stack developer with a strong focus on AI, especially
+          agentic systems and smart solutions. I like building things that can
+          think, decide, and act on their own, and turning that into products
+          people actually find useful.
+        </p>
+        <p>
+          My background spans web and mobile development, and over time I've
+          moved more and more toward AI, both in the work I ship and in the
+          research I explore and publish. Working across the full process, from
+          the first idea to the final product, is what I enjoy most. It means I
+          get to stay close to both the thinking and the building.
+        </p>
+        <p>
+          I'm curious by nature and I like problems that don't have obvious
+          answers. Whether that's designing a system that adapts on its own or
+          figuring out how to make something complex feel simple to use, I'm
+          happiest when I'm learning something new along the way.
+        </p>
+        <p>
+          Right now I'm building AI powered solutions professionally while
+          looking to grow further into AI through research and international
+          opportunities.
+        </p>
+        <p>
+          If you're working on something interesting in this space, or just want
+          to talk about where AI is headed, I'd love to connect.
+        </p>
+      </div>
+    </div>
+
+    <aside class="sticker sticker--tilt-r" data-reveal data-reveal-delay="120">
+      <span class="tape">how i work</span>
+      <div class="loop" style="margin-top: 0.6rem">
+        <div class="loop__step"><span class="loop__key">plan</span><span>scope the problem before touching a keyboard</span></div>
+        <div class="loop__arrow" aria-hidden="true">↓</div>
+        <div class="loop__step"><span class="loop__key">act</span><span>ship the smallest thing that proves it works</span></div>
+        <div class="loop__arrow" aria-hidden="true">↓</div>
+        <div class="loop__step"><span class="loop__key">observe</span><span>measure it, read the traces, find what broke</span></div>
+        <div class="loop__arrow" aria-hidden="true">↓</div>
+        <div class="loop__step"><span class="loop__key">repeat</span><span>until it's simple enough to hand to someone else</span></div>
+      </div>
+      <p class="mono dim" style="font-size: 0.72rem; margin-top: 0.9rem">
+        ↻ it's a loop, not a checklist
+      </p>
+    </aside>
+  </section>
+
+  <section class="shell section" id="stack">
+    <div class="stack-col" style="gap: 1.6rem">
+      <div class="stack-col" style="gap: 0.8rem" data-reveal>
+        <p class="eyebrow">the stack</p>
+        <h2 class="h-lg">Tools, grouped by what they're actually for.</h2>
+      </div>
+
+      <div class="stack-grid">
+        <div class="stack-card" data-reveal>
+          <h3 class="stack-card__title"><i class="swatch" style="background: var(--lilac)"></i>agentic ai</h3>
+          <div class="chip-row">
+            <span class="chip">Claude API</span><span class="chip">MCP</span>
+            <span class="chip">tool-calling</span><span class="chip">LangGraph</span>
+            <span class="chip">evals</span><span class="chip">RAG</span>
+          </div>
+        </div>
+        <div class="stack-card" data-reveal data-reveal-delay="90">
+          <h3 class="stack-card__title"><i class="swatch" style="background: var(--cotton)"></i>product &amp; web</h3>
+          <div class="chip-row">
+            <span class="chip">React</span><span class="chip">Next.js</span>
+            <span class="chip">TypeScript</span><span class="chip">Tailwind</span>
+            <span class="chip">React Native</span>
+          </div>
+        </div>
+        <div class="stack-card" data-reveal data-reveal-delay="180">
+          <h3 class="stack-card__title"><i class="swatch" style="background: var(--sky)"></i>server &amp; data</h3>
+          <div class="chip-row">
+            <span class="chip">Node</span><span class="chip">Python</span>
+            <span class="chip">FastAPI</span><span class="chip">Postgres</span>
+            <span class="chip">Redis</span><span class="chip">pgvector</span>
+          </div>
+        </div>
+        <div class="stack-card" data-reveal data-reveal-delay="270">
+          <h3 class="stack-card__title"><i class="swatch" style="background: var(--mint)"></i>ship it</h3>
+          <div class="chip-row">
+            <span class="chip">Docker</span><span class="chip">GitHub Actions</span>
+            <span class="chip">Vercel</span><span class="chip">AWS</span>
+            <span class="chip">Playwright</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="shell section" id="work">
+    <div class="stack-col" style="gap: 1.6rem">
+      <div class="stack-col" style="gap: 0.8rem" data-reveal>
+        <p class="eyebrow">stuff i built</p>
+        <h2 class="h-lg">Things that think for themselves.</h2>
+        <p class="mono dim" style="font-size: 0.76rem">
+          sample entries — swap them in src/content.js
+        </p>
+      </div>
+      <div class="projects" id="projects"></div>
+    </div>
+  </section>
+
+  <section class="shell section" id="writing">
+    <div class="stack-col" style="gap: 1.4rem">
+      <div class="stack-col" style="gap: 0.8rem" data-reveal>
+        <p class="eyebrow">writing &amp; research</p>
+        <h2 class="h-lg">Notes from the inside of the loop.</h2>
+      </div>
+      <div class="writing" data-reveal>
+        <a class="writing__row" href="#writing">
+          <span class="writing__when">2026 · 03</span>
+          <span class="writing__title">What a good agent trace looks like</span>
+          <span class="chip">essay</span>
+        </a>
+        <a class="writing__row" href="#writing">
+          <span class="writing__when">2025 · 11</span>
+          <span class="writing__title">Cheap evals beat clever prompts</span>
+          <span class="chip">essay</span>
+        </a>
+        <a class="writing__row" href="#writing">
+          <span class="writing__when">2025 · 07</span>
+          <span class="writing__title">Task decomposition strategies for tool-using agents</span>
+          <span class="chip">preprint</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="shell section" id="currently">
+    <div class="stack-col" style="gap: 1.6rem">
+      <div class="stack-col" style="gap: 0.8rem" data-reveal>
+        <p class="eyebrow">currently</p>
+        <h2 class="h-lg">What's on, and something to play with.</h2>
+      </div>
+
+      <div class="currently">
+        <div data-reveal>
+          <div class="player">
+            <p class="eyebrow">on loop while building</p>
+
+            <div class="player__art" id="art" aria-hidden="true">
+              <span class="player__art-glyph" id="artGlyph">◐</span>
+            </div>
+
+            <div class="stack-col" style="gap: 0.15rem">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.75rem">
+                <p class="player__title" id="trackTitle">Nightcall</p>
+                <div class="eq" id="eq" data-paused="false" aria-hidden="true">
+                  <i></i><i></i><i></i><i></i><i></i>
+                </div>
+              </div>
+              <p class="player__artist" id="trackArtist">Kavinsky</p>
+            </div>
+
+            <div class="stack-col" style="gap: 0.4rem">
+              <div class="player__bar"><span id="playerBar" style="width: 14%"></span></div>
+              <div class="player__times">
+                <span id="timeNow">0:37</span><span id="timeTotal">4:18</span>
+              </div>
+            </div>
+
+            <div class="player__controls">
+              <button class="btn btn--icon" id="prev" aria-label="Previous track">⏮</button>
+              <button class="btn btn--primary btn--play" id="toggle" aria-label="Pause">❚❚</button>
+              <button class="btn btn--icon" id="next" aria-label="Next track">⏭</button>
+            </div>
+
+            <p class="mono dim" style="font-size: 0.68rem; text-align: center">
+              vibes only — no audio, no account attached
+            </p>
+          </div>
+        </div>
+
+        <div data-reveal data-reveal-delay="120">
+          <div class="arcade">
+            <div class="arcade__bar">
+              <div class="stack-col" style="gap: 0.2rem">
+                <p class="eyebrow">take a break</p>
+                <p style="font-family: var(--font-display); font-weight: 700">Blob Catch</p>
+              </div>
+              <div class="arcade__scores">
+                <span>score<b id="score">0</b></span>
+                <span>best<b id="best">0</b></span>
+                <span>time<b id="time">30s</b></span>
+              </div>
+            </div>
+
+            <div class="arcade__screen">
+              <canvas
+                id="game"
+                style="aspect-ratio: 480 / 300"
+                role="img"
+                aria-label="Blob Catch: steer the cloud to catch falling blobs"
+              ></canvas>
+
+              <div class="arcade__overlay" id="overlay">
+                <div>
+                  <p class="arcade__result" id="result" hidden></p>
+                  <p class="arcade__hint" id="hint">
+                    30 seconds. small blobs are worth more. 5 in a row doubles it.
+                  </p>
+                  <button class="btn btn--primary" id="start">start</button>
+                </div>
+              </div>
+            </div>
+
+            <p class="arcade__hint" id="controlHint">
+              move with your mouse, finger, or ← → keys
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="shell section" id="contact">
+    <div class="sticker sticker--tinted contact" style="padding: clamp(1.8rem, 4vw, 3rem)" data-reveal>
+      <div class="stack-col" style="gap: 0.9rem">
+        <p class="eyebrow">contact</p>
+        <h2 class="h-lg">
+          Working on something interesting?<br />
+          <span class="gradient-text">Let's talk about it.</span>
+        </h2>
+        <p class="prose-soft">
+          Open to AI research collaborations, international roles, and
+          conversations about where all of this is actually heading.
+        </p>
+      </div>
+
+      <div class="socials">
+        <a class="social" href="#contact"><span class="mono dim" aria-hidden="true">⌥</span>GitHub</a>
+        <a class="social" href="#contact"><span class="mono dim" aria-hidden="true">in</span>LinkedIn</a>
+        <a class="social" href="#contact"><span class="mono dim" aria-hidden="true">✎</span>Google Scholar</a>
+        <a class="social" href="#contact"><span class="mono dim" aria-hidden="true">✉</span>Email</a>
+      </div>
+    </div>
+
+    <footer class="footer" style="margin-top: clamp(2.5rem, 6vw, 4rem)">
+      <span>© 2026 Rabia · built with too many gradients</span>
+      <span class="mono">plan → act → observe → repeat</span>
+    </footer>
+  </section>
+</div>
+
+<script>
+  (function () {
+    "use strict";
+
+    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    /* ---------------------------------------------------- marquee */
+    var WORDS = [
+      "agentic systems", "full-stack", "react + node", "python", "llm evals",
+      "mcp", "rag", "mobile", "research", "design that doesn't hurt"
+    ];
+
+    var marquee = document.getElementById("marquee");
+    for (var copy = 0; copy < 2; copy += 1) {
+      var group = document.createElement("div");
+      group.className = "marquee__group";
+      group.setAttribute("aria-hidden", "true");
+      WORDS.forEach(function (word) {
+        var span = document.createElement("span");
+        span.textContent = word;
+        var dot = document.createElement("i");
+        dot.className = "marquee__dot";
+        group.appendChild(span);
+        group.appendChild(dot);
+      });
+      marquee.appendChild(group);
+    }
+
+    /* ---------------------------------------------------- projects */
+    var PROJECTS = [
+      {
+        title: "Orchestra",
+        blurb: "A multi-agent runner that breaks a goal into steps, hands each to a specialist agent, and keeps a readable trace of every decision.",
+        tags: ["Claude API", "MCP", "Node", "Postgres"],
+        status: "live", label: "shipped", glyph: "◍",
+        gradient: "linear-gradient(140deg, var(--lilac), var(--sky))"
+      },
+      {
+        title: "Paper Trail",
+        blurb: "Research assistant that reads a paper set, answers with citations you can click, and admits when the answer isn't in the corpus.",
+        tags: ["Python", "FastAPI", "pgvector", "RAG"],
+        status: "live", label: "shipped", glyph: "❋",
+        gradient: "linear-gradient(140deg, var(--cotton), var(--butter))"
+      },
+      {
+        title: "Loop",
+        blurb: "An eval harness for agents: fixture conversations, graded rubrics, and a diff view that shows which prompt change caused the regression.",
+        tags: ["TypeScript", "evals", "CI"],
+        status: "wip", label: "in progress", glyph: "↻",
+        gradient: "linear-gradient(140deg, var(--mint), var(--sky))"
+      },
+      {
+        title: "Pocketful",
+        blurb: "Cross-platform mobile app with an on-device assistant that categorises spending and explains why it guessed what it guessed.",
+        tags: ["React Native", "Expo", "SQLite"],
+        status: "wip", label: "in progress", glyph: "✿",
+        gradient: "linear-gradient(140deg, var(--butter), var(--cotton))"
+      }
+    ];
+
+    var grid = document.getElementById("projects");
+    PROJECTS.forEach(function (project, i) {
+      var card = document.createElement("article");
+      card.className =
+        "sticker project " + (i % 2 ? "sticker--tilt-r" : "sticker--tilt-l");
+      card.setAttribute("data-reveal", "");
+      if (i % 2) card.setAttribute("data-reveal-delay", "110");
+
+      var thumb = document.createElement("div");
+      thumb.className = "project__thumb";
+      thumb.style.background = project.gradient;
+      thumb.setAttribute("aria-hidden", "true");
+      thumb.textContent = project.glyph;
+
+      var head = document.createElement("div");
+      head.className = "project__head";
+      var title = document.createElement("h3");
+      title.className = "h-md";
+      title.textContent = project.title;
+      var status = document.createElement("span");
+      status.className = "status status--" + project.status;
+      status.textContent = project.label;
+      head.appendChild(title);
+      head.appendChild(status);
+
+      var blurb = document.createElement("p");
+      blurb.className = "prose-soft";
+      blurb.style.fontSize = "0.95rem";
+      blurb.textContent = project.blurb;
+
+      var tags = document.createElement("div");
+      tags.className = "chip-row";
+      project.tags.forEach(function (tag) {
+        var chip = document.createElement("span");
+        chip.className = "chip";
+        chip.textContent = tag;
+        tags.appendChild(chip);
+      });
+
+      var links = document.createElement("div");
+      links.style.cssText =
+        "display:flex;gap:1.2rem;margin-top:auto;padding-top:0.4rem";
+      ["live", "code"].forEach(function (label) {
+        var link = document.createElement("a");
+        link.className = "link-arrow";
+        link.href = "#work";
+        link.innerHTML = label + ' <span aria-hidden="true">→</span>';
+        links.appendChild(link);
+      });
+
+      card.appendChild(thumb);
+      card.appendChild(head);
+      card.appendChild(blurb);
+      card.appendChild(tags);
+      card.appendChild(links);
+      grid.appendChild(card);
+    });
+
+    /* ---------------------------------------------------- scroll progress */
+    var progressBar = document.getElementById("progress");
+    var navLinks = Array.prototype.slice.call(
+      document.querySelectorAll(".nav a:not(.nav__brand)")
+    );
+    var frame = 0;
+
+    function onScroll() {
+      if (frame) return;
+      frame = requestAnimationFrame(function () {
+        frame = 0;
+        var scrollable =
+          document.documentElement.scrollHeight - window.innerHeight;
+        var ratio = scrollable > 0 ? window.scrollY / scrollable : 0;
+        progressBar.style.width = ratio * 100 + "%";
+      });
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    onScroll();
+
+    /* ---------------------------------------------------- active nav */
+    var sections = navLinks
+      .map(function (link) {
+        return document.getElementById(link.getAttribute("href").slice(1));
+      })
+      .filter(Boolean);
+
+    if ("IntersectionObserver" in window && sections.length) {
+      var navObserver = new IntersectionObserver(
+        function (entries) {
+          var best = entries
+            .filter(function (e) { return e.isIntersecting; })
+            .sort(function (a, b) {
+              return b.intersectionRatio - a.intersectionRatio;
+            })[0];
+          if (!best) return;
+          navLinks.forEach(function (link) {
+            link.classList.toggle(
+              "is-active",
+              link.getAttribute("href") === "#" + best.target.id
+            );
+          });
+        },
+        { rootMargin: "-35% 0px -55% 0px", threshold: [0, 0.2, 0.6] }
+      );
+      sections.forEach(function (section) { navObserver.observe(section); });
+    }
+
+    /* ---------------------------------------------------- reveal
+       Only elements already below the fold get hidden, so the first
+       painted frame is always fully readable. */
+    if (!reduced && "IntersectionObserver" in window) {
+      var targets = Array.prototype.slice
+        .call(document.querySelectorAll("[data-reveal]"))
+        .filter(function (el) {
+          return el.getBoundingClientRect().top > window.innerHeight * 0.9;
+        });
+
+      targets.forEach(function (el) { el.classList.add("rv-pre"); });
+
+      var revealObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var delay = Number(entry.target.dataset.revealDelay || 0);
+            setTimeout(function () {
+              entry.target.classList.remove("rv-pre");
+            }, delay);
+            revealObserver.unobserve(entry.target);
+          });
+        },
+        { rootMargin: "0px 0px -12% 0px", threshold: 0.05 }
+      );
+      targets.forEach(function (el) { revealObserver.observe(el); });
+    }
+
+    /* ---------------------------------------------------- player */
+    var PLAYLIST = [
+      { title: "Nightcall", artist: "Kavinsky", seconds: 258, glyph: "◐" },
+      { title: "Redbone", artist: "Childish Gambino", seconds: 327, glyph: "❂" },
+      { title: "Sunflower", artist: "Rex Orange County", seconds: 178, glyph: "✺" },
+      { title: "Ivy", artist: "Frank Ocean", seconds: 249, glyph: "✿" },
+      { title: "Alright", artist: "Kendrick Lamar", seconds: 219, glyph: "✦" }
+    ];
+
+    var ART = [
+      "linear-gradient(150deg, var(--lilac), var(--cotton))",
+      "linear-gradient(150deg, var(--sky), var(--mint))",
+      "linear-gradient(150deg, var(--butter), var(--cotton))",
+      "linear-gradient(150deg, var(--mint), var(--lilac))",
+      "linear-gradient(150deg, var(--cotton), var(--sky))"
+    ];
+
+    var trackIndex = 0;
+    var elapsed = 37;
+    var playing = true;
+
+    var els = {
+      art: document.getElementById("art"),
+      glyph: document.getElementById("artGlyph"),
+      title: document.getElementById("trackTitle"),
+      artist: document.getElementById("trackArtist"),
+      bar: document.getElementById("playerBar"),
+      now: document.getElementById("timeNow"),
+      total: document.getElementById("timeTotal"),
+      eq: document.getElementById("eq"),
+      toggle: document.getElementById("toggle")
+    };
+
+    function clock(seconds) {
+      var m = Math.floor(seconds / 60);
+      var s = Math.floor(seconds % 60);
+      return m + ":" + (s < 10 ? "0" : "") + s;
+    }
+
+    function renderPlayer() {
+      var track = PLAYLIST[trackIndex];
+      els.art.style.background = ART[trackIndex % ART.length];
+      els.glyph.textContent = track.glyph;
+      els.title.textContent = track.title;
+      els.artist.textContent = track.artist;
+      els.total.textContent = clock(track.seconds);
+      els.now.textContent = clock(elapsed);
+      els.bar.style.width =
+        Math.min(100, (elapsed / track.seconds) * 100) + "%";
+      els.eq.setAttribute("data-paused", playing ? "false" : "true");
+      els.toggle.textContent = playing ? "❚❚" : "▶";
+      els.toggle.setAttribute("aria-label", playing ? "Pause" : "Play");
+    }
+
+    function jump(step) {
+      trackIndex =
+        (trackIndex + step + PLAYLIST.length) % PLAYLIST.length;
+      elapsed = 0;
+      renderPlayer();
+    }
+
+    document.getElementById("prev").addEventListener("click", function () {
+      jump(-1);
+    });
+    document.getElementById("next").addEventListener("click", function () {
+      jump(1);
+    });
+    els.toggle.addEventListener("click", function () {
+      playing = !playing;
+      renderPlayer();
+    });
+
+    setInterval(function () {
+      if (!playing) return;
+      elapsed += 1;
+      if (elapsed >= PLAYLIST[trackIndex].seconds) {
+        jump(1);
+        return;
+      }
+      renderPlayer();
+    }, 1000);
+
+    renderPlayer();
+
+    /* ---------------------------------------------------- blob catch */
+    var W = 480, H = 300, ROUND = 30;
+    var BASKET_W = 76, BASKET_H = 16, BASKET_Y = H - 34;
+    var STORE_KEY = "blobcatch.best";
+    var TOKENS = ["--lilac", "--cotton", "--sky", "--mint", "--butter"];
+
+    var canvas = document.getElementById("game");
+    var ctx = canvas.getContext("2d");
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    ctx.scale(dpr, dpr);
+
+    var ui = {
+      score: document.getElementById("score"),
+      best: document.getElementById("best"),
+      time: document.getElementById("time"),
+      overlay: document.getElementById("overlay"),
+      result: document.getElementById("result"),
+      hint: document.getElementById("hint"),
+      start: document.getElementById("start"),
+      controlHint: document.getElementById("controlHint")
+    };
+
+    var palette = ["#b49bff"];
+
+    function refreshPalette() {
+      var styles = getComputedStyle(document.documentElement);
+      palette = TOKENS.map(function (token) {
+        return styles.getPropertyValue(token).trim() || "#b49bff";
+      });
+    }
+
+    refreshPalette();
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", refreshPalette);
+    new MutationObserver(refreshPalette).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"]
+    });
+
+    function readBest() {
+      try {
+        return Number(window.localStorage.getItem(STORE_KEY)) || 0;
+      } catch (err) {
+        return 0;
+      }
+    }
+
+    function writeBest(value) {
+      try {
+        window.localStorage.setItem(STORE_KEY, String(value));
+      } catch (err) {
+        /* blocked site data — the game still works */
+      }
+    }
+
+    var game = {
+      phase: "ready",
+      basketX: W / 2,
+      targetX: W / 2,
+      keyDir: 0,
+      blobs: [],
+      sparks: [],
+      score: 0,
+      combo: 0,
+      timeLeft: ROUND,
+      spawnIn: 0
+    };
+
+    var best = readBest();
+    ui.best.textContent = best;
+
+    function spawn() {
+      var radius = 9 + Math.random() * 9;
+      game.blobs.push({
+        x: radius + Math.random() * (W - radius * 2),
+        y: -radius,
+        r: radius,
+        vy: 64 + (19 - radius) * 5 + Math.random() * 34,
+        color: palette[Math.floor(Math.random() * palette.length)],
+        points: radius < 13 ? 3 : 1
+      });
+    }
+
+    /* a few resting blobs so the screen reads as a game before you start */
+    for (var i = 0; i < 5; i += 1) {
+      spawn();
+      game.blobs[i].y = 40 + i * 42;
+      game.blobs[i].x = 60 + i * 78;
+    }
+
+    function startGame() {
+      game.phase = "playing";
+      game.blobs = [];
+      game.sparks = [];
+      game.score = 0;
+      game.combo = 0;
+      game.timeLeft = ROUND;
+      game.spawnIn = 0.25;
+      ui.overlay.hidden = true;
+      ui.score.textContent = "0";
+      ui.time.textContent = "30s";
+    }
+
+    ui.start.addEventListener("click", startGame);
+
+    function pointTo(clientX) {
+      var rect = canvas.getBoundingClientRect();
+      game.targetX = ((clientX - rect.left) / rect.width) * W;
+    }
+
+    canvas.addEventListener("pointermove", function (e) {
+      pointTo(e.clientX);
+    });
+    canvas.addEventListener(
+      "touchmove",
+      function (e) {
+        if (e.touches[0]) pointTo(e.touches[0].clientX);
+      },
+      { passive: true }
+    );
+    window.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") game.keyDir = -1;
+      else if (e.key === "ArrowRight") game.keyDir = 1;
+      else return;
+      e.preventDefault();
+    });
+    window.addEventListener("keyup", function (e) {
+      if (e.key === "ArrowLeft" || e.key === "ArrowRight") game.keyDir = 0;
+    });
+
+    var lastTick = performance.now();
+    var uiAccumulator = 0;
+
+    function frameLoop(now) {
+      var dt = Math.min((now - lastTick) / 1000, 0.05);
+      lastTick = now;
+
+      if (game.phase === "playing") {
+        game.timeLeft = Math.max(0, game.timeLeft - dt);
+
+        if (game.keyDir !== 0) {
+          game.targetX = Math.max(
+            0,
+            Math.min(W, game.targetX + game.keyDir * 340 * dt)
+          );
+        }
+        game.basketX += (game.targetX - game.basketX) * Math.min(1, dt * 14);
+        game.basketX = Math.max(
+          BASKET_W / 2,
+          Math.min(W - BASKET_W / 2, game.basketX)
+        );
+
+        game.spawnIn -= dt;
+        if (game.spawnIn <= 0) {
+          spawn();
+          var progress = 1 - game.timeLeft / ROUND;
+          game.spawnIn = 0.72 - progress * 0.36 + Math.random() * 0.2;
+        }
+
+        for (var b = game.blobs.length - 1; b >= 0; b -= 1) {
+          var blob = game.blobs[b];
+          blob.y += blob.vy * dt;
+
+          var caught =
+            blob.y + blob.r >= BASKET_Y &&
+            blob.y - blob.r <= BASKET_Y + BASKET_H &&
+            Math.abs(blob.x - game.basketX) < BASKET_W / 2 + blob.r * 0.6;
+
+          if (caught) {
+            game.combo += 1;
+            game.score += blob.points * (game.combo >= 5 ? 2 : 1);
+            for (var s = 0; s < 8; s += 1) {
+              var angle = Math.random() * Math.PI * 2;
+              game.sparks.push({
+                x: blob.x, y: BASKET_Y,
+                vx: Math.cos(angle) * 90,
+                vy: Math.sin(angle) * 90 - 40,
+                life: 0.5, color: blob.color
+              });
+            }
+            game.blobs.splice(b, 1);
+          } else if (blob.y - blob.r > H) {
+            game.combo = 0;
+            game.blobs.splice(b, 1);
+          }
+        }
+
+        for (var k = game.sparks.length - 1; k >= 0; k -= 1) {
+          var spark = game.sparks[k];
+          spark.life -= dt;
+          spark.x += spark.vx * dt;
+          spark.y += spark.vy * dt;
+          spark.vy += 260 * dt;
+          if (spark.life <= 0) game.sparks.splice(k, 1);
+        }
+
+        uiAccumulator += dt;
+        if (uiAccumulator > 0.1) {
+          uiAccumulator = 0;
+          ui.score.textContent = game.score;
+          ui.time.textContent = Math.ceil(game.timeLeft) + "s";
+          ui.controlHint.textContent =
+            game.combo >= 5
+              ? "move with your mouse, finger, or ← → keys · combo x2 🔥"
+              : "move with your mouse, finger, or ← → keys";
+        }
+
+        if (game.timeLeft <= 0) {
+          game.phase = "over";
+          ui.score.textContent = game.score;
+          ui.time.textContent = "0s";
+          var isBest = game.score > best;
+          if (isBest) {
+            best = game.score;
+            writeBest(best);
+            ui.best.textContent = best;
+          }
+          ui.result.hidden = false;
+          ui.result.textContent = game.score + " blobs, caught.";
+          ui.hint.textContent = isBest
+            ? "new personal best ✦"
+            : "best so far: " + best;
+          ui.start.textContent = "run it back";
+          ui.overlay.hidden = false;
+        }
+      }
+
+      ctx.clearRect(0, 0, W, H);
+
+      game.blobs.forEach(function (blob) {
+        ctx.beginPath();
+        ctx.fillStyle = blob.color;
+        ctx.globalAlpha = 0.92;
+        ctx.arc(blob.x, blob.y, blob.r, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = 0.55;
+        ctx.beginPath();
+        ctx.fillStyle = "#ffffff";
+        ctx.arc(
+          blob.x - blob.r * 0.3,
+          blob.y - blob.r * 0.34,
+          blob.r * 0.24,
+          0,
+          Math.PI * 2
+        );
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      });
+
+      game.sparks.forEach(function (spark) {
+        ctx.globalAlpha = Math.max(0, spark.life * 2);
+        ctx.fillStyle = spark.color;
+        ctx.beginPath();
+        ctx.arc(spark.x, spark.y, 2.6, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      });
+
+      var gradient = ctx.createLinearGradient(
+        game.basketX - BASKET_W / 2, 0,
+        game.basketX + BASKET_W / 2, 0
+      );
+      gradient.addColorStop(0, palette[0]);
+      gradient.addColorStop(1, palette[1] || palette[0]);
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      if (ctx.roundRect) {
+        ctx.roundRect(
+          game.basketX - BASKET_W / 2, BASKET_Y,
+          BASKET_W, BASKET_H, BASKET_H / 2
+        );
+      } else {
+        ctx.rect(
+          game.basketX - BASKET_W / 2, BASKET_Y, BASKET_W, BASKET_H
+        );
+      }
+      ctx.fill();
+
+      requestAnimationFrame(frameLoop);
+    }
+
+    requestAnimationFrame(frameLoop);
+  })();
+</script>
+
+</body>
+</html>

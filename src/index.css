@@ -1,0 +1,1294 @@
+@import "tailwindcss";
+
+/* ============================================================
+   sticker-book dreamcore — design tokens
+   Light is the primary world; dark is "dreamcore night".
+   Every color lives here first, then gets redefined per theme.
+   ============================================================ */
+
+:root {
+  color-scheme: light;
+
+  --ground: #fbf6ff;
+  --ground-2: #f3e9ff;
+  --surface: #ffffff;
+  --surface-2: #fbf3ff;
+
+  --ink: #2e2148;
+  --ink-soft: #5c4b80;
+  --muted: #8a7aa8; /* violet-biased grey, not a default mid-grey */
+  --line: #e6d9f7;
+
+  --lilac: #b49bff;
+  --cotton: #ff9ecf;
+  --sky: #8fd4ff;
+  --mint: #9febcf;
+  --butter: #ffe08a;
+
+  --on-accent: #2e2148;
+
+  --aura-1: #c9b6ff;
+  --aura-2: #ffc6e6;
+  --aura-3: #b8e6ff;
+  --aura-strength: 0.55;
+
+  --dot: rgba(120, 90, 180, 0.14);
+  --sticker-edge: #ffffff;
+  --shadow-sticker: 0 20px 44px -26px rgba(70, 40, 120, 0.5);
+  --shadow-soft: 0 10px 26px -18px rgba(70, 40, 120, 0.42);
+
+  --r-sm: 12px;
+  --r-md: 20px;
+  --r-lg: 30px;
+  --r-pill: 999px;
+
+  --font-display: "Baloo 2", "Trebuchet MS", system-ui, sans-serif;
+  --font-body: "Outfit", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, "Cascadia Mono", monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --ground: #15102a;
+    --ground-2: #1c1438;
+    --surface: #221a3d;
+    --surface-2: #2a2049;
+
+    --ink: #f3ecff;
+    --ink-soft: #c9bce8;
+    --muted: #9c8cc0;
+    --line: #372a5c;
+
+    --lilac: #c3aeff;
+    --cotton: #ffaeda;
+    --sky: #9edbff;
+    --mint: #a9f0d7;
+    --butter: #ffe7a3;
+
+    --on-accent: #1a1230;
+
+    --aura-1: #6b4bc7;
+    --aura-2: #a8407c;
+    --aura-3: #2e6c9e;
+    --aura-strength: 0.45;
+
+    --dot: rgba(190, 160, 255, 0.1);
+    --sticker-edge: #2a2049;
+    --shadow-sticker: 0 22px 48px -26px rgba(0, 0, 0, 0.7);
+    --shadow-soft: 0 12px 28px -18px rgba(0, 0, 0, 0.6);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --ground: #15102a;
+  --ground-2: #1c1438;
+  --surface: #221a3d;
+  --surface-2: #2a2049;
+
+  --ink: #f3ecff;
+  --ink-soft: #c9bce8;
+  --muted: #9c8cc0;
+  --line: #372a5c;
+
+  --lilac: #c3aeff;
+  --cotton: #ffaeda;
+  --sky: #9edbff;
+  --mint: #a9f0d7;
+  --butter: #ffe7a3;
+
+  --on-accent: #1a1230;
+
+  --aura-1: #6b4bc7;
+  --aura-2: #a8407c;
+  --aura-3: #2e6c9e;
+  --aura-strength: 0.45;
+
+  --dot: rgba(190, 160, 255, 0.1);
+  --sticker-edge: #2a2049;
+  --shadow-sticker: 0 22px 48px -26px rgba(0, 0, 0, 0.7);
+  --shadow-soft: 0 12px 28px -18px rgba(0, 0, 0, 0.6);
+}
+
+/* Make the tokens available to Tailwind utilities too (bg-ground, text-ink, …) */
+@theme inline {
+  --color-ground: var(--ground);
+  --color-ground-2: var(--ground-2);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-lilac: var(--lilac);
+  --color-cotton: var(--cotton);
+  --color-sky: var(--sky);
+  --color-mint: var(--mint);
+  --color-butter: var(--butter);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+/* ============================================================
+   base
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  font-weight: 350;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* the graph-paper bedroom-wall ground */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(var(--dot) 1.2px, transparent 1.3px);
+  background-size: 22px 22px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  margin: 0;
+  color: var(--ink);
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--lilac);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+::selection {
+  background: var(--cotton);
+  color: var(--on-accent);
+}
+
+/* ============================================================
+   layout
+   ============================================================ */
+
+.page {
+  position: relative;
+  z-index: 1;
+}
+
+.shell {
+  width: min(1120px, 100% - 2.5rem);
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: clamp(4rem, 9vw, 7.5rem);
+}
+
+.stack-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================================
+   auras — airbrushed gradient clouds behind everything
+   ============================================================ */
+
+.aura-field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.aura {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: var(--aura-strength);
+}
+
+.aura--1 {
+  width: 46vw;
+  height: 46vw;
+  background: var(--aura-1);
+  top: -12vw;
+  left: -10vw;
+  animation: drift-a 26s ease-in-out infinite alternate;
+}
+
+.aura--2 {
+  width: 38vw;
+  height: 38vw;
+  background: var(--aura-2);
+  top: 28vh;
+  right: -12vw;
+  animation: drift-b 31s ease-in-out infinite alternate;
+}
+
+.aura--3 {
+  width: 34vw;
+  height: 34vw;
+  background: var(--aura-3);
+  bottom: -10vw;
+  left: 26vw;
+  animation: drift-a 36s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes drift-a {
+  to {
+    transform: translate3d(6vw, 5vh, 0) scale(1.12);
+  }
+}
+
+@keyframes drift-b {
+  to {
+    transform: translate3d(-7vw, -4vh, 0) scale(1.08);
+  }
+}
+
+/* ============================================================
+   stickers — die-cut cards with a white edge, like a sticker sheet
+   Border/fill/radius/shadow are spent by role, not stamped on all.
+   ============================================================ */
+
+.sticker {
+  position: relative;
+  background: var(--surface);
+  border: 3px solid var(--sticker-edge);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sticker);
+  padding: 1.6rem 1.7rem;
+}
+
+.sticker--tilt-l {
+  transform: rotate(-1.2deg);
+}
+
+.sticker--tilt-r {
+  transform: rotate(1.1deg);
+}
+
+.sticker--flat {
+  box-shadow: none;
+  border-color: var(--line);
+  background: transparent;
+}
+
+.sticker--tinted {
+  background: var(--surface-2);
+}
+
+/* a soft tab, like washi tape holding the sticker down */
+.tape {
+  position: absolute;
+  top: -13px;
+  left: 26px;
+  padding: 0.15rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--on-accent);
+  background: var(--butter);
+  border-radius: var(--r-pill);
+  transform: rotate(-2deg);
+}
+
+/* ============================================================
+   type helpers
+   ============================================================ */
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: lowercase;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 26px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--cotton);
+}
+
+.h-xl {
+  font-size: clamp(2.9rem, 9.5vw, 6rem);
+}
+
+.h-lg {
+  font-size: clamp(2.1rem, 5.4vw, 3.4rem);
+}
+
+.h-md {
+  font-size: clamp(1.35rem, 2.6vw, 1.7rem);
+}
+
+.lead {
+  font-size: clamp(1.05rem, 1.7vw, 1.22rem);
+  color: var(--ink-soft);
+  max-width: 62ch;
+}
+
+.prose-soft {
+  color: var(--ink-soft);
+  max-width: 64ch;
+}
+
+.dim {
+  color: var(--muted);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* rainbow-highlighter sweep under a word */
+.marker {
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--cotton) 65%, transparent) 0 38%,
+    transparent 38%
+  );
+  padding-inline: 0.1em;
+  border-radius: 4px;
+}
+
+.gradient-text {
+  background: linear-gradient(
+    100deg,
+    var(--lilac),
+    var(--cotton) 45%,
+    var(--sky)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ============================================================
+   chips, pills, buttons
+   ============================================================ */
+
+.chip {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  padding: 0.28rem 0.65rem;
+  border-radius: var(--r-pill);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.chip--lilac {
+  background: color-mix(in srgb, var(--lilac) 30%, var(--surface));
+  border-color: transparent;
+  color: var(--ink);
+}
+
+.chip--mint {
+  background: color-mix(in srgb, var(--mint) 40%, var(--surface));
+  border-color: transparent;
+  color: var(--ink);
+}
+
+.chip--sky {
+  background: color-mix(in srgb, var(--sky) 35%, var(--surface));
+  border-color: transparent;
+  color: var(--ink);
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.72rem 1.5rem;
+  border-radius: var(--r-pill);
+  border: 3px solid var(--sticker-edge);
+  cursor: pointer;
+  transition: transform 0.18s cubic-bezier(0.34, 1.4, 0.64, 1),
+    box-shadow 0.18s ease;
+  box-shadow: var(--shadow-soft);
+}
+
+.btn:hover {
+  transform: translateY(-3px) rotate(-1deg);
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, var(--lilac), var(--cotton));
+  color: var(--on-accent);
+}
+
+.btn--ghost {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.btn--icon {
+  padding: 0.5rem;
+  width: 2.6rem;
+  height: 2.6rem;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--surface-2);
+  color: var(--ink);
+  border-color: var(--line);
+  box-shadow: none;
+}
+
+/* ============================================================
+   nav
+   ============================================================ */
+
+.nav {
+  position: fixed;
+  top: 0.9rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.4rem 0.5rem;
+  border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--surface) 78%, transparent);
+  backdrop-filter: blur(14px) saturate(1.3);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
+  max-width: calc(100% - 1.6rem);
+}
+
+.nav a {
+  font-size: 0.86rem;
+  font-weight: 500;
+  padding: 0.38rem 0.8rem;
+  border-radius: var(--r-pill);
+  color: var(--ink-soft);
+  transition: background 0.16s ease, color 0.16s ease;
+  white-space: nowrap;
+}
+
+.nav a:hover {
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.nav a.is-active {
+  background: color-mix(in srgb, var(--lilac) 32%, var(--surface));
+  color: var(--ink);
+}
+
+.nav__brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  padding-inline: 0.7rem 0.55rem;
+  font-size: 1rem;
+}
+
+@media (max-width: 700px) {
+  .nav a:not(.nav__brand) {
+    padding-inline: 0.55rem;
+    font-size: 0.79rem;
+  }
+  .nav__hide-sm {
+    display: none;
+  }
+}
+
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  z-index: 50;
+  width: 0;
+  background: linear-gradient(90deg, var(--lilac), var(--cotton), var(--sky));
+  border-radius: 0 2px 2px 0;
+}
+
+/* ============================================================
+   hero
+   ============================================================ */
+
+.hero {
+  padding-top: clamp(6.5rem, 14vw, 9rem);
+  padding-bottom: clamp(2.5rem, 6vw, 4rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+.hero__name {
+  display: block;
+}
+
+.wave {
+  display: inline-block;
+  transform-origin: 70% 80%;
+  animation: wave 2.6s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0%,
+  60%,
+  100% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(14deg);
+  }
+  20% {
+    transform: rotate(-8deg);
+  }
+  30% {
+    transform: rotate(14deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+}
+
+.hero__cluster {
+  position: relative;
+  min-height: 348px;
+}
+
+.float-card {
+  position: absolute;
+  background: var(--surface);
+  border: 3px solid var(--sticker-edge);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-sticker);
+  padding: 0.85rem 1.05rem;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--ink-soft);
+  animation: bob 7s ease-in-out infinite;
+}
+
+.float-card b {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--ink);
+  display: block;
+  line-height: 1.1;
+}
+
+/* Three bands, so the cards and the blob never collide as the column
+   narrows: row 1 holds the card and the blob side by side, row 2 and row 3
+   each hold one card on opposite sides. */
+.float-card--a {
+  top: 0;
+  left: 0;
+  transform: rotate(-4deg);
+}
+.float-card--b {
+  top: 132px;
+  left: 8px;
+  transform: rotate(3deg);
+  animation-delay: -2.2s;
+}
+.float-card--c {
+  bottom: 0;
+  right: 4px;
+  transform: rotate(2deg);
+  animation-delay: -4.4s;
+}
+
+@keyframes bob {
+  50% {
+    translate: 0 -12px;
+  }
+}
+
+.blob-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 124px;
+  height: 124px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.82rem;
+  line-height: 1.15;
+  color: var(--on-accent);
+  background: linear-gradient(140deg, var(--butter), var(--cotton));
+  border-radius: 46% 54% 58% 42% / 52% 44% 56% 48%;
+  animation: morph 12s ease-in-out infinite;
+}
+
+@keyframes morph {
+  50% {
+    border-radius: 56% 44% 42% 58% / 44% 56% 46% 54%;
+    rotate: 8deg;
+  }
+}
+
+/* ============================================================
+   marquee — full-bleed tilted band
+   ============================================================ */
+
+.marquee-band {
+  position: relative;
+  z-index: 1;
+  transform: rotate(-2deg) scale(1.04);
+  background: linear-gradient(
+    90deg,
+    var(--lilac),
+    var(--cotton) 40%,
+    var(--butter) 70%,
+    var(--sky)
+  );
+  border-block: 3px solid var(--sticker-edge);
+  padding-block: 0.7rem;
+  overflow: hidden;
+  margin-block: clamp(1.5rem, 4vw, 3rem);
+}
+
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: slide 34s linear infinite;
+}
+
+.marquee-band:hover .marquee {
+  animation-play-state: paused;
+}
+
+.marquee__group {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+  padding-right: 2.2rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  color: var(--on-accent);
+  white-space: nowrap;
+}
+
+.marquee__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--on-accent);
+  opacity: 0.55;
+  flex: none;
+}
+
+@keyframes slide {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ============================================================
+   about — the agent loop, in the subject's own vernacular
+   ============================================================ */
+
+.about {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: start;
+}
+
+@media (max-width: 880px) {
+  .about {
+    grid-template-columns: 1fr;
+  }
+}
+
+.loop {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.loop__step {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: baseline;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  padding: 0.55rem 0.7rem;
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+}
+
+.loop__key {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.loop__arrow {
+  font-family: var(--font-mono);
+  color: var(--muted);
+  text-align: center;
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+/* ============================================================
+   stack — grouped by what the tools are actually for
+   ============================================================ */
+
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.1rem;
+}
+
+.stack-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 1.2rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.stack-card__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.swatch {
+  width: 13px;
+  height: 13px;
+  border-radius: 4px;
+  flex: none;
+}
+
+/* ============================================================
+   projects
+   ============================================================ */
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(1.4rem, 3vw, 2rem);
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  transition: transform 0.22s cubic-bezier(0.34, 1.3, 0.64, 1),
+    box-shadow 0.22s ease;
+}
+
+.project:hover {
+  transform: rotate(0deg) translateY(-6px);
+  box-shadow: 0 28px 54px -26px rgba(70, 40, 120, 0.55);
+}
+
+.project__thumb {
+  height: 132px;
+  border-radius: var(--r-md);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--on-accent);
+  overflow: hidden;
+}
+
+.project__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.status {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--r-pill);
+  flex: none;
+}
+
+.status--live {
+  background: color-mix(in srgb, var(--mint) 55%, var(--surface));
+  color: var(--on-accent);
+}
+
+.status--wip {
+  background: color-mix(in srgb, var(--butter) 60%, var(--surface));
+  color: var(--on-accent);
+}
+
+.status--research {
+  background: color-mix(in srgb, var(--sky) 50%, var(--surface));
+  color: var(--on-accent);
+}
+
+.link-arrow {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--ink);
+  display: inline-flex;
+  gap: 0.35rem;
+  align-items: center;
+  border-bottom: 2px solid color-mix(in srgb, var(--lilac) 60%, transparent);
+  width: fit-content;
+  padding-bottom: 1px;
+}
+
+.link-arrow span {
+  transition: translate 0.16s ease;
+}
+
+.link-arrow:hover span {
+  translate: 4px 0;
+}
+
+/* ============================================================
+   writing list — not cards; a typed list with real dates
+   ============================================================ */
+
+.writing {
+  display: flex;
+  flex-direction: column;
+}
+
+.writing__row {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr) auto;
+  gap: 1.2rem;
+  align-items: baseline;
+  padding-block: 1.05rem;
+  border-top: 1px solid var(--line);
+}
+
+.writing__row:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.writing__row:hover .writing__title {
+  color: var(--ink);
+}
+
+.writing__when {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.writing__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.08rem;
+  color: var(--ink-soft);
+  transition: color 0.16s ease;
+}
+
+@media (max-width: 640px) {
+  .writing__row {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+  }
+}
+
+/* ============================================================
+   currently — a player and a screen: two different objects
+   ============================================================ */
+
+.currently {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(1.4rem, 3vw, 2rem);
+  align-items: stretch;
+}
+
+@media (max-width: 900px) {
+  .currently {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* reveal wrappers shouldn't break the stretch */
+.currently > * {
+  display: flex;
+  min-width: 0;
+}
+
+.currently > * > * {
+  flex: 1;
+  min-width: 0;
+}
+
+/* --- player --- */
+
+.player {
+  background: linear-gradient(
+    165deg,
+    color-mix(in srgb, var(--lilac) 26%, var(--surface)),
+    var(--surface)
+  );
+  border: 3px solid var(--sticker-edge);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sticker);
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.player__art {
+  aspect-ratio: 1;
+  border-radius: var(--r-md);
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.player__art-glyph {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 7vw, 3.6rem);
+  color: var(--on-accent);
+  opacity: 0.85;
+  text-align: center;
+  padding: 1rem;
+  line-height: 1;
+}
+
+.player__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  line-height: 1.2;
+}
+
+.player__artist {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.player__bar {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.player__bar span {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--cotton), var(--lilac));
+}
+
+.player__times {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.player__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.eq {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 18px;
+}
+
+.eq i {
+  width: 3px;
+  background: var(--cotton);
+  border-radius: 2px;
+  height: 30%;
+  animation: bounce 900ms ease-in-out infinite;
+}
+
+.eq i:nth-child(2) {
+  animation-delay: 150ms;
+  background: var(--lilac);
+}
+.eq i:nth-child(3) {
+  animation-delay: 300ms;
+  background: var(--sky);
+}
+.eq i:nth-child(4) {
+  animation-delay: 450ms;
+  background: var(--mint);
+}
+.eq i:nth-child(5) {
+  animation-delay: 600ms;
+  background: var(--butter);
+}
+
+.eq[data-paused="true"] i {
+  animation-play-state: paused;
+}
+
+@keyframes bounce {
+  50% {
+    height: 100%;
+  }
+}
+
+/* --- game screen --- */
+
+.arcade {
+  background: var(--surface);
+  border: 3px solid var(--sticker-edge);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sticker);
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.arcade__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.arcade__scores {
+  display: flex;
+  gap: 1.2rem;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+
+.arcade__scores b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--ink);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.arcade__screen {
+  position: relative;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--sky) 22%, var(--surface-2)),
+    color-mix(in srgb, var(--cotton) 16%, var(--surface-2))
+  );
+  border: 1px solid var(--line);
+  touch-action: none;
+}
+
+.arcade__screen canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.arcade__overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 1.2rem;
+  gap: 0.7rem;
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  backdrop-filter: blur(3px);
+}
+
+.arcade__overlay > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.arcade__hint {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+/* ============================================================
+   contact
+   ============================================================ */
+
+.contact {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
+}
+
+@media (max-width: 760px) {
+  .contact {
+    grid-template-columns: 1fr;
+  }
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.05rem;
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  font-weight: 500;
+  font-size: 0.92rem;
+  transition: transform 0.16s ease, background 0.16s ease;
+}
+
+.social:hover {
+  transform: translateY(-2px);
+  background: var(--surface-2);
+}
+
+.footer {
+  border-top: 1px solid var(--line);
+  padding-block: 2rem 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.84rem;
+  color: var(--muted);
+}
+
+/* ============================================================
+   scroll reveal
+   Elements are visible by default. JS only hides the ones already
+   below the fold, so the page's first frame is never blank.
+   ============================================================ */
+
+[data-reveal] {
+  transition: opacity 0.6s ease, translate 0.6s cubic-bezier(0.22, 0.9, 0.3, 1);
+}
+
+.rv-pre {
+  opacity: 0.001;
+  translate: 0 26px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .rv-pre {
+    opacity: 1;
+    translate: none;
+  }
+  .marquee {
+    animation: none;
+  }
+}
