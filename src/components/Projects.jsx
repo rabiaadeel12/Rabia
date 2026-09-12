@@ -63,14 +63,16 @@ export default function Projects() {
                     live <span aria-hidden="true">→</span>
                   </a>
                 )}
-                <a
-                  className="link-arrow"
-                  href={project.repo}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  code <span aria-hidden="true">→</span>
-                </a>
+                {project.repo && (
+                  <a
+                    className="link-arrow"
+                    href={project.repo}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    code <span aria-hidden="true">→</span>
+                  </a>
+                )}
               </div>
             </article>
           ))}

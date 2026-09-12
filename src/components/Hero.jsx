@@ -1,4 +1,4 @@
-import { profile, projects, writing } from "../content.js";
+import { profile, projects } from "../content.js";
 
 export default function Hero() {
   const shipped = projects.filter((p) => p.status === "live").length;
@@ -39,7 +39,7 @@ export default function Hero() {
       <div className="hero__cluster" aria-hidden="true">
         <div className="float-card float-card--a">
           <b className="tabular">{shipped}</b>
-          things shipped
+          sites live in production
         </div>
         <div className="blob-badge">
           agents
@@ -51,8 +51,8 @@ export default function Hero() {
           finish
         </div>
         <div className="float-card float-card--b">
-          <b className="tabular">{writing.length}</b>
-          papers &amp; posts
+          healthtech · clean energy
+          <b>research</b>
         </div>
         <div className="float-card float-card--c">
           plan → act → observe

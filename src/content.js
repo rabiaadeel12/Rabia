@@ -59,7 +59,13 @@ export const stack = [
   {
     title: "product & web",
     color: "var(--cotton)",
-    items: ["React 19", "Vite", "Tailwind v4", "React Router", "React Native"],
+    items: [
+      "React 19",
+      "Vite",
+      "Tailwind v4",
+      "React Router",
+      "Framer Motion",
+    ],
   },
   {
     title: "server & data",
@@ -77,15 +83,48 @@ export const stack = [
    `link` is the live deployment — leave it "" and the card shows code only. */
 export const projects = [
   {
-    title: "Hospital Management System",
+    title: "Mafaza tul Hayat Hospital",
     blurb:
-      "A complete hospital site and the back office that runs it: fourteen public pages, a patient portal, and an admin dashboard with ten content modules — doctors, departments, lab reports, careers and media all editable without a redeploy.",
+      "The full web presence for a non-profit multi-specialty hospital: fifteen departments, twenty-plus consultant profiles with live availability and consultation fees, appointment booking, health-education articles and a gallery — all driven by a ten-module admin dashboard, so staff update the site without a developer.",
     tags: ["React 19", "Firebase", "AWS S3", "Tailwind v4", "React Router"],
-    status: "wip",
+    status: "live",
     glyph: "✚",
     gradient: "linear-gradient(140deg, var(--mint), var(--sky))",
-    link: "",
+    link: "https://mafazatulhayat.com",
     repo: "https://github.com/rabiaadeel12/hospital",
+  },
+  {
+    title: "SehatX",
+    blurb:
+      "A digital health platform for Pakistan — online consultations, holistic care packages, second opinions, and separate education centres for clinicians and patients, fronting an electronic records product.",
+    tags: ["React", "Tailwind", "Firebase"],
+    status: "live",
+    glyph: "❋",
+    gradient: "linear-gradient(140deg, var(--sky), var(--lilac))",
+    link: "https://sehatx.com",
+    repo: "",
+  },
+  {
+    title: "NexoDynamix",
+    blurb:
+      "Company site for an applied-AI venture, presenting three product lines — a reinforcement-learning wealth platform with a WhatsApp assistant, a healthcare CMS, and an ERP — alongside a rotating project showcase.",
+    tags: ["React", "Framer Motion", "Tailwind"],
+    status: "live",
+    glyph: "◈",
+    gradient: "linear-gradient(140deg, var(--lilac), var(--cotton))",
+    link: "https://nexodynamix.com",
+    repo: "",
+  },
+  {
+    title: "Dr. Mudassar Rauf",
+    blurb:
+      "Academic portfolio for an AI and optimization researcher — publications, funded projects, editorial appointments and teaching history, organised so collaborators can find the work relevant to them.",
+    tags: ["React", "Framer Motion", "Tailwind"],
+    status: "live",
+    glyph: "✎",
+    gradient: "linear-gradient(140deg, var(--butter), var(--mint))",
+    link: "https://mudassarrauf.com",
+    repo: "",
   },
   {
     title: "Intech Solutions",
