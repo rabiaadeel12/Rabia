@@ -710,25 +710,24 @@
         <div class="stack-card" data-reveal data-reveal-delay="90">
           <h3 class="stack-card__title"><i class="swatch" style="background: var(--cotton)"></i>product &amp; web</h3>
           <div class="chip-row">
-            <span class="chip">React</span><span class="chip">Next.js</span>
-            <span class="chip">TypeScript</span><span class="chip">Tailwind</span>
+            <span class="chip">React 19</span><span class="chip">Vite</span>
+            <span class="chip">Tailwind v4</span><span class="chip">React Router</span>
             <span class="chip">React Native</span>
           </div>
         </div>
         <div class="stack-card" data-reveal data-reveal-delay="180">
           <h3 class="stack-card__title"><i class="swatch" style="background: var(--sky)"></i>server &amp; data</h3>
           <div class="chip-row">
+            <span class="chip">Firebase</span><span class="chip">AWS S3</span>
             <span class="chip">Node</span><span class="chip">Python</span>
-            <span class="chip">FastAPI</span><span class="chip">Postgres</span>
-            <span class="chip">Redis</span><span class="chip">pgvector</span>
+            <span class="chip">Postgres</span>
           </div>
         </div>
         <div class="stack-card" data-reveal data-reveal-delay="270">
           <h3 class="stack-card__title"><i class="swatch" style="background: var(--mint)"></i>ship it</h3>
           <div class="chip-row">
-            <span class="chip">Docker</span><span class="chip">GitHub Actions</span>
-            <span class="chip">Vercel</span><span class="chip">AWS</span>
-            <span class="chip">Playwright</span>
+            <span class="chip">Vercel</span><span class="chip">Firebase Hosting</span>
+            <span class="chip">Git</span><span class="chip">GitHub Actions</span>
           </div>
         </div>
       </div>
@@ -739,10 +738,7 @@
     <div class="stack-col" style="gap: 1.6rem">
       <div class="stack-col" style="gap: 0.8rem" data-reveal>
         <p class="eyebrow">stuff i built</p>
-        <h2 class="h-lg">Things that think for themselves.</h2>
-        <p class="mono dim" style="font-size: 0.76rem">
-          sample entries — swap them in src/content.js
-        </p>
+        <h2 class="h-lg">Shipped, and still running.</h2>
       </div>
       <div class="projects" id="projects"></div>
     </div>
@@ -876,7 +872,7 @@
       </div>
 
       <div class="socials">
-        <a class="social" href="#contact"><span class="mono dim" aria-hidden="true">⌥</span>GitHub</a>
+        <a class="social" href="https://github.com/rabiaadeel12" target="_blank" rel="noreferrer noopener"><span class="mono dim" aria-hidden="true">⌥</span>GitHub</a>
         <a class="social" href="#contact"><span class="mono dim" aria-hidden="true">in</span>LinkedIn</a>
         <a class="social" href="#contact"><span class="mono dim" aria-hidden="true">✎</span>Google Scholar</a>
         <a class="social" href="#contact"><span class="mono dim" aria-hidden="true">✉</span>Email</a>
@@ -898,7 +894,7 @@
 
     /* ---------------------------------------------------- marquee */
     var WORDS = [
-      "agentic systems", "full-stack", "react + node", "python", "llm evals",
+      "agentic systems", "full-stack", "react + firebase", "python", "llm evals",
       "mcp", "rag", "mobile", "research", "design that doesn't hurt"
     ];
 
@@ -921,32 +917,30 @@
     /* ---------------------------------------------------- projects */
     var PROJECTS = [
       {
-        title: "Orchestra",
-        blurb: "A multi-agent runner that breaks a goal into steps, hands each to a specialist agent, and keeps a readable trace of every decision.",
-        tags: ["Claude API", "MCP", "Node", "Postgres"],
-        status: "live", label: "shipped", glyph: "◍",
-        gradient: "linear-gradient(140deg, var(--lilac), var(--sky))"
+        title: "Hospital Management System",
+        blurb: "A complete hospital site and the back office that runs it: fourteen public pages, a patient portal, and an admin dashboard with ten content modules — doctors, departments, lab reports, careers and media all editable without a redeploy.",
+        tags: ["React 19", "Firebase", "AWS S3", "Tailwind v4", "React Router"],
+        status: "wip", label: "in progress", glyph: "✚",
+        gradient: "linear-gradient(140deg, var(--mint), var(--sky))",
+        link: "", repo: "https://github.com/rabiaadeel12/hospital"
       },
       {
-        title: "Paper Trail",
-        blurb: "Research assistant that reads a paper set, answers with citations you can click, and admits when the answer isn't in the corpus.",
-        tags: ["Python", "FastAPI", "pgvector", "RAG"],
-        status: "live", label: "shipped", glyph: "❋",
-        gradient: "linear-gradient(140deg, var(--cotton), var(--butter))"
+        title: "Intech Solutions",
+        blurb: "Lead-generation site for a Lahore solar installer, built around a savings estimator that turns a monthly electricity bill into system size, install cost and payback period in real time.",
+        tags: ["React", "Vite", "Vercel"],
+        status: "live", label: "shipped", glyph: "☀",
+        gradient: "linear-gradient(140deg, var(--butter), var(--cotton))",
+        link: "https://intech-solution-alpha.vercel.app",
+        repo: "https://github.com/rabiaadeel12/intech-solution"
       },
       {
-        title: "Loop",
-        blurb: "An eval harness for agents: fixture conversations, graded rubrics, and a diff view that shows which prompt change caused the regression.",
-        tags: ["TypeScript", "evals", "CI"],
-        status: "wip", label: "in progress", glyph: "↻",
-        gradient: "linear-gradient(140deg, var(--mint), var(--sky))"
-      },
-      {
-        title: "Pocketful",
-        blurb: "Cross-platform mobile app with an on-device assistant that categorises spending and explains why it guessed what it guessed.",
-        tags: ["React Native", "Expo", "SQLite"],
-        status: "wip", label: "in progress", glyph: "✿",
-        gradient: "linear-gradient(140deg, var(--butter), var(--cotton))"
+        title: "SB Solar Energy",
+        blurb: "The same solar lead-gen system shipped for a second installer — rebranded end to end, with the estimator and net-metering content retuned for a different client's offering.",
+        tags: ["React", "Vite", "Vercel"],
+        status: "live", label: "shipped", glyph: "◎",
+        gradient: "linear-gradient(140deg, var(--sky), var(--lilac))",
+        link: "https://sbsolar-jade.vercel.app",
+        repo: "https://github.com/rabiaadeel12/Sbsolar"
       }
     ];
 
@@ -992,11 +986,17 @@
       var links = document.createElement("div");
       links.style.cssText =
         "display:flex;gap:1.2rem;margin-top:auto;padding-top:0.4rem";
-      ["live", "code"].forEach(function (label) {
+      [
+        { label: "live", href: project.link },
+        { label: "code", href: project.repo }
+      ].forEach(function (item) {
+        if (!item.href) return;
         var link = document.createElement("a");
         link.className = "link-arrow";
-        link.href = "#work";
-        link.innerHTML = label + ' <span aria-hidden="true">→</span>';
+        link.href = item.href;
+        link.target = "_blank";
+        link.rel = "noreferrer noopener";
+        link.innerHTML = item.label + ' <span aria-hidden="true">→</span>';
         links.appendChild(link);
       });
 
@@ -1061,29 +1061,45 @@
     /* ---------------------------------------------------- reveal
        Only elements already below the fold get hidden, so the first
        painted frame is always fully readable. */
-    if (!reduced && "IntersectionObserver" in window) {
-      var targets = Array.prototype.slice
+    if (!reduced) {
+      var pending = Array.prototype.slice
         .call(document.querySelectorAll("[data-reveal]"))
         .filter(function (el) {
           return el.getBoundingClientRect().top > window.innerHeight * 0.9;
         });
 
-      targets.forEach(function (el) { el.classList.add("rv-pre"); });
+      pending.forEach(function (el) { el.classList.add("rv-pre"); });
 
-      var revealObserver = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (entry) {
-            if (!entry.isIntersecting) return;
-            var delay = Number(entry.target.dataset.revealDelay || 0);
-            setTimeout(function () {
-              entry.target.classList.remove("rv-pre");
-            }, delay);
-            revealObserver.unobserve(entry.target);
-          });
-        },
-        { rootMargin: "0px 0px -12% 0px", threshold: 0.05 }
-      );
-      targets.forEach(function (el) { revealObserver.observe(el); });
+      /* A scroll sweep rather than an IntersectionObserver: anything at or
+         above the trigger line reveals, including elements the viewer jumped
+         clean past. An observer misses those — a nav anchor can move an
+         element from below the fold to above it within a single frame, which
+         is never reported as an intersection. */
+      var revealFrame = 0;
+
+      var detachReveal = function () {
+        window.removeEventListener("scroll", onRevealScroll);
+        window.removeEventListener("resize", onRevealScroll);
+      };
+
+      var sweep = function () {
+        revealFrame = 0;
+        var trigger = window.innerHeight * 0.88;
+        pending = pending.filter(function (el) {
+          if (el.getBoundingClientRect().top >= trigger) return true;
+          var delay = Number(el.dataset.revealDelay || 0);
+          setTimeout(function () { el.classList.remove("rv-pre"); }, delay);
+          return false;
+        });
+        if (!pending.length) detachReveal();
+      };
+
+      var onRevealScroll = function () {
+        if (!revealFrame) revealFrame = requestAnimationFrame(sweep);
+      };
+
+      window.addEventListener("scroll", onRevealScroll, { passive: true });
+      window.addEventListener("resize", onRevealScroll);
     }
 
     /* ---------------------------------------------------- player */

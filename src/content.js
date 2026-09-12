@@ -40,7 +40,7 @@ export const howIWork = [
 export const marquee = [
   "agentic systems",
   "full-stack",
-  "react + node",
+  "react + firebase",
   "python",
   "llm evals",
   "mcp",
@@ -59,65 +59,55 @@ export const stack = [
   {
     title: "product & web",
     color: "var(--cotton)",
-    items: ["React", "Next.js", "TypeScript", "Tailwind", "React Native"],
+    items: ["React 19", "Vite", "Tailwind v4", "React Router", "React Native"],
   },
   {
     title: "server & data",
     color: "var(--sky)",
-    items: ["Node", "Python", "FastAPI", "Postgres", "Redis", "pgvector"],
+    items: ["Firebase", "AWS S3", "Node", "Python", "Postgres"],
   },
   {
     title: "ship it",
     color: "var(--mint)",
-    items: ["Docker", "GitHub Actions", "Vercel", "AWS", "Playwright"],
+    items: ["Vercel", "Firebase Hosting", "Git", "GitHub Actions"],
   },
 ];
 
-/* PLACEHOLDER — all four are samples. Replace title/blurb/tags/links/repo. */
+/* Real work, pulled from github.com/rabiaadeel12.
+   `link` is the live deployment — leave it "" and the card shows code only. */
 export const projects = [
   {
-    title: "Orchestra",
+    title: "Hospital Management System",
     blurb:
-      "A multi-agent runner that breaks a goal into steps, hands each to a specialist agent, and keeps a readable trace of every decision.",
-    tags: ["Claude API", "MCP", "Node", "Postgres"],
-    status: "live",
-    glyph: "◍",
-    gradient: "linear-gradient(140deg, var(--lilac), var(--sky))",
-    link: "#",
-    repo: "#",
-  },
-  {
-    title: "Paper Trail",
-    blurb:
-      "Research assistant that reads a paper set, answers with citations you can click, and admits when the answer isn't in the corpus.",
-    tags: ["Python", "FastAPI", "pgvector", "RAG"],
-    status: "live",
-    glyph: "❋",
-    gradient: "linear-gradient(140deg, var(--cotton), var(--butter))",
-    link: "#",
-    repo: "#",
-  },
-  {
-    title: "Loop",
-    blurb:
-      "An eval harness for agents: fixture conversations, graded rubrics, and a diff view that shows which prompt change caused the regression.",
-    tags: ["TypeScript", "evals", "CI"],
+      "A complete hospital site and the back office that runs it: fourteen public pages, a patient portal, and an admin dashboard with ten content modules — doctors, departments, lab reports, careers and media all editable without a redeploy.",
+    tags: ["React 19", "Firebase", "AWS S3", "Tailwind v4", "React Router"],
     status: "wip",
-    glyph: "↻",
+    glyph: "✚",
     gradient: "linear-gradient(140deg, var(--mint), var(--sky))",
-    link: "#",
-    repo: "#",
+    link: "",
+    repo: "https://github.com/rabiaadeel12/hospital",
   },
   {
-    title: "Pocketful",
+    title: "Intech Solutions",
     blurb:
-      "Cross-platform mobile app with an on-device assistant that categorises spending and explains why it guessed what it guessed.",
-    tags: ["React Native", "Expo", "SQLite"],
-    status: "wip",
-    glyph: "✿",
+      "Lead-generation site for a Lahore solar installer, built around a savings estimator that turns a monthly electricity bill into system size, install cost and payback period in real time.",
+    tags: ["React", "Vite", "Vercel"],
+    status: "live",
+    glyph: "☀",
     gradient: "linear-gradient(140deg, var(--butter), var(--cotton))",
-    link: "#",
-    repo: "#",
+    link: "https://intech-solution-alpha.vercel.app",
+    repo: "https://github.com/rabiaadeel12/intech-solution",
+  },
+  {
+    title: "SB Solar Energy",
+    blurb:
+      "The same solar lead-gen system shipped for a second installer — rebranded end to end, with the estimator and net-metering content retuned for a different client's offering.",
+    tags: ["React", "Vite", "Vercel"],
+    status: "live",
+    glyph: "◎",
+    gradient: "linear-gradient(140deg, var(--sky), var(--lilac))",
+    link: "https://sbsolar-jade.vercel.app",
+    repo: "https://github.com/rabiaadeel12/Sbsolar",
   },
 ];
 
@@ -153,10 +143,10 @@ export const playlist = [
   { title: "Alright", artist: "Kendrick Lamar", seconds: 219, glyph: "✦" },
 ];
 
-/* PLACEHOLDER — real links go here. Leave email off if you'd rather not
-   publish it; the button falls back to a mailto you can change. */
+/* PLACEHOLDER except GitHub — add your real LinkedIn and Scholar URLs.
+   Leave the email as-is if you'd rather not publish it. */
 export const socials = [
-  { label: "GitHub", href: "#", glyph: "⌥" },
+  { label: "GitHub", href: "https://github.com/rabiaadeel12", glyph: "⌥" },
   { label: "LinkedIn", href: "#", glyph: "in" },
   { label: "Google Scholar", href: "#", glyph: "✎" },
   { label: "Email", href: "mailto:you@example.com", glyph: "✉" },

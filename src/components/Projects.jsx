@@ -12,10 +12,7 @@ export default function Projects() {
       <div className="stack-col" style={{ gap: "1.6rem" }}>
         <div className="stack-col" style={{ gap: "0.8rem" }} data-reveal>
           <p className="eyebrow">stuff i built</p>
-          <h2 className="h-lg">Things that think for themselves.</h2>
-          <p className="mono dim" style={{ fontSize: "0.76rem" }}>
-            sample entries — swap them in src/content.js
-          </p>
+          <h2 className="h-lg">Shipped, and still running.</h2>
         </div>
 
         <div className="projects">
@@ -56,10 +53,22 @@ export default function Projects() {
               </div>
 
               <div style={{ display: "flex", gap: "1.2rem", marginTop: "auto", paddingTop: "0.4rem" }}>
-                <a className="link-arrow" href={project.link}>
-                  live <span aria-hidden="true">→</span>
-                </a>
-                <a className="link-arrow" href={project.repo}>
+                {project.link && (
+                  <a
+                    className="link-arrow"
+                    href={project.link}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    live <span aria-hidden="true">→</span>
+                  </a>
+                )}
+                <a
+                  className="link-arrow"
+                  href={project.repo}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   code <span aria-hidden="true">→</span>
                 </a>
               </div>

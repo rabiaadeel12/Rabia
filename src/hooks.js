@@ -16,30 +16,49 @@ export function useReveal() {
     if (reducedMotion()) return;
 
     const targets = Array.from(document.querySelectorAll("[data-reveal]"));
-    const belowFold = targets.filter(
+    let pending = targets.filter(
       (el) => el.getBoundingClientRect().top > window.innerHeight * 0.9
     );
-    if (!belowFold.length) return;
+    if (!pending.length) return;
 
-    belowFold.forEach((el) => el.classList.add("rv-pre"));
+    pending.forEach((el) => el.classList.add("rv-pre"));
 
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          const delay = Number(entry.target.dataset.revealDelay || 0);
-          window.setTimeout(
-            () => entry.target.classList.remove("rv-pre"),
-            delay
-          );
-          io.unobserve(entry.target);
-        });
-      },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.05 }
-    );
+    /* A scroll sweep rather than an IntersectionObserver: anything at or
+       above the trigger line reveals, including elements the viewer jumped
+       clean past. An observer misses those — a nav anchor or a deep link can
+       move an element from below the fold to above it within a single frame,
+       which is never reported as an intersection, and the section would stay
+       invisible for good. */
+    let frame = 0;
 
-    belowFold.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+    const detach = () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+
+    const sweep = () => {
+      frame = 0;
+      const trigger = window.innerHeight * 0.88;
+      pending = pending.filter((el) => {
+        if (el.getBoundingClientRect().top >= trigger) return true;
+        const delay = Number(el.dataset.revealDelay || 0);
+        window.setTimeout(() => el.classList.remove("rv-pre"), delay);
+        return false;
+      });
+      if (!pending.length) detach();
+    };
+
+    function onScroll() {
+      if (!frame) frame = requestAnimationFrame(sweep);
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      detach();
+      if (frame) cancelAnimationFrame(frame);
+    };
   }, []);
 }
 
