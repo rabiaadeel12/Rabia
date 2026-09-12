@@ -5,8 +5,10 @@ export default function Stack() {
     <section className="shell section" id="stack">
       <div className="stack-col" style={{ gap: "1.6rem" }}>
         <div className="stack-col" style={{ gap: "0.8rem" }} data-reveal>
-          <p className="eyebrow">the stack</p>
-          <h2 className="h-lg">Tools, grouped by what they're actually for.</h2>
+          <h2 className="h-lg">The stack</h2>
+          <p className="prose-soft">
+            Grouped by what I actually reach for them to do.
+          </p>
         </div>
 
         <div className="stack-grid">

@@ -399,18 +399,6 @@ a {
   border-radius: 4px;
 }
 
-.gradient-text {
-  background: linear-gradient(
-    100deg,
-    var(--lilac),
-    var(--cotton) 45%,
-    var(--sky)
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
 /* ============================================================
    chips, pills, buttons
    ============================================================ */
@@ -587,113 +575,45 @@ a {
   }
 }
 
-.hero__name {
+/* The second line carries the accent, so the name itself stays plain ink.
+   A gradient across the whole headline reads as decoration, not emphasis. */
+.hero__verb {
   display: block;
+  color: var(--lilac);
 }
 
-.wave {
-  display: inline-block;
-  transform-origin: 70% 80%;
-  animation: wave 2.6s ease-in-out infinite;
+/* Facts, not floating ornaments. One column of real numbers sharing a rule,
+   with no card chrome — that keeps the project stickers the only things on
+   the page that read as separate objects. */
+.facts {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-left: clamp(1rem, 3vw, 2rem);
+  border-left: 2px solid var(--line);
 }
 
-@keyframes wave {
-  0%,
-  60%,
-  100% {
-    transform: rotate(0deg);
-  }
-  10% {
-    transform: rotate(14deg);
-  }
-  20% {
-    transform: rotate(-8deg);
-  }
-  30% {
-    transform: rotate(14deg);
-  }
-  40% {
-    transform: rotate(-4deg);
-  }
+.fact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
 }
 
-.hero__cluster {
-  position: relative;
-  min-height: 348px;
-}
-
-.float-card {
-  position: absolute;
-  background: var(--surface);
-  border: 3px solid var(--sticker-edge);
-  border-radius: var(--r-md);
-  box-shadow: var(--shadow-sticker);
-  padding: 0.85rem 1.05rem;
-  font-family: var(--font-mono);
-  font-size: 0.76rem;
-  color: var(--ink-soft);
-  animation: bob 7s ease-in-out infinite;
-}
-
-.float-card b {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  color: var(--ink);
-  display: block;
-  line-height: 1.1;
-}
-
-/* Three bands, so the cards and the blob never collide as the column
-   narrows: row 1 holds the card and the blob side by side, row 2 and row 3
-   each hold one card on opposite sides. */
-.float-card--a {
-  top: 0;
-  left: 0;
-  transform: rotate(-4deg);
-}
-.float-card--b {
-  top: 132px;
-  left: 8px;
-  transform: rotate(3deg);
-  animation-delay: -2.2s;
-}
-.float-card--c {
-  bottom: 0;
-  right: 4px;
-  transform: rotate(2deg);
-  animation-delay: -4.4s;
-}
-
-@keyframes bob {
-  50% {
-    translate: 0 -12px;
-  }
-}
-
-.blob-badge {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 124px;
-  height: 124px;
-  display: grid;
-  place-items: center;
-  text-align: center;
+.fact__figure {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 0.82rem;
-  line-height: 1.15;
-  color: var(--on-accent);
-  background: linear-gradient(140deg, var(--butter), var(--cotton));
-  border-radius: 46% 54% 58% 42% / 52% 44% 56% 48%;
-  animation: morph 12s ease-in-out infinite;
+  font-size: clamp(2.3rem, 4.6vw, 3.1rem);
+  line-height: 1;
+  color: var(--ink);
 }
 
-@keyframes morph {
-  50% {
-    border-radius: 56% 44% 42% 58% / 44% 56% 46% 54%;
-    rotate: 8deg;
-  }
+.fact__label {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.4;
+  color: var(--muted);
+  max-width: 24ch;
 }
 
 /* ============================================================
@@ -771,36 +691,45 @@ a {
   }
 }
 
-.loop {
+.snap {
+  margin: 0.7rem 0 0;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
 }
 
-.loop__step {
+.snap__row {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 0.75rem;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: 0.9rem;
   align-items: baseline;
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  color: var(--ink-soft);
-  padding: 0.55rem 0.7rem;
-  border-radius: var(--r-sm);
-  background: var(--surface-2);
+  padding-block: 0.6rem;
+  border-top: 1px solid var(--line);
 }
 
-.loop__key {
-  color: var(--ink);
-  font-weight: 700;
+.snap__row:first-child {
+  border-top: 0;
+  padding-top: 0;
 }
 
-.loop__arrow {
+.snap__key {
   font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
   color: var(--muted);
-  text-align: center;
-  font-size: 0.8rem;
-  line-height: 1;
+}
+
+.snap__value {
+  margin: 0;
+  font-size: 0.93rem;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+@media (max-width: 460px) {
+  .snap__row {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
 }
 
 /* ============================================================
@@ -813,11 +742,11 @@ a {
   gap: 1.1rem;
 }
 
+/* Deliberately not cards. A top rule and the swatch are enough to group
+   these, and it leaves the project stickers as the only boxed objects. */
 .stack-card {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--r-md);
-  padding: 1.2rem 1.25rem;
+  border-top: 2px solid var(--line);
+  padding-top: 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.8rem;

@@ -229,12 +229,6 @@
   .mono { font-family: var(--font-mono); }
   .tabular { font-variant-numeric: tabular-nums; }
 
-  .gradient-text {
-    background: linear-gradient(100deg, var(--lilac), var(--cotton) 45%, var(--sky));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
 
   /* ========================================================== chips + buttons */
   .chip {
@@ -316,54 +310,25 @@
   }
   @media (max-width: 900px) { .hero { grid-template-columns: 1fr; } }
 
-  .hero__name { display: block; }
+  /* The second line carries the accent, so the name itself stays plain ink.
+     A gradient across the whole headline reads as decoration, not emphasis. */
+  .hero__verb { display: block; color: var(--lilac); }
 
-  .wave { display: inline-block; transform-origin: 70% 80%; animation: wave 2.6s ease-in-out infinite; }
-  @keyframes wave {
-    0%, 60%, 100% { transform: rotate(0deg); }
-    10% { transform: rotate(14deg); }
-    20% { transform: rotate(-8deg); }
-    30% { transform: rotate(14deg); }
-    40% { transform: rotate(-4deg); }
+  /* Facts, not floating ornaments. One column of real numbers sharing a rule,
+     with no card chrome — that keeps the project stickers the only things on
+     the page that read as separate objects. */
+  .facts {
+    margin: 0; display: flex; flex-direction: column; gap: 1.5rem;
+    padding-left: clamp(1rem, 3vw, 2rem); border-left: 2px solid var(--line);
   }
-
-  .hero__cluster { position: relative; min-height: 348px; }
-
-  .float-card {
-    position: absolute;
-    background: var(--surface);
-    border: 3px solid var(--sticker-edge);
-    border-radius: var(--r-md);
-    box-shadow: var(--shadow-sticker);
-    padding: 0.85rem 1.05rem;
-    font-family: var(--font-mono);
-    font-size: 0.76rem;
-    color: var(--ink-soft);
-    animation: bob 7s ease-in-out infinite;
-  }
-  .float-card b {
-    font-family: var(--font-display); font-size: 1.5rem;
-    color: var(--ink); display: block; line-height: 1.1;
-  }
-  /* three bands, so the cards and the blob never collide as the column narrows */
-  .float-card--a { top: 0; left: 0; transform: rotate(-4deg); }
-  .float-card--b { top: 132px; left: 8px; transform: rotate(3deg); animation-delay: -2.2s; }
-  .float-card--c { bottom: 0; right: 4px; transform: rotate(2deg); animation-delay: -4.4s; }
-  @keyframes bob { 50% { translate: 0 -12px; } }
-
-  .blob-badge {
-    position: absolute; top: 0; right: 0;
-    width: 124px; height: 124px;
-    display: grid; place-items: center; text-align: center;
+  .fact { display: flex; flex-direction: column; gap: 0.15rem; }
+  .fact__figure {
     font-family: var(--font-display); font-weight: 800;
-    font-size: 0.82rem; line-height: 1.15;
-    color: var(--on-accent);
-    background: linear-gradient(140deg, var(--butter), var(--cotton));
-    border-radius: 46% 54% 58% 42% / 52% 44% 56% 48%;
-    animation: morph 12s ease-in-out infinite;
+    font-size: clamp(2.3rem, 4.6vw, 3.1rem); line-height: 1; color: var(--ink);
   }
-  @keyframes morph {
-    50% { border-radius: 56% 44% 42% 58% / 44% 56% 46% 54%; rotate: 8deg; }
+  .fact__label {
+    margin: 0; font-size: 0.92rem; line-height: 1.4;
+    color: var(--muted); max-width: 24ch;
   }
 
   /* ========================================================== marquee */
@@ -396,21 +361,27 @@
   }
   @media (max-width: 880px) { .about { grid-template-columns: 1fr; } }
 
-  .loop { display: flex; flex-direction: column; gap: 0.5rem; }
-  .loop__step {
-    display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.75rem;
-    align-items: baseline; font-family: var(--font-mono); font-size: 0.82rem;
-    color: var(--ink-soft); padding: 0.55rem 0.7rem;
-    border-radius: var(--r-sm); background: var(--surface-2);
+  .snap { margin: 0.7rem 0 0; display: flex; flex-direction: column; }
+  .snap__row {
+    display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); gap: 0.9rem;
+    align-items: baseline; padding-block: 0.6rem;
+    border-top: 1px solid var(--line);
   }
-  .loop__key { color: var(--ink); font-weight: 700; }
-  .loop__arrow { font-family: var(--font-mono); color: var(--muted); text-align: center; font-size: 0.8rem; line-height: 1.4; }
-
+  .snap__row:first-child { border-top: 0; padding-top: 0; }
+  .snap__key {
+    font-family: var(--font-mono); font-size: 0.72rem;
+    letter-spacing: 0.04em; color: var(--muted);
+  }
+  .snap__value { margin: 0; font-size: 0.93rem; line-height: 1.45; color: var(--ink); }
+  @media (max-width: 460px) {
+    .snap__row { grid-template-columns: 1fr; gap: 0.15rem; }
+  }
   /* ========================================================== stack */
   .stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.1rem; }
+  /* Deliberately not cards. A top rule and the swatch are enough to group
+     these, and it leaves the project stickers as the only boxed objects. */
   .stack-card {
-    background: var(--surface); border: 1px solid var(--line);
-    border-radius: var(--r-md); padding: 1.2rem 1.25rem;
+    border-top: 2px solid var(--line); padding-top: 1rem;
     display: flex; flex-direction: column; gap: 0.8rem;
   }
   .stack-card__title {
@@ -599,11 +570,9 @@
 <div class="page">
   <header class="shell hero" id="top">
     <div class="stack-col" style="gap: 1.5rem">
-      <p class="eyebrow">hey, i'm <span class="wave" aria-hidden="true">👋</span></p>
-
       <h1 class="h-xl">
-        <span class="hero__name">Rabia Adeel</span>
-        <span class="gradient-text">builds agents.</span>
+        Rabia Adeel
+        <span class="hero__verb">builds agents.</span>
       </h1>
 
       <p class="lead">
@@ -624,12 +593,20 @@
       </div>
     </div>
 
-    <div class="hero__cluster" aria-hidden="true">
-      <div class="float-card float-card--a"><b class="tabular">7</b>shipped to production</div>
-      <div class="blob-badge">agents<br />that<br />actually<br />finish</div>
-      <div class="float-card float-card--b">healthtech · fintech<b>research</b></div>
-      <div class="float-card float-card--c">plan → act → observe<b>the loop</b></div>
-    </div>
+    <dl class="facts">
+      <div class="fact">
+        <dt class="fact__figure tabular">7</dt>
+        <dd class="fact__label">projects running in production</dd>
+      </div>
+      <div class="fact">
+        <dt class="fact__figure tabular">95.3</dt>
+        <dd class="fact__label">percentile, HEC national skills test</dd>
+      </div>
+      <div class="fact">
+        <dt class="fact__figure tabular">3.59</dt>
+        <dd class="fact__label">CGPA, final-year computer science</dd>
+      </div>
+    </dl>
   </header>
 
   <div class="marquee-band">
@@ -642,7 +619,6 @@
 
   <section class="shell section about" id="about">
     <div class="stack-col" style="gap: 1.4rem" data-reveal>
-      <p class="eyebrow">about me</p>
       <h2 class="h-lg">I like problems that<br />don't have obvious answers.</h2>
       <div class="stack-col prose-soft" style="gap: 1.1rem">
         <p>
@@ -677,27 +653,22 @@
     </div>
 
     <aside class="sticker sticker--tilt-r" data-reveal data-reveal-delay="120">
-      <span class="tape">how i work</span>
-      <div class="loop" style="margin-top: 0.6rem">
-        <div class="loop__step"><span class="loop__key">plan</span><span>scope the problem before touching a keyboard</span></div>
-        <div class="loop__arrow" aria-hidden="true">↓</div>
-        <div class="loop__step"><span class="loop__key">act</span><span>ship the smallest thing that proves it works</span></div>
-        <div class="loop__arrow" aria-hidden="true">↓</div>
-        <div class="loop__step"><span class="loop__key">observe</span><span>measure it, read the traces, find what broke</span></div>
-        <div class="loop__arrow" aria-hidden="true">↓</div>
-        <div class="loop__step"><span class="loop__key">repeat</span><span>until it's simple enough to hand to someone else</span></div>
-      </div>
-      <p class="mono dim" style="font-size: 0.72rem; margin-top: 0.9rem">
-        ↻ it's a loop, not a checklist
-      </p>
+      <span class="tape">right now</span>
+      <dl class="snap">
+        <div class="snap__row"><dt class="snap__key">now</dt><dd class="snap__value">AI/ML developer at NexoDynamix</dd></div>
+        <div class="snap__row"><dt class="snap__key">studying</dt><dd class="snap__value">B.S. Computer Science at NUML, final year</dd></div>
+        <div class="snap__row"><dt class="snap__key">thesis</dt><dd class="snap__value">Reinforcement learning for wealth management</dd></div>
+        <div class="snap__row"><dt class="snap__key">based in</dt><dd class="snap__value">Lahore, Pakistan</dd></div>
+        <div class="snap__row"><dt class="snap__key">open to</dt><dd class="snap__value">AI research roles, internationally</dd></div>
+      </dl>
     </aside>
   </section>
 
   <section class="shell section" id="stack">
     <div class="stack-col" style="gap: 1.6rem">
       <div class="stack-col" style="gap: 0.8rem" data-reveal>
-        <p class="eyebrow">the stack</p>
-        <h2 class="h-lg">Tools, grouped by what they're actually for.</h2>
+        <h2 class="h-lg">The stack</h2>
+        <p class="prose-soft">Grouped by what I actually reach for them to do.</p>
       </div>
 
       <div class="stack-grid">
@@ -740,8 +711,8 @@
   <section class="shell section" id="work">
     <div class="stack-col" style="gap: 1.6rem">
       <div class="stack-col" style="gap: 0.8rem" data-reveal>
-        <p class="eyebrow">stuff i built</p>
-        <h2 class="h-lg">Shipped, and still running.</h2>
+        <h2 class="h-lg">Selected work</h2>
+        <p class="prose-soft">Seven of these are running in production today, mostly healthtech, mostly built end to end and handed over.</p>
       </div>
       <div class="projects" id="projects"></div>
     </div>
@@ -750,8 +721,7 @@
   <section class="shell section" id="research">
     <div class="stack-col" style="gap: 1.4rem">
       <div class="stack-col" style="gap: 0.8rem" data-reveal>
-        <p class="eyebrow">research &amp; background</p>
-        <h2 class="h-lg">Where the thinking comes from.</h2>
+        <h2 class="h-lg">Education &amp; research</h2>
       </div>
       <div class="writing" data-reveal>
         <div class="writing__row">
@@ -786,8 +756,8 @@
   <section class="shell section" id="currently">
     <div class="stack-col" style="gap: 1.6rem">
       <div class="stack-col" style="gap: 0.8rem" data-reveal>
-        <p class="eyebrow">currently</p>
-        <h2 class="h-lg">What's on, and something to play with.</h2>
+        <h2 class="h-lg">Off the clock</h2>
+        <p class="prose-soft">What's on while I build, and a game you can actually play.</p>
       </div>
 
       <div class="currently">
@@ -873,11 +843,7 @@
   <section class="shell section" id="contact">
     <div class="sticker sticker--tinted contact" style="padding: clamp(1.8rem, 4vw, 3rem)" data-reveal>
       <div class="stack-col" style="gap: 0.9rem">
-        <p class="eyebrow">contact</p>
-        <h2 class="h-lg">
-          Working on something interesting?<br />
-          <span class="gradient-text">Let's talk about it.</span>
-        </h2>
+        <h2 class="h-lg">Working on something interesting?</h2>
         <p class="prose-soft">
           Open to AI research collaborations, international roles, and
           conversations about where all of this is actually heading.
@@ -895,8 +861,8 @@
     </div>
 
     <footer class="footer" style="margin-top: clamp(2.5rem, 6vw, 4rem)">
-      <span>© 2026 Rabia Adeel · built with too many gradients</span>
-      <span class="mono">plan → act → observe → repeat</span>
+      <span>© 2026 Rabia Adeel</span>
+      <span class="mono">Lahore, PK</span>
     </footer>
   </section>
 </div>

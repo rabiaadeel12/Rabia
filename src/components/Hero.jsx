@@ -1,21 +1,12 @@
-import { profile, projects } from "../content.js";
+import { highlights, profile } from "../content.js";
 
 export default function Hero() {
-  const shipped = projects.filter((p) => p.status === "live").length;
-
   return (
     <header className="shell hero" id="top">
       <div className="stack-col" style={{ gap: "1.5rem" }}>
-        <p className="eyebrow">
-          hey, i'm{" "}
-          <span className="wave" aria-hidden="true">
-            👋
-          </span>
-        </p>
-
         <h1 className="h-xl">
-          <span className="hero__name">{profile.name}</span>
-          <span className="gradient-text">builds agents.</span>
+          {profile.name}
+          <span className="hero__verb">builds agents.</span>
         </h1>
 
         <p className="lead">{profile.tagline}</p>
@@ -45,29 +36,14 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="hero__cluster" aria-hidden="true">
-        <div className="float-card float-card--a">
-          <b className="tabular">{shipped}</b>
-          shipped to production
-        </div>
-        <div className="blob-badge">
-          agents
-          <br />
-          that
-          <br />
-          actually
-          <br />
-          finish
-        </div>
-        <div className="float-card float-card--b">
-          healthtech · fintech
-          <b>research</b>
-        </div>
-        <div className="float-card float-card--c">
-          plan → act → observe
-          <b>the loop</b>
-        </div>
-      </div>
+      <dl className="facts">
+        {highlights.map((item) => (
+          <div className="fact" key={item.label}>
+            <dt className="fact__figure tabular">{item.figure}</dt>
+            <dd className="fact__label">{item.label}</dd>
+          </div>
+        ))}
+      </dl>
     </header>
   );
 }

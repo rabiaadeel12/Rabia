@@ -33,8 +33,10 @@ export default function App() {
         <section className="shell section" id="currently">
           <div className="stack-col" style={{ gap: "1.6rem" }}>
             <div className="stack-col" style={{ gap: "0.8rem" }} data-reveal>
-              <p className="eyebrow">currently</p>
-              <h2 className="h-lg">What's on, and something to play with.</h2>
+              <h2 className="h-lg">Off the clock</h2>
+              <p className="prose-soft">
+                What's on while I build, and a game you can actually play.
+              </p>
             </div>
             <div className="currently">
               <div data-reveal>

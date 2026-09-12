@@ -32,13 +32,21 @@ export const about = {
   ],
 };
 
-/* The loop an agent actually runs — used as the sidebar of the About section.
-   It's the vernacular of the work, so it doubles as a summary of how I build. */
-export const howIWork = [
-  { key: "plan", value: "scope the problem before touching a keyboard" },
-  { key: "act", value: "ship the smallest thing that proves it works" },
-  { key: "observe", value: "measure it, read the traces, find what broke" },
-  { key: "repeat", value: "until it's simple enough to hand to someone else" },
+/* Facts a recruiter scans for, in the hero. Real numbers only — if you can't
+   source it from the CV or a live site, it doesn't belong here. */
+export const highlights = [
+  { figure: "7", label: "projects running in production" },
+  { figure: "95.3", label: "percentile, HEC national skills test" },
+  { figure: "3.59", label: "CGPA, final-year computer science" },
+];
+
+/* The About sidebar: where things actually stand right now. */
+export const snapshot = [
+  { key: "now", value: "AI/ML developer at NexoDynamix" },
+  { key: "studying", value: "B.S. Computer Science at NUML, final year" },
+  { key: "thesis", value: "Reinforcement learning for wealth management" },
+  { key: "based in", value: "Lahore, Pakistan" },
+  { key: "open to", value: "AI research roles, internationally" },
 ];
 
 export const marquee = [

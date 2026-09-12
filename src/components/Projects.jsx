@@ -11,8 +11,11 @@ export default function Projects() {
     <section className="shell section" id="work">
       <div className="stack-col" style={{ gap: "1.6rem" }}>
         <div className="stack-col" style={{ gap: "0.8rem" }} data-reveal>
-          <p className="eyebrow">stuff i built</p>
-          <h2 className="h-lg">Shipped, and still running.</h2>
+          <h2 className="h-lg">Selected work</h2>
+          <p className="prose-soft">
+            Seven of these are running in production today, mostly healthtech,
+            mostly built end to end and handed over.
+          </p>
         </div>
 
         <div className="projects">
