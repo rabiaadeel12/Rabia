@@ -278,7 +278,7 @@ export default function InteractiveCat() {
       {(!ready || failed) && (
         <div className="hero__scene-fallback">
           <p className="mono dim">
-            {failed ? "the cat wandered off — reload to try again" : "waking the cat…"}
+            {failed ? "the cat wandered off, reload to try again" : "waking the cat…"}
           </p>
         </div>
       )}

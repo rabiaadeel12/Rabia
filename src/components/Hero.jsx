@@ -76,7 +76,7 @@ export default function Hero() {
         aria-hidden={!petVisible}
       >
         {reduced ? (
-          <PetFallback label="the office cat — motion is paused" />
+          <PetFallback label="the office cat, motion is paused" />
         ) : (
           <Suspense fallback={<PetFallback label="waking the cat…" />}>
             <InteractiveCat />

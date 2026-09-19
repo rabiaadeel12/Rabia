@@ -12,7 +12,7 @@ export const profile = {
   role: "AI/ML Engineer & Full-Stack Developer",
   verb: "builds AI products.",
   tagline:
-    "Full-stack developer shipping AI-powered products end to end — from reinforcement-learning agents to the SaaS platforms and healthcare systems people actually run on.",
+    "Full-stack developer shipping AI-powered products end to end, from reinforcement-learning agents to the SaaS platforms and healthcare systems people actually run on.",
   location: "Lahore, PK",
   status: "open to AI research + international roles",
   availability: "open to remote contract work",
@@ -30,7 +30,7 @@ export const about = {
   // Your words, as you wrote them.
   paragraphs: [
     "I'm a full-stack developer with a strong focus on AI, especially agentic systems and smart solutions. I like building things that can think, decide, and act on their own, and turning that into products people actually find useful.",
-    "My background spans web and mobile development, and over time I've moved more and more toward AI, both in the work I ship and in the research I explore and publish — including a co-authored paper in Symmetry on Q-learning-based optimization. Working across the full process, from the first idea to the final product, is what I enjoy most. It means I get to stay close to both the thinking and the building.",
+    "My background spans web and mobile development, and over time I've moved more and more toward AI, both in the work I ship and in the research I explore and publish, including a co-authored paper in Symmetry on Q-learning-based optimization. Working across the full process, from the first idea to the final product, is what I enjoy most. It means I get to stay close to both the thinking and the building.",
     "I'm curious by nature and I like problems that don't have obvious answers. Whether that's designing a system that adapts on its own or figuring out how to make something complex feel simple to use, I'm happiest when I'm learning something new along the way.",
     "Right now I'm building AI powered solutions professionally while looking to grow further into AI through research and international opportunities.",
     "If you're working on something interesting in this space, or just want to talk about where AI is headed, I'd love to connect.",
@@ -50,7 +50,7 @@ export const highlights = [
 /* The About sidebar: where things actually stand right now. */
 export const snapshot = [
   { key: "now", value: "AI Engineer Trainee at Stewart Technology & Business Services" },
-  { key: "studied", value: "B.S. Computer Science, NUML — CGPA 3.57" },
+  { key: "studied", value: "B.S. Computer Science, NUML, CGPA 3.57" },
   { key: "published", value: "Co-author, Symmetry journal (IF 2.2)" },
   { key: "based in", value: "Lahore, Pakistan" },
   { key: "open to", value: "AI research roles, internationally" },
@@ -123,7 +123,7 @@ export const projects = [
   {
     title: "NexoHealth",
     blurb:
-      "The AI-driven records and patient-management platform at NexoDynamix, which I led development on — optimised scheduling, resource allocation, and large-scale handling of sensitive data under healthcare compliance rules.",
+      "The AI-driven records and patient-management platform at NexoDynamix, which I led development on: optimised scheduling, resource allocation, and large-scale handling of sensitive data under healthcare compliance rules.",
     tags: ["AI/ML", "React", "Firebase", "scheduling"],
     status: "live",
     image: "/images/projects/nexohealth.png",
@@ -136,7 +136,7 @@ export const projects = [
   {
     title: "Mafaza tul Hayat Hospital",
     blurb:
-      "The full web presence for a non-profit multi-specialty hospital: fifteen departments, twenty-plus consultant profiles with live availability and fees, appointment booking, and a patient portal for lab reports — all run from an admin CMS, so staff publish without a developer.",
+      "The full web presence for a non-profit multi-specialty hospital: fifteen departments, twenty-plus consultant profiles with live availability and fees, appointment booking, and a patient portal for lab reports. All run from an admin CMS, so staff publish without a developer.",
     tags: ["React 19", "Firebase", "AWS S3", "role-based auth"],
     status: "live",
     image: "/images/projects/mafaza-tul-hayat.png",
@@ -148,7 +148,7 @@ export const projects = [
   {
     title: "Intelligent Wealth Management",
     blurb:
-      "My thesis, built as a working product: a PPO reinforcement-learning agent trained on 94 KSE-100 stocks, serving BUY/SELL/HOLD signals through a Flask API with a daily auto-retraining pipeline. Paired with a React/Firebase PWA that tracks personal investments across seven asset classes — stocks, crypto, commodities, mutual funds, certificates, real estate, vehicles — and benchmarks risk-adjusted returns against the market.",
+      "My thesis, built as a working product: a PPO reinforcement-learning agent trained on 94 KSE-100 stocks, serving BUY/SELL/HOLD signals through a Flask API with a daily auto-retraining pipeline. Paired with a React/Firebase PWA that tracks personal investments across seven asset classes (stocks, crypto, commodities, mutual funds, certificates, real estate, vehicles) and benchmarks risk-adjusted returns against the market.",
     tags: ["Reinforcement Learning", "PPO", "Flask", "React", "Firebase"],
     status: "research",
     image: "/images/projects/iwm.png",
@@ -156,12 +156,12 @@ export const projects = [
     gradient: "linear-gradient(140deg, var(--cotton), var(--lilac))",
     link: "",
     repo: "",
-    note: "thesis project — iwmhub.com is offline",
+    note: "thesis project (iwmhub.com is offline)",
   },
   {
     title: "SehatX",
     blurb:
-      "A digital health platform for Pakistan — online consultations, holistic care packages, second opinions, and separate education centres for clinicians and patients, all behind an admin-controlled CMS.",
+      "A digital health platform for Pakistan: online consultations, holistic care packages, second opinions, and separate education centres for clinicians and patients, all behind an admin-controlled CMS.",
     tags: ["React", "Vite", "Firestore", "Firebase Auth"],
     status: "live",
     image: "/images/projects/sehatx.png",
@@ -173,7 +173,7 @@ export const projects = [
   {
     title: "NexoDynamix",
     blurb:
-      "The company site for the venture I build at, presenting three product lines — the RL wealth platform, the healthcare CMS, and an ERP — alongside a rotating project showcase.",
+      "The company site for the venture I build at, presenting three product lines (the RL wealth platform, the healthcare CMS, and an ERP) alongside a rotating project showcase.",
     tags: ["React", "Framer Motion", "Tailwind"],
     status: "live",
     image: "/images/projects/nexodynamix.png",
@@ -185,7 +185,7 @@ export const projects = [
   {
     title: "Dr. Mudassar Rauf",
     blurb:
-      "Academic portfolio for an AI and optimization researcher — publications, funded projects, editorial appointments and teaching history, organised so collaborators can find the work relevant to them.",
+      "Academic portfolio for an AI and optimization researcher: publications, funded projects, editorial appointments and teaching history, organised so collaborators can find the work relevant to them.",
     tags: ["React", "Framer Motion", "Tailwind"],
     status: "live",
     image: "/images/projects/mudassar-rauf.png",
@@ -215,44 +215,44 @@ highlights[0].figure = String(projects.filter((p) => p.status === "live").length
 export const credentials = [
   {
     when: "2026",
-    title: "AI Engineer Trainee — Stewart Technology & Business Services",
+    title: "AI Engineer Trainee at Stewart Technology & Business Services",
     kind: "experience",
   },
   {
     when: "2022 – 26",
-    title: "B.S. (Hons.) Computer Science — NUML, CGPA 3.57",
+    title: "B.S. (Hons.) Computer Science, NUML, CGPA 3.57",
     kind: "degree",
   },
   {
     when: "2026",
     title:
-      "Co-author — Symmetry journal (Impact Factor 2.2), Q-learning-based optimization research",
+      "Co-author, Symmetry journal (Impact Factor 2.2), Q-learning-based optimization research",
     kind: "publication",
   },
   {
     when: "2026",
     title:
-      "Thesis — Intelligent Wealth Management System Using Reinforcement Learning",
+      "Thesis: Intelligent Wealth Management System Using Reinforcement Learning",
     kind: "thesis",
   },
   {
     when: "prior",
-    title: "Software Developer — NexoDynamix",
+    title: "Software Developer at NexoDynamix",
     kind: "experience",
   },
   {
     when: "national",
-    title: "HEC Skill Competency Test — 95.3rd percentile",
+    title: "HEC Skill Competency Test: 95.3rd percentile",
     kind: "ranking",
   },
   {
     when: "current",
-    title: "Vice President — ACM NUML Lahore Chapter",
+    title: "Vice President, ACM NUML Lahore Chapter",
     kind: "leadership",
   },
   {
     when: "current",
-    title: "Core team — Google Developer Student Clubs, NUML Lahore",
+    title: "Core team, Google Developer Student Clubs, NUML Lahore",
     kind: "community",
   },
 ];

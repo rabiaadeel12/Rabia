@@ -66,11 +66,11 @@ export default function IntroSplash({ onDone }) {
             </p>
             <h2 className="h-md">Want something on while you get to know me?</h2>
             <p className="mono dim splash__hint">
-              {track.title} — {track.artist}, on loop
+              {track.title} · {track.artist}, on loop
             </p>
             <div className="splash__actions">
               <button className="btn btn--primary" onClick={() => finish(true)}>
-                yeah, queue it up
+                yeah!
               </button>
               <button className="btn btn--ghost" onClick={() => finish(false)}>
                 just show me the site
