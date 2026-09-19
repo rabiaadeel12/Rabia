@@ -2,7 +2,8 @@
 <!--
   Zero-build version of the portfolio. No npm, no bundler — double-click it.
   The React source in ../src is the one to edit long-term; this file is a
-  self-contained mirror of it for quick sharing and static hosting.
+  self-contained mirror of it (own copies of the CV, images and audio live
+  right here in standalone/) for quick sharing and static hosting.
 -->
 <html lang="en">
 <head>
@@ -10,112 +11,82 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta
   name="description"
-  content="Full-stack developer building agentic AI systems — selected work, writing, and research."
+  content="Full-stack developer shipping AI-powered products end to end, from reinforcement-learning agents to the SaaS platforms and healthcare systems people actually run on."
 />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Rabia Adeel" />
+<meta
+  property="og:description"
+  content="Full-stack developer shipping AI-powered products end to end, from reinforcement-learning agents to the SaaS platforms and healthcare systems people actually run on."
+/>
+<meta property="og:image" content="images/rabia-cutout.png" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Rabia Adeel" />
+<meta name="twitter:description" content="Full-stack developer shipping AI-powered products end to end." />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23170a0d'/%3E%3Ctext x='50' y='68' font-family='Arial, sans-serif' font-weight='800' font-size='58' fill='%23ff4d6d' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E" />
 <title>Rabia Adeel</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
   rel="stylesheet"
-  href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Outfit:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Outfit:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap"
 />
 
 <style>
-  /* ==========================================================
-     sticker-book dreamcore — tokens
-     ========================================================== */
+  /* ============================================================
+     cherry — design tokens
+     One saturated red family instead of a five-hue rainbow — every
+     gradient on the page is a shade of the same cherry, on purpose.
+     ============================================================ */
   :root {
-    color-scheme: light;
-    --ground: #fbf6ff;
-    --ground-2: #f3e9ff;
-    --surface: #ffffff;
-    --surface-2: #fbf3ff;
-    --ink: #2e2148;
-    --ink-soft: #5c4b80;
-    --muted: #8a7aa8;
-    --line: #e6d9f7;
-    --lilac: #b49bff;
-    --cotton: #ff9ecf;
-    --sky: #8fd4ff;
-    --mint: #9febcf;
-    --butter: #ffe08a;
-    --on-accent: #2e2148;
-    --aura-1: #c9b6ff;
-    --aura-2: #ffc6e6;
-    --aura-3: #b8e6ff;
-    --aura-strength: 0.55;
-    --dot: rgba(120, 90, 180, 0.14);
-    --sticker-edge: #ffffff;
-    --shadow-sticker: 0 20px 44px -26px rgba(70, 40, 120, 0.5);
-    --shadow-soft: 0 10px 26px -18px rgba(70, 40, 120, 0.42);
-    --r-sm: 12px;
-    --r-md: 20px;
-    --r-lg: 30px;
+    color-scheme: dark;
+
+    --ground: #0f0709;
+    --ground-2: #170a0d;
+    --surface: #1c0e12;
+    --surface-2: #241318;
+
+    --ink: #fbeef0;
+    --ink-soft: #d7b3ba;
+    --muted: #8c6870;
+    --line: #391c22;
+
+    --lilac: #ff4d6d;
+    --cotton: #ff2648;
+    --sky: #ffb4bd;
+    --mint: #e0113f;
+    --butter: #ff8fa3;
+
+    --accent: var(--cotton);
+    --accent-2: var(--mint);
+    --on-accent: #1a0407;
+
+    --aura-1: #b31942;
+    --aura-2: #7a1128;
+    --aura-3: #ff4d6d;
+    --aura-strength: 0.26;
+
+    --dot: rgba(150, 160, 210, 0.07);
+    --shadow-sticker: 0 30px 60px -32px rgba(0, 0, 0, 0.7);
+    --shadow-soft: 0 14px 30px -20px rgba(0, 0, 0, 0.55);
+    --shadow-glow: 0 0 0 1px color-mix(in srgb, var(--accent) 35%, transparent),
+      0 18px 40px -24px color-mix(in srgb, var(--accent) 45%, transparent);
+
+    --r-sm: 8px;
+    --r-md: 14px;
+    --r-lg: 20px;
     --r-pill: 999px;
-    --font-display: "Baloo 2", "Trebuchet MS", system-ui, sans-serif;
+
+    --font-display: "Space Grotesk", "Trebuchet MS", system-ui, sans-serif;
     --font-body: "Outfit", "Segoe UI", system-ui, sans-serif;
     --font-mono: "Space Mono", ui-monospace, "Cascadia Mono", monospace;
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      color-scheme: dark;
-      --ground: #15102a;
-      --ground-2: #1c1438;
-      --surface: #221a3d;
-      --surface-2: #2a2049;
-      --ink: #f3ecff;
-      --ink-soft: #c9bce8;
-      --muted: #9c8cc0;
-      --line: #372a5c;
-      --lilac: #c3aeff;
-      --cotton: #ffaeda;
-      --sky: #9edbff;
-      --mint: #a9f0d7;
-      --butter: #ffe7a3;
-      --on-accent: #1a1230;
-      --aura-1: #6b4bc7;
-      --aura-2: #a8407c;
-      --aura-3: #2e6c9e;
-      --aura-strength: 0.45;
-      --dot: rgba(190, 160, 255, 0.1);
-      --sticker-edge: #2a2049;
-      --shadow-sticker: 0 22px 48px -26px rgba(0, 0, 0, 0.7);
-      --shadow-soft: 0 12px 28px -18px rgba(0, 0, 0, 0.6);
-    }
-  }
-
-  :root[data-theme="dark"] {
-    color-scheme: dark;
-    --ground: #15102a;
-    --ground-2: #1c1438;
-    --surface: #221a3d;
-    --surface-2: #2a2049;
-    --ink: #f3ecff;
-    --ink-soft: #c9bce8;
-    --muted: #9c8cc0;
-    --line: #372a5c;
-    --lilac: #c3aeff;
-    --cotton: #ffaeda;
-    --sky: #9edbff;
-    --mint: #a9f0d7;
-    --butter: #ffe7a3;
-    --on-accent: #1a1230;
-    --aura-1: #6b4bc7;
-    --aura-2: #a8407c;
-    --aura-3: #2e6c9e;
-    --aura-strength: 0.45;
-    --dot: rgba(190, 160, 255, 0.1);
-    --sticker-edge: #2a2049;
-    --shadow-sticker: 0 22px 48px -26px rgba(0, 0, 0, 0.7);
-    --shadow-soft: 0 12px 28px -18px rgba(0, 0, 0, 0.6);
-  }
-
-  /* ========================================================== base */
+  /* ============================================================
+     base
+     ============================================================ */
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-
   body {
     margin: 0;
     background: var(--ground);
@@ -127,83 +98,110 @@
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
-
   body::before {
     content: "";
     position: fixed;
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    background-image: radial-gradient(var(--dot) 1.2px, transparent 1.3px);
-    background-size: 22px 22px;
+    background-image: linear-gradient(var(--dot) 1px, transparent 1px),
+      linear-gradient(90deg, var(--dot) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 85% 55% at 50% 0%, black 35%, transparent 82%);
+    -webkit-mask-image: radial-gradient(ellipse 85% 55% at 50% 0%, black 35%, transparent 82%);
   }
-
-  h1, h2, h3 {
+  h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 800;
-    line-height: 1.02;
+    font-weight: 700;
+    line-height: 1.03;
     letter-spacing: -0.02em;
     text-wrap: balance;
     margin: 0;
     color: var(--ink);
   }
-
   p { margin: 0; }
   a { color: inherit; text-decoration: none; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+  ::selection { background: color-mix(in srgb, var(--accent) 55%, transparent); color: var(--ink); }
 
-  :focus-visible {
-    outline: 3px solid var(--lilac);
-    outline-offset: 3px;
-    border-radius: 6px;
-  }
-
-  ::selection { background: var(--cotton); color: var(--on-accent); }
-
-  /* ========================================================== layout */
+  /* ============================================================
+     layout
+     ============================================================ */
   .page { position: relative; z-index: 1; }
   .shell { width: min(1120px, 100% - 2.5rem); margin-inline: auto; }
   .section { padding-block: clamp(4rem, 9vw, 7.5rem); }
   .stack-col { display: flex; flex-direction: column; }
 
-  /* ========================================================== auras */
-  .aura-field {
-    position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
+  /* ============================================================
+     custom cursor — a dot with a lagging ring, fine pointers only
+     ============================================================ */
+  .cursor-dot, .cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    translate: -50% -50%;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 400;
+    will-change: transform;
   }
-  .aura { position: absolute; border-radius: 50%; filter: blur(90px); opacity: var(--aura-strength); }
-  .aura--1 { width: 46vw; height: 46vw; background: var(--aura-1); top: -12vw; left: -10vw; animation: drift-a 26s ease-in-out infinite alternate; }
-  .aura--2 { width: 38vw; height: 38vw; background: var(--aura-2); top: 28vh; right: -12vw; animation: drift-b 31s ease-in-out infinite alternate; }
-  .aura--3 { width: 34vw; height: 34vw; background: var(--aura-3); bottom: -10vw; left: 26vw; animation: drift-a 36s ease-in-out infinite alternate-reverse; }
+  .cursor-dot { width: 5px; height: 5px; background: var(--accent); }
+  .cursor-ring {
+    width: 32px;
+    height: 32px;
+    border: 1px solid color-mix(in srgb, var(--accent) 70%, var(--ink-soft));
+    transition: width 0.22s cubic-bezier(0.22, 0.9, 0.3, 1),
+      height 0.22s cubic-bezier(0.22, 0.9, 0.3, 1), background 0.22s ease, border-color 0.22s ease;
+  }
+  .cursor-ring.is-active {
+    width: 52px;
+    height: 52px;
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border-color: var(--accent);
+  }
+  body.has-custom-cursor, body.has-custom-cursor a, body.has-custom-cursor button { cursor: none; }
+
+  /* ============================================================
+     auras — soft glow clouds
+     ============================================================ */
+  .aura-field { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+  .aura { position: absolute; border-radius: 50%; filter: blur(110px); opacity: var(--aura-strength); }
+  .aura--1 { width: 42vw; height: 42vw; background: var(--aura-1); top: -14vw; left: -10vw; animation: drift-a 26s ease-in-out infinite alternate; }
+  .aura--2 { width: 34vw; height: 34vw; background: var(--aura-2); top: 30vh; right: -12vw; animation: drift-b 31s ease-in-out infinite alternate; }
+  .aura--3 { width: 30vw; height: 30vw; background: var(--aura-3); bottom: -10vw; left: 26vw; animation: drift-a 36s ease-in-out infinite alternate-reverse; }
   @keyframes drift-a { to { transform: translate3d(6vw, 5vh, 0) scale(1.12); } }
   @keyframes drift-b { to { transform: translate3d(-7vw, -4vh, 0) scale(1.08); } }
 
-  /* ========================================================== stickers */
+  /* ============================================================
+     panels
+     ============================================================ */
   .sticker {
     position: relative;
     background: var(--surface);
-    border: 3px solid var(--sticker-edge);
+    border: 1px solid var(--line);
     border-radius: var(--r-lg);
     box-shadow: var(--shadow-sticker);
     padding: 1.6rem 1.7rem;
   }
-  .sticker--tilt-l { transform: rotate(-1.2deg); }
-  .sticker--tilt-r { transform: rotate(1.1deg); }
+  .sticker--flat { box-shadow: none; border-color: var(--line); background: transparent; }
   .sticker--tinted { background: var(--surface-2); }
-
   .tape {
     position: absolute;
-    top: -13px; left: 26px;
-    padding: 0.15rem 0.75rem;
+    top: -11px;
+    left: 26px;
+    padding: 0.16rem 0.7rem;
     font-family: var(--font-mono);
-    font-size: 0.66rem;
-    letter-spacing: 0.1em;
+    font-size: 0.64rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--on-accent);
-    background: var(--butter);
-    border-radius: var(--r-pill);
-    transform: rotate(-2deg);
+    background: var(--accent);
+    border-radius: var(--r-sm);
   }
 
-  /* ========================================================== type */
+  /* ============================================================
+     type helpers
+     ============================================================ */
   .eyebrow {
     font-family: var(--font-mono);
     font-size: 0.74rem;
@@ -214,256 +212,257 @@
     align-items: center;
     gap: 0.6rem;
   }
-  .eyebrow::before {
-    content: ""; width: 26px; height: 3px; border-radius: 2px;
-    background: var(--cotton); flex: none;
-  }
-
+  .eyebrow::before { content: ""; width: 26px; height: 3px; border-radius: 2px; background: var(--accent); }
   .h-xl { font-size: clamp(2.9rem, 9.5vw, 6rem); }
   .h-lg { font-size: clamp(2.1rem, 5.4vw, 3.4rem); }
   .h-md { font-size: clamp(1.35rem, 2.6vw, 1.7rem); }
-
   .lead { font-size: clamp(1.05rem, 1.7vw, 1.22rem); color: var(--ink-soft); max-width: 62ch; }
   .prose-soft { color: var(--ink-soft); max-width: 64ch; }
   .dim { color: var(--muted); }
   .mono { font-family: var(--font-mono); }
   .tabular { font-variant-numeric: tabular-nums; }
 
-
-  /* ========================================================== chips + buttons */
+  /* ============================================================
+     chips, pills, buttons
+     ============================================================ */
   .chip {
     font-family: var(--font-mono);
     font-size: 0.72rem;
+    letter-spacing: 0.02em;
     padding: 0.28rem 0.65rem;
     border-radius: var(--r-pill);
     background: var(--surface-2);
     border: 1px solid var(--line);
     color: var(--ink-soft);
-    white-space: nowrap;
+    white-space: normal;
+    max-width: 100%;
   }
-  .chip--lilac { background: color-mix(in srgb, var(--lilac) 30%, var(--surface)); border-color: transparent; color: var(--ink); }
-  .chip--mint { background: color-mix(in srgb, var(--mint) 40%, var(--surface)); border-color: transparent; color: var(--ink); }
+  .chip--lilac { border-color: color-mix(in srgb, var(--lilac) 55%, var(--line)); color: var(--ink); }
+  .chip--mint { border-color: color-mix(in srgb, var(--mint) 55%, var(--line)); color: var(--ink); }
+  .chip--sky { border-color: color-mix(in srgb, var(--sky) 55%, var(--line)); color: var(--ink); }
   .chip-row { display: flex; flex-wrap: wrap; gap: 0.45rem; }
-
   .btn {
-    display: inline-flex; align-items: center; gap: 0.55rem;
-    font-family: var(--font-display); font-weight: 700; font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
     padding: 0.72rem 1.5rem;
     border-radius: var(--r-pill);
-    border: 3px solid var(--sticker-edge);
+    border: 1px solid var(--line);
     cursor: pointer;
-    transition: transform 0.18s cubic-bezier(0.34, 1.4, 0.64, 1), box-shadow 0.18s ease;
+    transition: transform 0.18s cubic-bezier(0.34, 1.2, 0.64, 1), box-shadow 0.18s ease, border-color 0.18s ease;
     box-shadow: var(--shadow-soft);
   }
-  .btn:hover { transform: translateY(-3px) rotate(-1deg); }
+  .btn:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 60%, var(--line)); }
   .btn:active { transform: translateY(0) scale(0.98); }
-  .btn--primary { background: linear-gradient(135deg, var(--lilac), var(--cotton)); color: var(--on-accent); }
+  .btn--primary { background: linear-gradient(135deg, var(--mint), var(--sky)); color: var(--on-accent); border-color: transparent; }
   .btn--ghost { background: var(--surface); color: var(--ink); border-color: var(--line); }
-  .btn--icon {
-    padding: 0; width: 2.6rem; height: 2.6rem; justify-content: center;
-    border-radius: 50%; background: var(--surface-2); color: var(--ink);
-    border-color: var(--line); box-shadow: none; font-size: 0.85rem;
-  }
-  .btn--play {
-    width: 3.2rem; height: 3.2rem; padding: 0; justify-content: center; border-radius: 50%;
-  }
+  .btn--icon { padding: 0.5rem; width: 2.6rem; height: 2.6rem; justify-content: center; border-radius: 50%; background: var(--surface-2); color: var(--ink); border-color: var(--line); box-shadow: none; }
 
-  /* ========================================================== nav */
+  /* ============================================================
+     nav
+     ============================================================ */
   .nav {
-    position: fixed; top: 0.9rem; left: 50%; transform: translateX(-50%);
-    z-index: 40; display: flex; align-items: center; gap: 0.2rem;
-    padding: 0.4rem 0.5rem; border-radius: var(--r-pill);
+    position: fixed;
+    top: 0.9rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 40;
+    border-radius: var(--r-pill);
     background: color-mix(in srgb, var(--surface) 78%, transparent);
     backdrop-filter: blur(14px) saturate(1.3);
     border: 1px solid var(--line);
     box-shadow: var(--shadow-soft);
-    max-width: calc(100% - 1.6rem);
+    max-width: calc(100vw - 1.6rem);
   }
+  .nav__scroll {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.4rem 0.5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav__scroll::-webkit-scrollbar { display: none; }
   .nav a {
-    font-size: 0.86rem; font-weight: 500; padding: 0.38rem 0.8rem;
-    border-radius: var(--r-pill); color: var(--ink-soft);
-    transition: background 0.16s ease, color 0.16s ease; white-space: nowrap;
+    font-size: 0.86rem;
+    font-weight: 500;
+    padding: 0.38rem 0.8rem;
+    border-radius: var(--r-pill);
+    color: var(--ink-soft);
+    transition: background 0.16s ease, color 0.16s ease;
+    white-space: nowrap;
   }
   .nav a:hover { background: var(--surface-2); color: var(--ink); }
-  .nav a.is-active { background: color-mix(in srgb, var(--lilac) 32%, var(--surface)); color: var(--ink); }
-  .nav__brand { font-family: var(--font-display); font-weight: 800; padding-inline: 0.7rem 0.55rem; font-size: 1rem; }
-
-  @media (max-width: 760px) {
-    .nav a:not(.nav__brand) { padding-inline: 0.5rem; font-size: 0.78rem; }
-    .nav__hide-sm { display: none; }
+  .nav a.is-active { background: color-mix(in srgb, var(--accent) 22%, var(--surface)); color: var(--ink); }
+  .nav__brand { font-family: var(--font-display); font-weight: 700; padding-inline: 0.7rem 0.55rem; font-size: 1rem; }
+  @media (max-width: 700px) {
+    .nav a:not(.nav__brand) { padding-inline: 0.55rem; font-size: 0.79rem; }
   }
-
   .progress {
-    position: fixed; top: 0; left: 0; height: 3px; z-index: 50; width: 0;
-    background: linear-gradient(90deg, var(--lilac), var(--cotton), var(--sky));
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    z-index: 50;
+    width: 0;
+    background: linear-gradient(90deg, var(--lilac), var(--mint), var(--sky));
     border-radius: 0 2px 2px 0;
   }
 
-  /* ========================================================== hero */
-  .hero {
-    padding-top: clamp(6.5rem, 14vw, 9rem);
-    padding-bottom: clamp(2.5rem, 6vw, 4rem);
-    display: grid;
-    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-    gap: clamp(2rem, 5vw, 4rem);
-    align-items: center;
+  /* ============================================================
+     hero
+     ============================================================ */
+  .hero { padding-top: clamp(6.5rem, 14vw, 9rem); padding-bottom: clamp(2.5rem, 6vw, 4rem); display: flex; flex-direction: column; gap: clamp(2rem, 5vw, 3rem); }
+  .hero__top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 340px); gap: clamp(2rem, 5vw, 3.5rem); align-items: start; }
+  @media (max-width: 860px) { .hero__top { grid-template-columns: 1fr; } }
+  .hero__verb { display: block; color: var(--accent); }
+  .hero__portrait {
+    justify-self: center;
+    width: min(100%, 16rem);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--surface-2);
+    border: 2px solid color-mix(in srgb, var(--accent) 55%, var(--line));
+    box-shadow: 0 18px 36px -18px rgba(0, 0, 0, 0.6), 0 0 0 8px color-mix(in srgb, var(--accent) 10%, transparent);
+    animation: portrait-float 6s ease-in-out infinite;
+    margin-top: 0.4rem;
   }
-  @media (max-width: 900px) { .hero { grid-template-columns: 1fr; } }
-
-  /* The second line carries the accent, so the name itself stays plain ink.
-     A gradient across the whole headline reads as decoration, not emphasis. */
-  .hero__verb { display: block; color: var(--lilac); }
-
-  /* Facts, not floating ornaments. One column of real numbers sharing a rule,
-     with no card chrome — that keeps the project stickers the only things on
-     the page that read as separate objects. */
-  .facts {
-    margin: 0; display: flex; flex-direction: column; gap: 1.5rem;
-    padding-left: clamp(1rem, 3vw, 2rem); border-left: 2px solid var(--line);
-  }
+  @media (max-width: 860px) { .hero__portrait { width: 9rem; order: -1; } }
+  .hero__portrait img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%; }
+  @keyframes portrait-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  .facts { margin: 0; display: flex; flex-wrap: wrap; gap: clamp(1.5rem, 4vw, 3rem); padding-top: 1.6rem; border-top: 1px solid var(--line); }
   .fact { display: flex; flex-direction: column; gap: 0.15rem; }
-  .fact__figure {
-    font-family: var(--font-display); font-weight: 800;
-    font-size: clamp(2.3rem, 4.6vw, 3.1rem); line-height: 1; color: var(--ink);
-  }
-  .fact__label {
-    margin: 0; font-size: 0.92rem; line-height: 1.4;
-    color: var(--muted); max-width: 24ch;
-  }
+  .fact__figure { font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 3.6vw, 2.6rem); line-height: 1; color: var(--ink); }
+  .fact__label { margin: 0; font-size: 0.88rem; line-height: 1.4; color: var(--muted); max-width: 24ch; }
 
-  /* ========================================================== marquee */
+  /* ============================================================
+     marquee
+     ============================================================ */
   .marquee-band {
-    position: relative; z-index: 1;
-    transform: rotate(-2deg) scale(1.04);
-    background: linear-gradient(90deg, var(--lilac), var(--cotton) 40%, var(--butter) 70%, var(--sky));
-    border-block: 3px solid var(--sticker-edge);
+    position: relative;
+    z-index: 1;
+    transform: rotate(-1.4deg) scale(1.03);
+    background: var(--surface-2);
+    border-block: 1px solid var(--line);
     padding-block: 0.7rem;
     overflow: hidden;
     margin-block: clamp(1.5rem, 4vw, 3rem);
   }
+  .marquee-band::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--lilac), var(--mint), var(--sky));
+    opacity: 0.7;
+  }
   .marquee { display: flex; width: max-content; animation: slide 34s linear infinite; }
   .marquee-band:hover .marquee { animation-play-state: paused; }
   .marquee__group {
-    display: flex; align-items: center; gap: 2.2rem; padding-right: 2.2rem;
-    font-family: var(--font-display); font-weight: 700;
-    font-size: clamp(1rem, 2vw, 1.35rem);
-    color: var(--on-accent); white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 2.2rem;
+    padding-right: 2.2rem;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: clamp(0.85rem, 1.6vw, 1.05rem);
+    color: var(--ink-soft);
+    white-space: nowrap;
   }
-  .marquee__dot { width: 9px; height: 9px; border-radius: 50%; background: var(--on-accent); opacity: 0.55; flex: none; }
+  .marquee__group span { display: inline-flex; gap: 2.2rem; align-items: center; }
+  .marquee__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); opacity: 0.85; flex: none; }
   @keyframes slide { to { transform: translateX(-50%); } }
 
-  /* ========================================================== about */
-  .about {
-    display: grid;
-    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-    gap: clamp(2rem, 5vw, 3.5rem);
-    align-items: start;
-  }
+  /* ============================================================
+     about
+     ============================================================ */
+  .about { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 3.5rem); align-items: start; }
   @media (max-width: 880px) { .about { grid-template-columns: 1fr; } }
-
   .snap { margin: 0.7rem 0 0; display: flex; flex-direction: column; }
-  .snap__row {
-    display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); gap: 0.9rem;
-    align-items: baseline; padding-block: 0.6rem;
-    border-top: 1px solid var(--line);
-  }
+  .snap__row { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); gap: 0.9rem; align-items: baseline; padding-block: 0.6rem; border-top: 1px solid var(--line); }
   .snap__row:first-child { border-top: 0; padding-top: 0; }
-  .snap__key {
-    font-family: var(--font-mono); font-size: 0.72rem;
-    letter-spacing: 0.04em; color: var(--muted);
-  }
+  .snap__key { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.04em; color: var(--muted); }
   .snap__value { margin: 0; font-size: 0.93rem; line-height: 1.45; color: var(--ink); }
-  @media (max-width: 460px) {
-    .snap__row { grid-template-columns: 1fr; gap: 0.15rem; }
-  }
-  /* ========================================================== stack */
+  @media (max-width: 460px) { .snap__row { grid-template-columns: 1fr; gap: 0.15rem; } }
+
+  /* ============================================================
+     stack
+     ============================================================ */
   .stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.1rem; }
-  /* Deliberately not cards. A top rule and the swatch are enough to group
-     these, and it leaves the project stickers as the only boxed objects. */
-  .stack-card {
-    border-top: 2px solid var(--line); padding-top: 1rem;
-    display: flex; flex-direction: column; gap: 0.8rem;
-  }
-  .stack-card__title {
-    font-family: var(--font-display); font-weight: 700; font-size: 1.05rem;
-    display: flex; align-items: center; gap: 0.5rem;
-  }
-  .swatch { width: 13px; height: 13px; border-radius: 4px; flex: none; }
+  .stack-card { border-top: 2px solid var(--line); padding-top: 1rem; display: flex; flex-direction: column; gap: 0.8rem; }
+  .stack-card__title { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; display: flex; align-items: center; gap: 0.5rem; }
+  .swatch { width: 13px; height: 13px; border-radius: 4px; flex: none; box-shadow: 0 0 10px -1px currentColor; }
 
-  /* ========================================================== projects */
-  .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(1.4rem, 3vw, 2rem); }
+  /* ============================================================
+     projects — tilt-on-hover cards
+     ============================================================ */
+  .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(1.4rem, 3vw, 2rem); perspective: 1400px; }
   .project {
-    display: flex; flex-direction: column; gap: 0.85rem;
-    transition: transform 0.22s cubic-bezier(0.34, 1.3, 0.64, 1), box-shadow 0.22s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    transform: perspective(1000px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateZ(0);
+    transition: transform 0.4s cubic-bezier(0.22, 0.9, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+    transform-style: preserve-3d;
   }
-  .project:hover { transform: rotate(0deg) translateY(-6px); box-shadow: 0 28px 54px -26px rgba(70, 40, 120, 0.55); }
-  .project__thumb {
-    height: 132px; border-radius: var(--r-md); display: grid; place-items: center;
-    font-family: var(--font-display); font-weight: 800; font-size: 2.4rem;
-    color: var(--on-accent); overflow: hidden;
+  .project::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--r-lg);
+    background: radial-gradient(260px circle at var(--tilt-glow-x, 50%) var(--tilt-glow-y, 50%), color-mix(in srgb, var(--accent) 16%, transparent), transparent 65%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
   }
+  .project:hover { box-shadow: var(--shadow-glow); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+  .project:hover::after { opacity: 1; }
+  .project__thumb { height: 160px; border-radius: var(--r-md); display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; font-size: 2.4rem; color: var(--on-accent); overflow: hidden; transform: translateZ(24px); }
+  .project__thumb--image { background: var(--surface-2); border: 1px solid var(--line); }
+  .project__thumb--image img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 0.5s ease; }
+  .project:hover .project__thumb--image img { transform: scale(1.04); }
+  .project__more { font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent); background: none; border: none; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; white-space: nowrap; }
+  .project__more:hover { color: var(--ink); }
   .project__head { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; }
-
-  .status {
-    font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.08em;
-    text-transform: uppercase; padding: 0.2rem 0.55rem; border-radius: var(--r-pill); flex: none;
-  }
+  .status { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.2rem 0.55rem; border-radius: var(--r-pill); flex: none; }
   .status--live { background: color-mix(in srgb, var(--mint) 55%, var(--surface)); color: var(--on-accent); }
-  .status--wip { background: color-mix(in srgb, var(--butter) 60%, var(--surface)); color: var(--on-accent); }
-
+  .status--research { background: color-mix(in srgb, var(--sky) 50%, var(--surface)); color: var(--on-accent); }
   .link-arrow {
-    font-weight: 600; font-size: 0.9rem; color: var(--ink);
-    display: inline-flex; gap: 0.35rem; align-items: center;
-    border-bottom: 2px solid color-mix(in srgb, var(--lilac) 60%, transparent);
-    width: fit-content; padding-bottom: 1px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--ink);
+    display: inline-flex;
+    gap: 0.35rem;
+    align-items: center;
+    border-bottom: 2px solid color-mix(in srgb, var(--accent) 60%, transparent);
+    width: fit-content;
+    padding-bottom: 1px;
   }
   .link-arrow span { transition: translate 0.16s ease; }
   .link-arrow:hover span { translate: 4px 0; }
 
-  /* ========================================================== writing */
+  /* ============================================================
+     writing list
+     ============================================================ */
   .writing { display: flex; flex-direction: column; }
-  .writing__row {
-    display: grid; grid-template-columns: 6.5rem minmax(0, 1fr) auto;
-    gap: 1.2rem; align-items: baseline; padding-block: 1.05rem;
-    border-top: 1px solid var(--line);
-  }
+  .writing__row { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr) auto; gap: 1.2rem; align-items: baseline; padding-block: 1.05rem; border-top: 1px solid var(--line); }
   .writing__row:last-child { border-bottom: 1px solid var(--line); }
   .writing__row:hover .writing__title { color: var(--ink); }
   .writing__when { font-family: var(--font-mono); font-size: 0.76rem; color: var(--muted); font-variant-numeric: tabular-nums; }
   .writing__title { font-family: var(--font-display); font-weight: 700; font-size: 1.08rem; color: var(--ink-soft); transition: color 0.16s ease; }
   @media (max-width: 640px) { .writing__row { grid-template-columns: 1fr; gap: 0.3rem; } }
 
-  /* ========================================================== currently */
-  .currently {
-    display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-    gap: clamp(1.4rem, 3vw, 2rem); align-items: stretch;
-  }
-  @media (max-width: 900px) { .currently { grid-template-columns: 1fr; } }
-  .currently > * { display: flex; min-width: 0; }
-  .currently > * > * { flex: 1; min-width: 0; }
-
-  .player {
-    background: linear-gradient(165deg, color-mix(in srgb, var(--lilac) 26%, var(--surface)), var(--surface));
-    border: 3px solid var(--sticker-edge);
-    border-radius: var(--r-lg);
-    box-shadow: var(--shadow-sticker);
-    padding: 1.4rem;
-    display: flex; flex-direction: column; gap: 1rem;
-  }
-  .player__art { aspect-ratio: 1; border-radius: var(--r-md); position: relative; overflow: hidden; display: grid; place-items: center; }
-  .player__art-glyph {
-    font-family: var(--font-display); font-weight: 800;
-    font-size: clamp(2.5rem, 7vw, 3.6rem); color: var(--on-accent);
-    opacity: 0.85; text-align: center; padding: 1rem; line-height: 1;
-  }
-  .player__title { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; line-height: 1.2; }
-  .player__artist { font-size: 0.9rem; color: var(--muted); }
-  .player__bar { height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; }
-  .player__bar span { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--cotton), var(--lilac)); }
-  .player__times { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); font-variant-numeric: tabular-nums; }
-  .player__controls { display: flex; align-items: center; justify-content: center; gap: 0.6rem; }
-
-  .eq { display: flex; align-items: flex-end; gap: 3px; height: 18px; flex: none; }
+  /* ============================================================
+     floating player equalizer bars
+     ============================================================ */
+  .eq { display: flex; align-items: flex-end; gap: 3px; height: 18px; }
   .eq i { width: 3px; background: var(--cotton); border-radius: 2px; height: 30%; animation: bounce 900ms ease-in-out infinite; }
   .eq i:nth-child(2) { animation-delay: 150ms; background: var(--lilac); }
   .eq i:nth-child(3) { animation-delay: 300ms; background: var(--sky); }
@@ -472,82 +471,136 @@
   .eq[data-paused="true"] i { animation-play-state: paused; }
   @keyframes bounce { 50% { height: 100%; } }
 
-  .arcade {
-    background: var(--surface);
-    border: 3px solid var(--sticker-edge);
-    border-radius: var(--r-lg);
-    box-shadow: var(--shadow-sticker);
-    padding: 1.1rem;
-    display: flex; flex-direction: column; gap: 0.9rem;
-  }
-  .arcade__bar { display: flex; align-items: center; justify-content: space-between; gap: 0.8rem; flex-wrap: wrap; }
-  .arcade__scores { display: flex; gap: 1.2rem; font-family: var(--font-mono); font-size: 0.76rem; color: var(--muted); }
-  .arcade__scores b {
-    display: block; font-family: var(--font-display); font-size: 1.35rem;
-    color: var(--ink); line-height: 1.1; font-variant-numeric: tabular-nums;
-  }
-  .arcade__screen {
-    position: relative; border-radius: var(--r-md); overflow: hidden;
-    background: linear-gradient(180deg, color-mix(in srgb, var(--sky) 22%, var(--surface-2)), color-mix(in srgb, var(--cotton) 16%, var(--surface-2)));
-    border: 1px solid var(--line); touch-action: none;
-  }
-  .arcade__screen canvas { display: block; width: 100%; height: auto; }
-  .arcade__overlay {
-    position: absolute; inset: 0; display: grid; place-items: center;
-    text-align: center; padding: 1.2rem;
-    background: color-mix(in srgb, var(--surface) 70%, transparent);
-    backdrop-filter: blur(3px);
-  }
-  .arcade__overlay > div { display: flex; flex-direction: column; align-items: center; gap: 0.7rem; }
-  .arcade__overlay[hidden] { display: none !important; }
-  .arcade__hint { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); }
-  .arcade__result { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; }
-
-  /* ========================================================== contact */
+  /* ============================================================
+     contact
+     ============================================================ */
   .contact { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
   @media (max-width: 760px) { .contact { grid-template-columns: 1fr; } }
-
   .socials { display: flex; flex-wrap: wrap; gap: 0.6rem; }
   .social {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    padding: 0.6rem 1.05rem; border-radius: var(--r-pill);
-    background: var(--surface); border: 1px solid var(--line);
-    font-weight: 500; font-size: 0.92rem;
-    transition: transform 0.16s ease, background 0.16s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.05rem;
+    border-radius: var(--r-pill);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    font-weight: 500;
+    font-size: 0.92rem;
+    transition: transform 0.16s ease, background 0.16s ease, border-color 0.16s ease;
   }
-  .social:hover { transform: translateY(-2px); background: var(--surface-2); }
+  .social:hover { transform: translateY(-2px); background: var(--surface-2); border-color: color-mix(in srgb, var(--accent) 50%, var(--line)); }
+  .footer { border-top: 1px solid var(--line); padding-block: 2rem 2.5rem; display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; justify-content: space-between; align-items: center; font-size: 0.84rem; color: var(--muted); }
 
-  .footer {
-    border-top: 1px solid var(--line);
-    padding-block: 2rem 2.5rem;
-    display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem;
-    justify-content: space-between; align-items: center;
-    font-size: 0.84rem; color: var(--muted);
+  /* ============================================================
+     intro splash
+     ============================================================ */
+  .splash {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    background: var(--ground);
+    transition: opacity 0.4s ease;
   }
+  .splash::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 40%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 60%);
+    pointer-events: none;
+  }
+  .splash--out { opacity: 0; pointer-events: none; }
+  .splash__inner { position: relative; text-align: center; padding-inline: 1.5rem; }
+  .splash__type { font-size: clamp(1.3rem, 4vw, 2rem); letter-spacing: 0.06em; color: var(--ink); }
+  .splash__cursor { display: inline-block; width: 0.55em; height: 1em; margin-left: 0.15em; background: var(--accent); vertical-align: text-bottom; animation: blink 900ms steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .splash__ask { display: flex; flex-direction: column; align-items: center; gap: 0.9rem; max-width: 34rem; animation: rise-in 0.5s cubic-bezier(0.22, 0.9, 0.3, 1) both; }
+  @keyframes rise-in { from { opacity: 0; translate: 0 14px; } to { opacity: 1; translate: 0 0; } }
+  .splash__hint { font-size: 0.72rem; }
+  .splash__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-top: 0.4rem; }
+  .splash__skip { position: absolute; bottom: 1.5rem; right: 1.75rem; background: none; border: none; color: var(--muted); font-size: 0.74rem; letter-spacing: 0.06em; cursor: pointer; padding: 0.4rem 0.6rem; }
+  .splash__skip:hover { color: var(--ink-soft); }
+  .splash[hidden] { display: none; }
 
-  /* ========================================================== reveal */
+  /* ============================================================
+     floating mini-player
+     ============================================================ */
+  .mini-player { position: fixed; right: 1.2rem; bottom: 1.2rem; z-index: 60; }
+  .mini-player.is-expanded {
+    width: min(15.5rem, calc(100vw - 2.4rem));
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-sticker);
+    padding: 0.9rem 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .mini-player__collapse { position: absolute; top: 0.4rem; right: 0.5rem; background: none; border: none; color: var(--muted); font-size: 0.9rem; cursor: pointer; padding: 0.2rem 0.4rem; }
+  .mini-player__row { display: flex; align-items: center; gap: 0.65rem; }
+  .mini-player__glyph { flex: none; width: 2.5rem; height: 2.5rem; display: grid; place-items: center; border-radius: var(--r-md); background: color-mix(in srgb, var(--accent) 24%, var(--surface-2)); font-family: var(--font-display); font-size: 1.2rem; }
+  .mini-player__title { font-family: var(--font-display); font-weight: 700; font-size: 0.94rem; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mini-player__artist { font-size: 0.78rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mini-player .player__bar { height: 4px; border-radius: 3px; background: var(--line); overflow: hidden; }
+  .mini-player .player__bar span { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+  .mini-player__times { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.64rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .mini-player__controls { display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+  .mini-player__bubble { width: 3.2rem; height: 3.2rem; border-radius: 50%; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-soft); display: grid; place-items: center; cursor: pointer; }
+  .mini-player[hidden] { display: none; }
+
+  /* ============================================================
+     scroll reveal
+     ============================================================ */
   [data-reveal] { transition: opacity 0.6s ease, translate 0.6s cubic-bezier(0.22, 0.9, 0.3, 1); }
   .rv-pre { opacity: 0.001; translate: 0 26px; }
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    *, *::before, *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
     .rv-pre { opacity: 1; translate: none; }
     .marquee { animation: none; }
+    .project { transform: none !important; }
   }
-
-  .visually-hidden {
-    position: absolute; width: 1px; height: 1px; overflow: hidden;
-    clip-path: inset(50%); white-space: nowrap;
+  @media (pointer: coarse) {
+    .cursor-dot, .cursor-ring { display: none; }
   }
 </style>
-
 </head>
 <body>
+
+<!-- intro splash -->
+<div class="splash" id="splash" role="dialog" aria-label="Intro">
+  <div class="splash__inner">
+    <p class="splash__type mono" id="splashType">
+      <span id="splashTyped"></span><span class="splash__cursor" aria-hidden="true"></span>
+    </p>
+    <div class="splash__ask" id="splashAsk" hidden>
+      <p class="eyebrow" style="justify-content:center">before you look around</p>
+      <h2 class="h-md">Want something on while you get to know me?</h2>
+      <p class="mono dim splash__hint">Diva · Beyoncé, on loop</p>
+      <div class="splash__actions">
+        <button class="btn btn--primary" id="splashYes">yeah!</button>
+        <button class="btn btn--ghost" id="splashNo">just show me the site</button>
+      </div>
+    </div>
+  </div>
+  <button class="splash__skip mono" id="splashSkip">skip →</button>
+</div>
+
+<div class="cursor-dot" id="cursorDot" aria-hidden="true" style="transform:translate(50vw,50vh)"></div>
+<div class="cursor-ring" id="cursorRing" aria-hidden="true" style="transform:translate(50vw,50vh)"></div>
+
+<div class="mini-player" id="miniPlayer" hidden>
+  <div class="mini-player__bubble" id="playerBubble" style="cursor:pointer">
+    <span class="eq" id="bubbleEq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+  </div>
+</div>
 
 <div class="aura-field" aria-hidden="true">
   <div class="aura aura--1"></div>
@@ -555,109 +608,69 @@
   <div class="aura aura--3"></div>
 </div>
 
-<div class="progress" id="progress" aria-hidden="true"></div>
-
-<nav class="nav" aria-label="Sections">
-  <a class="nav__brand" href="#top">rabia<span style="color: var(--cotton)">.</span></a>
-  <a href="#about">about</a>
-  <a href="#stack">stack</a>
-  <a href="#work">work</a>
-  <a href="#research" class="nav__hide-sm">research</a>
-  <a href="#currently" class="nav__hide-sm">currently</a>
-  <a href="#contact" class="nav__hide-sm">contact</a>
-</nav>
-
 <div class="page">
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <nav class="nav" aria-label="Sections">
+    <div class="nav__scroll">
+      <a class="nav__brand" href="#top">rabia<span style="color:var(--cotton)">.</span></a>
+      <a href="#about" data-nav>about</a>
+      <a href="#stack" data-nav>stack</a>
+      <a href="#work" data-nav>work</a>
+      <a href="#research" data-nav>background</a>
+      <a href="#contact" data-nav>contact</a>
+    </div>
+  </nav>
+
   <header class="shell hero" id="top">
-    <div class="stack-col" style="gap: 1.5rem">
-      <h1 class="h-xl">
-        Rabia Adeel
-        <span class="hero__verb">builds agents.</span>
-      </h1>
-
-      <p class="lead">
-        I build systems that think, decide, and act on their own — then turn
-        them into products people actually use.
-      </p>
-
-      <div class="chip-row" style="gap: 0.55rem">
-        <span class="chip chip--lilac">final-year CS student · AI/ML developer at NexoDynamix</span>
-        <span class="chip chip--mint">open to AI research + international roles</span>
-        <span class="chip">Lahore, PK</span>
+    <div class="hero__top">
+      <div class="stack-col" style="gap:1.5rem">
+        <h1 class="h-xl">Rabia Adeel<span class="hero__verb">builds AI products.</span></h1>
+        <p class="lead">Full-stack developer shipping AI-powered products end to end, from reinforcement-learning agents to the SaaS platforms and healthcare systems people actually run on.</p>
+        <div class="chip-row" style="gap:.55rem">
+          <span class="chip chip--lilac">AI/ML Engineer &amp; Full-Stack Developer</span>
+          <span class="chip chip--mint">open to AI research + international roles</span>
+          <span class="chip chip--sky">open to remote contract work</span>
+          <span class="chip">Lahore, PK</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:.75rem">
+          <a class="btn btn--primary" href="#work">see the work <span aria-hidden="true">→</span></a>
+          <a class="btn btn--ghost" href="#contact">say hi</a>
+          <a class="btn btn--ghost" href="Rabia_Adeel_CV.pdf" download="Rabia_Adeel_CV.pdf" target="_blank" rel="noreferrer noopener"><span aria-hidden="true">↓</span> download CV</a>
+        </div>
       </div>
-
-      <div style="display: flex; flex-wrap: wrap; gap: 0.75rem">
-        <a class="btn btn--primary" href="#work">see the work <span aria-hidden="true">→</span></a>
-        <a class="btn btn--ghost" href="#contact">say hi</a>
-        <a class="btn btn--ghost" data-cv href="Rabia_Adeel_CV.pdf" download="Rabia_Adeel_CV.pdf" target="_blank" rel="noreferrer noopener"><span aria-hidden="true">↓</span> download CV</a>
-      </div>
+      <div class="hero__portrait"><img src="images/rabia-cutout.png" alt="Rabia Adeel" /></div>
     </div>
 
     <dl class="facts">
-      <div class="fact">
-        <dt class="fact__figure tabular">7</dt>
-        <dd class="fact__label">projects running in production</dd>
-      </div>
-      <div class="fact">
-        <dt class="fact__figure tabular">95.3</dt>
-        <dd class="fact__label">percentile, HEC national skills test</dd>
-      </div>
-      <div class="fact">
-        <dt class="fact__figure tabular">3.59</dt>
-        <dd class="fact__label">CGPA, final-year computer science</dd>
-      </div>
+      <div class="fact"><dt class="fact__figure tabular">6</dt><dd class="fact__label">projects running in production</dd></div>
+      <div class="fact"><dt class="fact__figure tabular">95.3</dt><dd class="fact__label">percentile, HEC national skills test</dd></div>
+      <div class="fact"><dt class="fact__figure tabular">3.57</dt><dd class="fact__label">CGPA, B.S. Computer Science</dd></div>
     </dl>
   </header>
 
   <div class="marquee-band">
     <div class="marquee" id="marquee"></div>
-    <span class="visually-hidden">
-      agentic systems, full-stack, react and node, python, llm evals, mcp, rag,
-      mobile, research, design that doesn't hurt
-    </span>
   </div>
 
   <section class="shell section about" id="about">
-    <div class="stack-col" style="gap: 1.4rem" data-reveal>
+    <div class="stack-col" style="gap:1.4rem" data-reveal>
       <h2 class="h-lg">I like problems that<br />don't have obvious answers.</h2>
-      <div class="stack-col prose-soft" style="gap: 1.1rem">
-        <p>
-          I'm a full-stack developer with a strong focus on AI, especially
-          agentic systems and smart solutions. I like building things that can
-          think, decide, and act on their own, and turning that into products
-          people actually find useful.
-        </p>
-        <p>
-          My background spans web and mobile development, and over time I've
-          moved more and more toward AI, both in the work I ship and in the
-          research I explore and publish. Working across the full process, from
-          the first idea to the final product, is what I enjoy most. It means I
-          get to stay close to both the thinking and the building.
-        </p>
-        <p>
-          I'm curious by nature and I like problems that don't have obvious
-          answers. Whether that's designing a system that adapts on its own or
-          figuring out how to make something complex feel simple to use, I'm
-          happiest when I'm learning something new along the way.
-        </p>
-        <p>
-          Right now I'm building AI powered solutions professionally while
-          looking to grow further into AI through research and international
-          opportunities.
-        </p>
-        <p>
-          If you're working on something interesting in this space, or just want
-          to talk about where AI is headed, I'd love to connect.
-        </p>
+      <div class="stack-col prose-soft" style="gap:1.1rem">
+        <p>I'm a full-stack developer with a strong focus on AI, especially agentic systems and smart solutions. I like building things that can think, decide, and act on their own, and turning that into products people actually find useful.</p>
+        <p>My background spans web and mobile development, and over time I've moved more and more toward AI, both in the work I ship and in the research I explore and publish, including a co-authored paper in Symmetry on Q-learning-based optimization. Working across the full process, from the first idea to the final product, is what I enjoy most. It means I get to stay close to both the thinking and the building.</p>
+        <p>I'm curious by nature and I like problems that don't have obvious answers. Whether that's designing a system that adapts on its own or figuring out how to make something complex feel simple to use, I'm happiest when I'm learning something new along the way.</p>
+        <p>Right now I'm building AI powered solutions professionally while looking to grow further into AI through research and international opportunities.</p>
+        <p>If you're working on something interesting in this space, or just want to talk about where AI is headed, I'd love to connect.</p>
       </div>
     </div>
 
-    <aside class="sticker sticker--tilt-r" data-reveal data-reveal-delay="120">
+    <aside class="sticker" data-reveal data-reveal-delay="120">
       <span class="tape">right now</span>
       <dl class="snap">
-        <div class="snap__row"><dt class="snap__key">now</dt><dd class="snap__value">AI/ML developer at NexoDynamix</dd></div>
-        <div class="snap__row"><dt class="snap__key">studying</dt><dd class="snap__value">B.S. Computer Science at NUML, final year</dd></div>
-        <div class="snap__row"><dt class="snap__key">thesis</dt><dd class="snap__value">Reinforcement learning for wealth management</dd></div>
+        <div class="snap__row"><dt class="snap__key">now</dt><dd class="snap__value">AI Engineer Trainee at Stewart Technology &amp; Business Services</dd></div>
+        <div class="snap__row"><dt class="snap__key">studied</dt><dd class="snap__value">B.S. Computer Science, NUML, CGPA 3.57</dd></div>
+        <div class="snap__row"><dt class="snap__key">published</dt><dd class="snap__value">Co-author, Symmetry journal (IF 2.2)</dd></div>
         <div class="snap__row"><dt class="snap__key">based in</dt><dd class="snap__value">Lahore, Pakistan</dd></div>
         <div class="snap__row"><dt class="snap__key">open to</dt><dd class="snap__value">AI research roles, internationally</dd></div>
       </dl>
@@ -665,43 +678,58 @@
   </section>
 
   <section class="shell section" id="stack">
-    <div class="stack-col" style="gap: 1.6rem">
-      <div class="stack-col" style="gap: 0.8rem" data-reveal>
+    <div class="stack-col" style="gap:1.6rem">
+      <div class="stack-col" style="gap:.8rem" data-reveal>
         <h2 class="h-lg">The stack</h2>
         <p class="prose-soft">Grouped by what I actually reach for them to do.</p>
       </div>
-
       <div class="stack-grid">
-        <div class="stack-card" data-reveal>
-          <h3 class="stack-card__title"><i class="swatch" style="background: var(--lilac)"></i>ai &amp; ml</h3>
+        <div class="stack-card" data-reveal data-reveal-delay="0">
+          <h3 class="stack-card__title"><i class="swatch" style="background:var(--lilac)"></i>ai &amp; ml</h3>
           <div class="chip-row">
-            <span class="chip">Reinforcement Learning</span><span class="chip">Machine Learning</span>
-            <span class="chip">data processing</span><span class="chip">Python</span>
+            <span class="chip">Reinforcement Learning (PPO)</span>
+            <span class="chip">PyTorch</span>
+            <span class="chip">TensorFlow</span>
+            <span class="chip">Scikit-learn</span>
+            <span class="chip">stable-baselines3</span>
+            <span class="chip">Python</span>
           </div>
         </div>
         <div class="stack-card" data-reveal data-reveal-delay="90">
-          <h3 class="stack-card__title"><i class="swatch" style="background: var(--cotton)"></i>product &amp; web</h3>
+          <h3 class="stack-card__title"><i class="swatch" style="background:var(--cotton)"></i>product &amp; web</h3>
           <div class="chip-row">
-            <span class="chip">React</span><span class="chip">TypeScript</span>
-            <span class="chip">Tailwind</span><span class="chip">Vite</span>
+            <span class="chip">React</span>
+            <span class="chip">TypeScript</span>
+            <span class="chip">Flutter</span>
+            <span class="chip">Tailwind</span>
+            <span class="chip">Vite</span>
             <span class="chip">Chart.js</span>
           </div>
         </div>
         <div class="stack-card" data-reveal data-reveal-delay="180">
-          <h3 class="stack-card__title"><i class="swatch" style="background: var(--sky)"></i>server &amp; data</h3>
+          <h3 class="stack-card__title"><i class="swatch" style="background:var(--sky)"></i>server &amp; data</h3>
           <div class="chip-row">
-            <span class="chip">Node</span><span class="chip">Express</span>
-            <span class="chip">REST APIs</span><span class="chip">Firestore</span>
-            <span class="chip">MongoDB</span><span class="chip">Supabase</span>
+            <span class="chip">Node</span>
+            <span class="chip">Express</span>
+            <span class="chip">Flask</span>
+            <span class="chip">REST APIs</span>
+            <span class="chip">Firestore</span>
+            <span class="chip">MongoDB</span>
+            <span class="chip">Supabase</span>
             <span class="chip">AWS S3</span>
           </div>
         </div>
         <div class="stack-card" data-reveal data-reveal-delay="270">
-          <h3 class="stack-card__title"><i class="swatch" style="background: var(--mint)"></i>ship it</h3>
+          <h3 class="stack-card__title"><i class="swatch" style="background:var(--mint)"></i>ship it</h3>
           <div class="chip-row">
-            <span class="chip">Git</span><span class="chip">GitHub</span>
-            <span class="chip">Vercel</span><span class="chip">Firebase Hosting</span>
-            <span class="chip">Postman</span><span class="chip">Figma</span>
+            <span class="chip">Git</span>
+            <span class="chip">GitHub</span>
+            <span class="chip">Docker</span>
+            <span class="chip">Vercel</span>
+            <span class="chip">Railway</span>
+            <span class="chip">Firebase Hosting</span>
+            <span class="chip">Postman</span>
+            <span class="chip">Figma</span>
           </div>
         </div>
       </div>
@@ -709,864 +737,509 @@
   </section>
 
   <section class="shell section" id="work">
-    <div class="stack-col" style="gap: 1.6rem">
-      <div class="stack-col" style="gap: 0.8rem" data-reveal>
+    <div class="stack-col" style="gap:1.6rem">
+      <div class="stack-col" style="gap:.8rem" data-reveal>
         <h2 class="h-lg">Selected work</h2>
-        <p class="prose-soft">Seven of these are running in production today, mostly healthtech, mostly built end to end and handed over.</p>
+        <p class="prose-soft">Six of these are running in production today, mostly healthtech, mostly built end to end and handed over.</p>
       </div>
-      <div class="projects" id="projects"></div>
+
+      <div class="projects" id="projects">
+        <!-- filled by JS from PROJECTS, so the read-more truncation logic
+             matches the React component exactly instead of being hand-cut -->
+      </div>
     </div>
   </section>
 
   <section class="shell section" id="research">
-    <div class="stack-col" style="gap: 1.4rem">
-      <div class="stack-col" style="gap: 0.8rem" data-reveal>
-        <h2 class="h-lg">Education &amp; research</h2>
+    <div class="stack-col" style="gap:1.4rem">
+      <div class="stack-col" style="gap:.8rem" data-reveal>
+        <h2 class="h-lg">Background</h2>
       </div>
       <div class="writing" data-reveal>
-        <div class="writing__row">
-          <span class="writing__when">2022 – 26</span>
-          <span class="writing__title">B.S. (Hons.) Computer Science — NUML, CGPA 3.59</span>
-          <span class="chip">degree</span>
-        </div>
-        <div class="writing__row">
-          <span class="writing__when">2026</span>
-          <span class="writing__title">Thesis — Intelligent Wealth Management System Using Reinforcement Learning</span>
-          <span class="chip">thesis</span>
-        </div>
-        <div class="writing__row">
-          <span class="writing__when">national</span>
-          <span class="writing__title">HEC Skill Competency Test — 95.3rd percentile</span>
-          <span class="chip">ranking</span>
-        </div>
-        <div class="writing__row">
-          <span class="writing__when">current</span>
-          <span class="writing__title">Vice President — ACM NUML Lahore Chapter</span>
-          <span class="chip">leadership</span>
-        </div>
-        <div class="writing__row">
-          <span class="writing__when">current</span>
-          <span class="writing__title">Core team — Google Developer Student Clubs, NUML Lahore</span>
-          <span class="chip">community</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="shell section" id="currently">
-    <div class="stack-col" style="gap: 1.6rem">
-      <div class="stack-col" style="gap: 0.8rem" data-reveal>
-        <h2 class="h-lg">Off the clock</h2>
-        <p class="prose-soft">What's on while I build, and a game you can actually play.</p>
-      </div>
-
-      <div class="currently">
-        <div data-reveal>
-          <div class="player">
-            <p class="eyebrow">on loop while building</p>
-
-            <div class="player__art" id="art" aria-hidden="true">
-              <span class="player__art-glyph" id="artGlyph">◐</span>
-            </div>
-
-            <div class="stack-col" style="gap: 0.15rem">
-              <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.75rem">
-                <p class="player__title" id="trackTitle">Nightcall</p>
-                <div class="eq" id="eq" data-paused="false" aria-hidden="true">
-                  <i></i><i></i><i></i><i></i><i></i>
-                </div>
-              </div>
-              <p class="player__artist" id="trackArtist">Kavinsky</p>
-            </div>
-
-            <div class="stack-col" style="gap: 0.4rem">
-              <div class="player__bar"><span id="playerBar" style="width: 14%"></span></div>
-              <div class="player__times">
-                <span id="timeNow">0:37</span><span id="timeTotal">4:18</span>
-              </div>
-            </div>
-
-            <div class="player__controls">
-              <button class="btn btn--icon" id="prev" aria-label="Previous track">⏮</button>
-              <button class="btn btn--primary btn--play" id="toggle" aria-label="Pause">❚❚</button>
-              <button class="btn btn--icon" id="next" aria-label="Next track">⏭</button>
-            </div>
-
-            <p class="mono dim" style="font-size: 0.68rem; text-align: center">
-              vibes only — no audio, no account attached
-            </p>
-          </div>
-        </div>
-
-        <div data-reveal data-reveal-delay="120">
-          <div class="arcade">
-            <div class="arcade__bar">
-              <div class="stack-col" style="gap: 0.2rem">
-                <p class="eyebrow">take a break</p>
-                <p style="font-family: var(--font-display); font-weight: 700">Blob Catch</p>
-              </div>
-              <div class="arcade__scores">
-                <span>score<b id="score">0</b></span>
-                <span>best<b id="best">0</b></span>
-                <span>time<b id="time">30s</b></span>
-              </div>
-            </div>
-
-            <div class="arcade__screen">
-              <canvas
-                id="game"
-                style="aspect-ratio: 480 / 300"
-                role="img"
-                aria-label="Blob Catch: steer the cloud to catch falling blobs"
-              ></canvas>
-
-              <div class="arcade__overlay" id="overlay">
-                <div>
-                  <p class="arcade__result" id="result" hidden></p>
-                  <p class="arcade__hint" id="hint">
-                    30 seconds. small blobs are worth more. 5 in a row doubles it.
-                  </p>
-                  <button class="btn btn--primary" id="start">start</button>
-                </div>
-              </div>
-            </div>
-
-            <p class="arcade__hint" id="controlHint">
-              move with your mouse, finger, or ← → keys
-            </p>
-          </div>
-        </div>
+        <div class="writing__row"><span class="writing__when">2026</span><span class="writing__title">AI Engineer Trainee at Stewart Technology &amp; Business Services</span><span class="chip">experience</span></div>
+        <div class="writing__row"><span class="writing__when">2022 – 26</span><span class="writing__title">B.S. (Hons.) Computer Science, NUML, CGPA 3.57</span><span class="chip">degree</span></div>
+        <div class="writing__row"><span class="writing__when">2026</span><span class="writing__title">Co-author, Symmetry journal (Impact Factor 2.2), Q-learning-based optimization research</span><span class="chip">publication</span></div>
+        <div class="writing__row"><span class="writing__when">2026</span><span class="writing__title">Thesis: Intelligent Wealth Management System Using Reinforcement Learning</span><span class="chip">thesis</span></div>
+        <div class="writing__row"><span class="writing__when">prior</span><span class="writing__title">Software Developer at NexoDynamix</span><span class="chip">experience</span></div>
+        <div class="writing__row"><span class="writing__when">national</span><span class="writing__title">HEC Skill Competency Test: 95.3rd percentile</span><span class="chip">ranking</span></div>
+        <div class="writing__row"><span class="writing__when">current</span><span class="writing__title">Vice President, ACM NUML Lahore Chapter</span><span class="chip">leadership</span></div>
+        <div class="writing__row"><span class="writing__when">current</span><span class="writing__title">Core team, Google Developer Student Clubs, NUML Lahore</span><span class="chip">community</span></div>
       </div>
     </div>
   </section>
 
   <section class="shell section" id="contact">
-    <div class="sticker sticker--tinted contact" style="padding: clamp(1.8rem, 4vw, 3rem)" data-reveal>
-      <div class="stack-col" style="gap: 0.9rem">
+    <div class="sticker sticker--tinted contact" style="padding:clamp(1.8rem, 4vw, 3rem)" data-reveal>
+      <div class="stack-col" style="gap:.9rem">
         <h2 class="h-lg">Working on something interesting?</h2>
-        <p class="prose-soft">
-          Open to AI research collaborations, international roles, and
-          conversations about where all of this is actually heading.
-        </p>
+        <p class="prose-soft">Open to AI research collaborations, international roles, and conversations about where all of this is actually heading.</p>
       </div>
-
-      <div class="stack-col" style="gap: 1rem; align-items: flex-start">
-      <a class="btn btn--primary" data-cv href="Rabia_Adeel_CV.pdf" download="Rabia_Adeel_CV.pdf" target="_blank" rel="noreferrer noopener"><span aria-hidden="true">↓</span> download CV</a>
-      <div class="socials">
-        <a class="social" href="https://github.com/rabiaadeel12" target="_blank" rel="noreferrer noopener"><span class="mono dim" aria-hidden="true">⌥</span>GitHub</a>
-        <a class="social" href="#contact"><span class="mono dim" aria-hidden="true">in</span>LinkedIn</a>
-        <a class="social" href="mailto:rabiadeel12@gmail.com"><span class="mono dim" aria-hidden="true">✉</span>Email</a>
-      </div>
+      <div class="stack-col" style="gap:1rem;align-items:flex-start">
+        <a class="btn btn--primary" href="Rabia_Adeel_CV.pdf" download="Rabia_Adeel_CV.pdf" target="_blank" rel="noreferrer noopener"><span aria-hidden="true">↓</span> download CV</a>
+        <div class="socials">
+          <a class="social" href="https://github.com/rabiaadeel12" target="_blank" rel="noreferrer noopener"><span class="mono dim" aria-hidden="true">⌥</span>GitHub</a>
+          <a class="social" href="https://www.linkedin.com/in/rabia-adeel12/" target="_blank" rel="noreferrer noopener"><span class="mono dim" aria-hidden="true">in</span>LinkedIn</a>
+          <a class="social" href="mailto:rabiadeel12@gmail.com"><span class="mono dim" aria-hidden="true">✉</span>Email</a>
+        </div>
       </div>
     </div>
-
-    <footer class="footer" style="margin-top: clamp(2.5rem, 6vw, 4rem)">
-      <span>© 2026 Rabia Adeel</span>
+    <footer class="footer" style="margin-top:clamp(2.5rem, 6vw, 4rem)">
+      <span>© <span id="year"></span> Rabia Adeel</span>
       <span class="mono">Lahore, PK</span>
     </footer>
   </section>
 </div>
 
+<audio id="audioEl" preload="metadata" loop src="audio/diva.m4a"></audio>
+
 <script>
-  (function () {
-    "use strict";
+(function () {
+  "use strict";
 
-    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.getElementById("year").textContent = new Date().getFullYear();
 
-    /* ---------------------------------------------------- marquee */
-    var WORDS = [
-      "reinforcement learning", "full-stack", "react + firebase", "python",
-      "healthtech", "MERN", "fintech", "data pipelines", "research",
-      "design that doesn't hurt"
-    ];
+  var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var coarsePointer = window.matchMedia("(pointer: coarse)").matches;
 
-    var marquee = document.getElementById("marquee");
-    for (var copy = 0; copy < 2; copy += 1) {
-      var group = document.createElement("div");
-      group.className = "marquee__group";
-      group.setAttribute("aria-hidden", "true");
-      WORDS.forEach(function (word) {
-        var span = document.createElement("span");
-        span.textContent = word;
-        var dot = document.createElement("i");
-        dot.className = "marquee__dot";
-        group.appendChild(span);
-        group.appendChild(dot);
-      });
-      marquee.appendChild(group);
+  /* ---------------------------------------------------------------
+     content data — the single source of truth for this static file,
+     mirroring src/content.js
+     --------------------------------------------------------------- */
+  var MARQUEE = ["reinforcement learning", "full-stack", "react + firebase", "python", "healthtech", "MERN", "fintech", "data pipelines", "research", "design that doesn't hurt"];
+
+  var PROJECTS = [
+    {
+      title: "NexoHealth",
+      blurb: "The AI-driven records and patient-management platform at NexoDynamix, which I led development on: optimised scheduling, resource allocation, and large-scale handling of sensitive data under healthcare compliance rules.",
+      tags: ["AI/ML", "React", "Firebase", "scheduling"],
+      status: "live", image: "images/projects/nexohealth.png",
+      link: "https://health.nexodynamix.com", repo: "", note: "sign-in required"
+    },
+    {
+      title: "Mafaza tul Hayat Hospital",
+      blurb: "The full web presence for a non-profit multi-specialty hospital: fifteen departments, twenty-plus consultant profiles with live availability and fees, appointment booking, and a patient portal for lab reports. All run from an admin CMS, so staff publish without a developer.",
+      tags: ["React 19", "Firebase", "AWS S3", "role-based auth"],
+      status: "live", image: "images/projects/mafaza-tul-hayat.png",
+      link: "https://mafazatulhayat.com", repo: "https://github.com/rabiaadeel12/hospital"
+    },
+    {
+      title: "Intelligent Wealth Management",
+      blurb: "My thesis, built as a working product: a PPO reinforcement-learning agent trained on 94 KSE-100 stocks, serving BUY/SELL/HOLD signals through a Flask API with a daily auto-retraining pipeline. Paired with a React/Firebase PWA that tracks personal investments across seven asset classes (stocks, crypto, commodities, mutual funds, certificates, real estate, vehicles) and benchmarks risk-adjusted returns against the market.",
+      tags: ["Reinforcement Learning", "PPO", "Flask", "React", "Firebase"],
+      status: "research", image: "images/projects/iwm.png",
+      link: "", repo: "", note: "thesis project (iwmhub.com is offline)"
+    },
+    {
+      title: "SehatX",
+      blurb: "A digital health platform for Pakistan: online consultations, holistic care packages, second opinions, and separate education centres for clinicians and patients, all behind an admin-controlled CMS.",
+      tags: ["React", "Vite", "Firestore", "Firebase Auth"],
+      status: "live", image: "images/projects/sehatx.png",
+      link: "https://sehatx.com", repo: ""
+    },
+    {
+      title: "NexoDynamix",
+      blurb: "The company site for the venture I build at, presenting three product lines (the RL wealth platform, the healthcare CMS, and an ERP) alongside a rotating project showcase.",
+      tags: ["React", "Framer Motion", "Tailwind"],
+      status: "live", image: "images/projects/nexodynamix.png",
+      link: "https://nexodynamix.com", repo: ""
+    },
+    {
+      title: "Dr. Mudassar Rauf",
+      blurb: "Academic portfolio for an AI and optimization researcher: publications, funded projects, editorial appointments and teaching history, organised so collaborators can find the work relevant to them.",
+      tags: ["React", "Framer Motion", "Tailwind"],
+      status: "live", image: "images/projects/mudassar-rauf.png",
+      link: "https://mudassarrauf.com", repo: ""
+    },
+    {
+      title: "Intech Solutions",
+      blurb: "Lead-generation site for a Lahore solar installer, built around a savings estimator that turns a monthly electricity bill into system size, install cost and payback period in real time.",
+      tags: ["React", "Vite", "Vercel"],
+      status: "live", image: "images/projects/intech-solutions.png",
+      link: "https://intech-solution-alpha.vercel.app", repo: "https://github.com/rabiaadeel12/intech-solution"
     }
+  ];
 
-    /* ---------------------------------------------------- projects */
-    var PROJECTS = [
-      {
-        title: "NexoHealth",
-        blurb: "The AI-driven records and patient-management platform at NexoDynamix, which I led development on — optimised scheduling, resource allocation, and large-scale handling of sensitive data under healthcare compliance rules.",
-        tags: ["AI/ML", "React", "Firebase", "scheduling"],
-        status: "live", label: "shipped", glyph: "◈",
-        gradient: "linear-gradient(140deg, var(--lilac), var(--sky))",
-        link: "https://health.nexodynamix.com", repo: "",
-        note: "sign-in required"
-      },
-      {
-        title: "Mafaza tul Hayat Hospital",
-        blurb: "The full web presence for a non-profit multi-specialty hospital: fifteen departments, twenty-plus consultant profiles with live availability and fees, appointment booking, and a patient portal for lab reports — all run from an admin CMS, so staff publish without a developer.",
-        tags: ["React 19", "Firebase", "AWS S3", "role-based auth"],
-        status: "live", label: "shipped", glyph: "✚",
-        gradient: "linear-gradient(140deg, var(--mint), var(--sky))",
-        link: "https://mafazatulhayat.com",
-        repo: "https://github.com/rabiaadeel12/hospital"
-      },
-      {
-        title: "Intelligent Wealth Management",
-        blurb: "My final-year thesis, built as a working product: a reinforcement-learning system for personal finance that tracks assets in real time, categorises spending, and turns portfolio state into recommendations you can act on.",
-        tags: ["Reinforcement Learning", "React", "Firebase", "Chart.js"],
-        status: "research", label: "research", glyph: "◍",
-        gradient: "linear-gradient(140deg, var(--cotton), var(--lilac))",
-        link: "", repo: "",
-        note: "thesis project — iwmhub.com is offline"
-      },
-      {
-        title: "SehatX",
-        blurb: "A digital health platform for Pakistan — online consultations, holistic care packages, second opinions, and separate education centres for clinicians and patients, all behind an admin-controlled CMS.",
-        tags: ["React", "Vite", "Firestore", "Firebase Auth"],
-        status: "live", label: "shipped", glyph: "❋",
-        gradient: "linear-gradient(140deg, var(--sky), var(--mint))",
-        link: "https://sehatx.com", repo: ""
-      },
-      {
-        title: "NexoDynamix",
-        blurb: "The company site for the venture I build at, presenting three product lines — the RL wealth platform, the healthcare CMS, and an ERP — alongside a rotating project showcase.",
-        tags: ["React", "Framer Motion", "Tailwind"],
-        status: "live", label: "shipped", glyph: "▲",
-        gradient: "linear-gradient(140deg, var(--butter), var(--cotton))",
-        link: "https://nexodynamix.com", repo: ""
-      },
-      {
-        title: "Dr. Mudassar Rauf",
-        blurb: "Academic portfolio for an AI and optimization researcher — publications, funded projects, editorial appointments and teaching history, organised so collaborators can find the work relevant to them.",
-        tags: ["React", "Framer Motion", "Tailwind"],
-        status: "live", label: "shipped", glyph: "✎",
-        gradient: "linear-gradient(140deg, var(--butter), var(--mint))",
-        link: "https://mudassarrauf.com", repo: ""
-      },
-      {
-        title: "Intech Solutions",
-        blurb: "Lead-generation site for a Lahore solar installer, built around a savings estimator that turns a monthly electricity bill into system size, install cost and payback period in real time.",
-        tags: ["React", "Vite", "Vercel"],
-        status: "live", label: "shipped", glyph: "☀",
-        gradient: "linear-gradient(140deg, var(--butter), var(--sky))",
-        link: "https://intech-solution-alpha.vercel.app",
-        repo: "https://github.com/rabiaadeel12/intech-solution"
-      },
-      {
-        title: "SB Solar Energy",
-        blurb: "The same solar lead-gen system shipped for a second installer — rebranded end to end, with the estimator and net-metering content retuned for a different client's offering.",
-        tags: ["React", "Vite", "Vercel"],
-        status: "live", label: "shipped", glyph: "◎",
-        gradient: "linear-gradient(140deg, var(--cotton), var(--sky))",
-        link: "https://sbsolar-jade.vercel.app",
-        repo: "https://github.com/rabiaadeel12/Sbsolar"
-      }
-    ];
+  var STATUS_LABEL = { live: "shipped", research: "research" };
+  var BLURB_PREVIEW_LENGTH = 118;
 
-    var grid = document.getElementById("projects");
+  function truncate(text, max) {
+    if (text.length <= max) return text;
+    var cut = text.slice(0, max);
+    var lastSpace = cut.lastIndexOf(" ");
+    return cut.slice(0, lastSpace > 0 ? lastSpace : max) + "…";
+  }
+
+  function el(tag, attrs, children) {
+    var node = document.createElement(tag);
+    for (var k in attrs || {}) {
+      if (k === "text") node.textContent = attrs[k];
+      else if (k === "html") node.innerHTML = attrs[k];
+      else node.setAttribute(k, attrs[k]);
+    }
+    (children || []).forEach(function (c) { node.appendChild(c); });
+    return node;
+  }
+
+  /* ---------------------------------------------------------------
+     marquee — render the word list twice for the seamless -50% slide
+     --------------------------------------------------------------- */
+  (function renderMarquee() {
+    var host = document.getElementById("marquee");
+    for (var g = 0; g < 2; g++) {
+      var group = el("div", { class: "marquee__group", "aria-hidden": "true" });
+      MARQUEE.forEach(function (word) {
+        var span = el("span");
+        span.appendChild(document.createTextNode(word));
+        span.appendChild(el("i", { class: "marquee__dot" }));
+        group.appendChild(span);
+      });
+      host.appendChild(group);
+    }
+  })();
+
+  /* ---------------------------------------------------------------
+     projects — same truncate-then-read-more behaviour as the React card
+     --------------------------------------------------------------- */
+  (function renderProjects() {
+    var host = document.getElementById("projects");
     PROJECTS.forEach(function (project, i) {
-      var card = document.createElement("article");
-      card.className =
-        "sticker project " + (i % 2 ? "sticker--tilt-r" : "sticker--tilt-l");
-      card.setAttribute("data-reveal", "");
-      if (i % 2) card.setAttribute("data-reveal-delay", "110");
+      var card = el("article", { class: "sticker project", "data-reveal": "", "data-reveal-delay": String((i % 2) * 110) });
 
-      var thumb = document.createElement("div");
-      thumb.className = "project__thumb";
-      thumb.style.background = project.gradient;
-      thumb.setAttribute("aria-hidden", "true");
-      thumb.textContent = project.glyph;
+      var thumb = el("div", { class: "project__thumb project__thumb--image" });
+      thumb.appendChild(el("img", { src: project.image, alt: project.title + " screenshot", loading: "lazy" }));
+      card.appendChild(thumb);
 
-      var head = document.createElement("div");
-      head.className = "project__head";
-      var title = document.createElement("h3");
-      title.className = "h-md";
-      title.textContent = project.title;
-      var status = document.createElement("span");
-      status.className = "status status--" + project.status;
-      status.textContent = project.label;
-      head.appendChild(title);
-      head.appendChild(status);
+      var head = el("div", { class: "project__head" });
+      head.appendChild(el("h3", { class: "h-md", text: project.title }));
+      var statusSpan = el("span", { class: "status status--" + project.status, text: STATUS_LABEL[project.status] || project.status });
+      head.appendChild(statusSpan);
+      card.appendChild(head);
 
-      var blurb = document.createElement("p");
-      blurb.className = "prose-soft";
-      blurb.style.fontSize = "0.95rem";
-      blurb.textContent = project.blurb;
+      var p = el("p", { class: "prose-soft", style: "font-size:.95rem" });
+      var needsTruncation = project.blurb.length > BLURB_PREVIEW_LENGTH;
+      var expanded = false;
+      var textNode = document.createTextNode(needsTruncation ? truncate(project.blurb, BLURB_PREVIEW_LENGTH) : project.blurb);
+      p.appendChild(textNode);
+      if (needsTruncation) {
+        p.appendChild(document.createTextNode(" "));
+        var more = el("button", { type: "button", class: "project__more", text: "read more" });
+        more.addEventListener("click", function () {
+          expanded = !expanded;
+          textNode.textContent = expanded ? project.blurb : truncate(project.blurb, BLURB_PREVIEW_LENGTH);
+          more.textContent = expanded ? "show less" : "read more";
+        });
+        p.appendChild(more);
+      }
+      card.appendChild(p);
 
-      var tags = document.createElement("div");
-      tags.className = "chip-row";
-      project.tags.forEach(function (tag) {
-        var chip = document.createElement("span");
-        chip.className = "chip";
-        chip.textContent = tag;
-        tags.appendChild(chip);
-      });
+      var chipRow = el("div", { class: "chip-row" });
+      project.tags.forEach(function (tag) { chipRow.appendChild(el("span", { class: "chip", text: tag })); });
+      card.appendChild(chipRow);
 
-      var note = null;
       if (project.note) {
-        note = document.createElement("p");
-        note.className = "mono dim";
-        note.style.fontSize = "0.7rem";
-        note.textContent = project.note;
+        card.appendChild(el("p", { class: "mono dim", style: "font-size:.7rem", text: project.note }));
       }
 
-      var links = document.createElement("div");
-      links.style.cssText =
-        "display:flex;gap:1.2rem;margin-top:auto;padding-top:0.4rem";
-      [
-        { label: "live", href: project.link },
-        { label: "code", href: project.repo }
-      ].forEach(function (item) {
-        if (!item.href) return;
-        var link = document.createElement("a");
-        link.className = "link-arrow";
-        link.href = item.href;
-        link.target = "_blank";
-        link.rel = "noreferrer noopener";
-        link.innerHTML = item.label + ' <span aria-hidden="true">→</span>';
-        links.appendChild(link);
-      });
-
-      card.appendChild(thumb);
-      card.appendChild(head);
-      card.appendChild(blurb);
-      card.appendChild(tags);
-      if (note) card.appendChild(note);
+      var links = el("div", { style: "display:flex;gap:1.2rem;margin-top:auto;padding-top:.4rem" });
+      if (project.link) {
+        var live = el("a", { class: "link-arrow", href: project.link, target: "_blank", rel: "noreferrer noopener" });
+        live.appendChild(document.createTextNode("live "));
+        live.appendChild(el("span", { "aria-hidden": "true", text: "→" }));
+        links.appendChild(live);
+      }
+      if (project.repo) {
+        var code = el("a", { class: "link-arrow", href: project.repo, target: "_blank", rel: "noreferrer noopener" });
+        code.appendChild(document.createTextNode("code "));
+        code.appendChild(el("span", { "aria-hidden": "true", text: "→" }));
+        links.appendChild(code);
+      }
       card.appendChild(links);
-      grid.appendChild(card);
+
+      host.appendChild(card);
+
+      if (!coarsePointer && !reducedMotion) attachTilt(card);
     });
+  })();
 
-    /* ---------------------------------------------------- scroll progress */
-    var progressBar = document.getElementById("progress");
-    var navLinks = Array.prototype.slice.call(
-      document.querySelectorAll(".nav a:not(.nav__brand)")
-    );
+  /* ---------------------------------------------------------------
+     tilt-on-hover for project cards — same custom-property approach
+     as useTilt in src/hooks.js
+     --------------------------------------------------------------- */
+  function attachTilt(elm, maxDeg) {
+    maxDeg = maxDeg || 9;
+    elm.addEventListener("pointermove", function (e) {
+      var rect = elm.getBoundingClientRect();
+      var px = (e.clientX - rect.left) / rect.width;
+      var py = (e.clientY - rect.top) / rect.height;
+      elm.style.setProperty("--tilt-x", ((0.5 - py) * maxDeg * 2).toFixed(2) + "deg");
+      elm.style.setProperty("--tilt-y", ((px - 0.5) * maxDeg * 2).toFixed(2) + "deg");
+      elm.style.setProperty("--tilt-glow-x", (px * 100).toFixed(1) + "%");
+      elm.style.setProperty("--tilt-glow-y", (py * 100).toFixed(1) + "%");
+    });
+    elm.addEventListener("pointerleave", function () {
+      elm.style.setProperty("--tilt-x", "0deg");
+      elm.style.setProperty("--tilt-y", "0deg");
+    });
+  }
+
+  /* ---------------------------------------------------------------
+     custom cursor — fine pointers only
+     --------------------------------------------------------------- */
+  if (!coarsePointer && !reducedMotion) {
+    document.body.classList.add("has-custom-cursor");
+    var dot = document.getElementById("cursorDot");
+    var ring = document.getElementById("cursorRing");
+    var x = window.innerWidth / 2, y = window.innerHeight / 2, ringX = x, ringY = y;
+
+    window.addEventListener("pointermove", function (e) { x = e.clientX; y = e.clientY; });
+    function isInteractive(node) { return node.closest && node.closest("a, button, [data-cursor]"); }
+    document.addEventListener("pointerover", function (e) { if (isInteractive(e.target)) ring.classList.add("is-active"); });
+    document.addEventListener("pointerout", function (e) { if (isInteractive(e.target)) ring.classList.remove("is-active"); });
+
+    (function tick() {
+      ringX += (x - ringX) * 0.18;
+      ringY += (y - ringY) * 0.18;
+      dot.style.transform = "translate(" + x + "px, " + y + "px)";
+      ring.style.transform = "translate(" + ringX + "px, " + ringY + "px)";
+      requestAnimationFrame(tick);
+    })();
+  }
+
+  /* ---------------------------------------------------------------
+     nav — scroll progress bar + active-section highlight
+     --------------------------------------------------------------- */
+  (function nav() {
+    var progress = document.getElementById("progress");
+    var navLinks = Array.prototype.slice.call(document.querySelectorAll("a[data-nav]"));
+    var sections = navLinks
+      .map(function (link) { return document.getElementById(link.getAttribute("href").slice(1)); })
+      .filter(Boolean);
+
     var frame = 0;
-
     function onScroll() {
       if (frame) return;
       frame = requestAnimationFrame(function () {
         frame = 0;
-        var scrollable =
-          document.documentElement.scrollHeight - window.innerHeight;
-        var ratio = scrollable > 0 ? window.scrollY / scrollable : 0;
-        progressBar.style.width = ratio * 100 + "%";
+        var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.width = (scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0) + "%";
       });
     }
-
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
-    onScroll();
-
-    /* ---------------------------------------------------- active nav */
-    var sections = navLinks
-      .map(function (link) {
-        return document.getElementById(link.getAttribute("href").slice(1));
-      })
-      .filter(Boolean);
 
     if ("IntersectionObserver" in window && sections.length) {
-      var navObserver = new IntersectionObserver(
-        function (entries) {
-          var best = entries
-            .filter(function (e) { return e.isIntersecting; })
-            .sort(function (a, b) {
-              return b.intersectionRatio - a.intersectionRatio;
-            })[0];
-          if (!best) return;
+      var io = new IntersectionObserver(function (entries) {
+        var visible = entries
+          .filter(function (e) { return e.isIntersecting; })
+          .sort(function (a, b) { return b.intersectionRatio - a.intersectionRatio; })[0];
+        if (visible) {
           navLinks.forEach(function (link) {
-            link.classList.toggle(
-              "is-active",
-              link.getAttribute("href") === "#" + best.target.id
-            );
+            link.classList.toggle("is-active", link.getAttribute("href") === "#" + visible.target.id);
           });
-        },
-        { rootMargin: "-35% 0px -55% 0px", threshold: [0, 0.2, 0.6] }
-      );
-      sections.forEach(function (section) { navObserver.observe(section); });
-    }
-
-    /* ---------------------------------------------------- reveal
-       Only elements already below the fold get hidden, so the first
-       painted frame is always fully readable. */
-    /* A zero-height viewport (a hidden pane, a thumbnail capture) would hide
-       everything and never scroll to reveal it, so leave the page visible. */
-    if (!reduced && window.innerHeight) {
-      var pending = Array.prototype.slice
-        .call(document.querySelectorAll("[data-reveal]"))
-        .filter(function (el) {
-          return el.getBoundingClientRect().top > window.innerHeight * 0.9;
-        });
-
-      pending.forEach(function (el) { el.classList.add("rv-pre"); });
-
-      /* Two mechanisms on purpose, because each covers the other's blind spot.
-         The observer fires off the browser's own frame updates, so it still
-         works where scroll events never arrive. The scroll sweep catches
-         elements the viewer jumped clean past — a nav anchor can move a
-         section from below the fold to above it in one frame, and an
-         intersection that never happened is never reported. */
-      var revealFrame = 0;
-      var waiting = pending.slice();
-
-      var detachReveal = function () {
-        revealObserver.disconnect();
-        window.removeEventListener("scroll", onRevealScroll);
-        window.removeEventListener("resize", onRevealScroll);
-      };
-
-      var reveal = function (el) {
-        var at = waiting.indexOf(el);
-        if (at === -1) return;
-        waiting.splice(at, 1);
-        revealObserver.unobserve(el);
-        var delay = Number(el.dataset.revealDelay || 0);
-        setTimeout(function () { el.classList.remove("rv-pre"); }, delay);
-        if (!waiting.length) detachReveal();
-      };
-
-      var revealObserver = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (entry) {
-            // in view, or already scrolled past above the viewport
-            if (entry.isIntersecting || entry.boundingClientRect.top < 0) {
-              reveal(entry.target);
-            }
-          });
-        },
-        { rootMargin: "0px 0px -12% 0px", threshold: 0 }
-      );
-
-      var sweep = function () {
-        revealFrame = 0;
-        var trigger = window.innerHeight * 0.88;
-        waiting.slice().forEach(function (el) {
-          if (el.getBoundingClientRect().top < trigger) reveal(el);
-        });
-      };
-
-      var onRevealScroll = function () {
-        if (!revealFrame) revealFrame = requestAnimationFrame(sweep);
-      };
-
-      pending.forEach(function (el) { revealObserver.observe(el); });
-      window.addEventListener("scroll", onRevealScroll, { passive: true });
-      window.addEventListener("resize", onRevealScroll);
-    }
-
-    /* ---------------------------------------------------- cv download
-       On ordinary hosting the CV link works by itself and this does nothing.
-       Inside the artifact viewer a page may not start its own download, so
-       there the file is handed over through the downloads capability. */
-    (function () {
-      var cvLinks = document.querySelectorAll("[data-cv]");
-      if (!cvLinks.length) return;
-      if (!window.claude || typeof window.claude.use !== "function") return;
-
-      window.claude.use("downloads").then(
-        function (downloads) {
-          if (!downloads) return;
-          Array.prototype.forEach.call(cvLinks, function (link) {
-            link.addEventListener("click", function (event) {
-              event.preventDefault();
-              fetch("Rabia_Adeel_CV.pdf")
-                .then(function (res) {
-                  if (!res.ok) throw new Error(res.status);
-                  return res.blob();
-                })
-                .then(function (blob) {
-                  return downloads.save({
-                    filename: "Rabia_Adeel_CV.pdf",
-                    data: blob
-                  });
-                })
-                .catch(function () {
-                  /* viewer declined, or saving is unavailable in this view */
-                });
-            });
-          });
-        },
-        function () { /* capability unavailable — keep the plain link */ }
-      );
-    })();
-
-    /* ---------------------------------------------------- player */
-    var PLAYLIST = [
-      { title: "Nightcall", artist: "Kavinsky", seconds: 258, glyph: "◐" },
-      { title: "Redbone", artist: "Childish Gambino", seconds: 327, glyph: "❂" },
-      { title: "Sunflower", artist: "Rex Orange County", seconds: 178, glyph: "✺" },
-      { title: "Ivy", artist: "Frank Ocean", seconds: 249, glyph: "✿" },
-      { title: "Alright", artist: "Kendrick Lamar", seconds: 219, glyph: "✦" }
-    ];
-
-    var ART = [
-      "linear-gradient(150deg, var(--lilac), var(--cotton))",
-      "linear-gradient(150deg, var(--sky), var(--mint))",
-      "linear-gradient(150deg, var(--butter), var(--cotton))",
-      "linear-gradient(150deg, var(--mint), var(--lilac))",
-      "linear-gradient(150deg, var(--cotton), var(--sky))"
-    ];
-
-    var trackIndex = 0;
-    var elapsed = 37;
-    var playing = true;
-
-    var els = {
-      art: document.getElementById("art"),
-      glyph: document.getElementById("artGlyph"),
-      title: document.getElementById("trackTitle"),
-      artist: document.getElementById("trackArtist"),
-      bar: document.getElementById("playerBar"),
-      now: document.getElementById("timeNow"),
-      total: document.getElementById("timeTotal"),
-      eq: document.getElementById("eq"),
-      toggle: document.getElementById("toggle")
-    };
-
-    function clock(seconds) {
-      var m = Math.floor(seconds / 60);
-      var s = Math.floor(seconds % 60);
-      return m + ":" + (s < 10 ? "0" : "") + s;
-    }
-
-    function renderPlayer() {
-      var track = PLAYLIST[trackIndex];
-      els.art.style.background = ART[trackIndex % ART.length];
-      els.glyph.textContent = track.glyph;
-      els.title.textContent = track.title;
-      els.artist.textContent = track.artist;
-      els.total.textContent = clock(track.seconds);
-      els.now.textContent = clock(elapsed);
-      els.bar.style.width =
-        Math.min(100, (elapsed / track.seconds) * 100) + "%";
-      els.eq.setAttribute("data-paused", playing ? "false" : "true");
-      els.toggle.textContent = playing ? "❚❚" : "▶";
-      els.toggle.setAttribute("aria-label", playing ? "Pause" : "Play");
-    }
-
-    function jump(step) {
-      trackIndex =
-        (trackIndex + step + PLAYLIST.length) % PLAYLIST.length;
-      elapsed = 0;
-      renderPlayer();
-    }
-
-    document.getElementById("prev").addEventListener("click", function () {
-      jump(-1);
-    });
-    document.getElementById("next").addEventListener("click", function () {
-      jump(1);
-    });
-    els.toggle.addEventListener("click", function () {
-      playing = !playing;
-      renderPlayer();
-    });
-
-    setInterval(function () {
-      if (!playing) return;
-      elapsed += 1;
-      if (elapsed >= PLAYLIST[trackIndex].seconds) {
-        jump(1);
-        return;
-      }
-      renderPlayer();
-    }, 1000);
-
-    renderPlayer();
-
-    /* ---------------------------------------------------- blob catch */
-    var W = 480, H = 300, ROUND = 30;
-    var BASKET_W = 76, BASKET_H = 16, BASKET_Y = H - 34;
-    var STORE_KEY = "blobcatch.best";
-    var TOKENS = ["--lilac", "--cotton", "--sky", "--mint", "--butter"];
-
-    var canvas = document.getElementById("game");
-    var ctx = canvas.getContext("2d");
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = W * dpr;
-    canvas.height = H * dpr;
-    ctx.scale(dpr, dpr);
-
-    var ui = {
-      score: document.getElementById("score"),
-      best: document.getElementById("best"),
-      time: document.getElementById("time"),
-      overlay: document.getElementById("overlay"),
-      result: document.getElementById("result"),
-      hint: document.getElementById("hint"),
-      start: document.getElementById("start"),
-      controlHint: document.getElementById("controlHint")
-    };
-
-    var palette = ["#b49bff"];
-
-    function refreshPalette() {
-      var styles = getComputedStyle(document.documentElement);
-      palette = TOKENS.map(function (token) {
-        return styles.getPropertyValue(token).trim() || "#b49bff";
-      });
-    }
-
-    refreshPalette();
-    window
-      .matchMedia("(prefers-color-scheme: dark)")
-      .addEventListener("change", refreshPalette);
-    new MutationObserver(refreshPalette).observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["data-theme"]
-    });
-
-    function readBest() {
-      try {
-        return Number(window.localStorage.getItem(STORE_KEY)) || 0;
-      } catch (err) {
-        return 0;
-      }
-    }
-
-    function writeBest(value) {
-      try {
-        window.localStorage.setItem(STORE_KEY, String(value));
-      } catch (err) {
-        /* blocked site data — the game still works */
-      }
-    }
-
-    var game = {
-      phase: "ready",
-      basketX: W / 2,
-      targetX: W / 2,
-      keyDir: 0,
-      blobs: [],
-      sparks: [],
-      score: 0,
-      combo: 0,
-      timeLeft: ROUND,
-      spawnIn: 0
-    };
-
-    var best = readBest();
-    ui.best.textContent = best;
-
-    function spawn() {
-      var radius = 9 + Math.random() * 9;
-      game.blobs.push({
-        x: radius + Math.random() * (W - radius * 2),
-        y: -radius,
-        r: radius,
-        vy: 64 + (19 - radius) * 5 + Math.random() * 34,
-        color: palette[Math.floor(Math.random() * palette.length)],
-        points: radius < 13 ? 3 : 1
-      });
-    }
-
-    /* a few resting blobs so the screen reads as a game before you start */
-    for (var i = 0; i < 5; i += 1) {
-      spawn();
-      game.blobs[i].y = 40 + i * 42;
-      game.blobs[i].x = 60 + i * 78;
-    }
-
-    function startGame() {
-      game.phase = "playing";
-      game.blobs = [];
-      game.sparks = [];
-      game.score = 0;
-      game.combo = 0;
-      game.timeLeft = ROUND;
-      game.spawnIn = 0.25;
-      ui.overlay.hidden = true;
-      ui.score.textContent = "0";
-      ui.time.textContent = "30s";
-    }
-
-    ui.start.addEventListener("click", startGame);
-
-    function pointTo(clientX) {
-      var rect = canvas.getBoundingClientRect();
-      game.targetX = ((clientX - rect.left) / rect.width) * W;
-    }
-
-    canvas.addEventListener("pointermove", function (e) {
-      pointTo(e.clientX);
-    });
-    canvas.addEventListener(
-      "touchmove",
-      function (e) {
-        if (e.touches[0]) pointTo(e.touches[0].clientX);
-      },
-      { passive: true }
-    );
-    window.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowLeft") game.keyDir = -1;
-      else if (e.key === "ArrowRight") game.keyDir = 1;
-      else return;
-      e.preventDefault();
-    });
-    window.addEventListener("keyup", function (e) {
-      if (e.key === "ArrowLeft" || e.key === "ArrowRight") game.keyDir = 0;
-    });
-
-    var lastTick = performance.now();
-    var uiAccumulator = 0;
-
-    function frameLoop(now) {
-      var dt = Math.min((now - lastTick) / 1000, 0.05);
-      lastTick = now;
-
-      if (game.phase === "playing") {
-        game.timeLeft = Math.max(0, game.timeLeft - dt);
-
-        if (game.keyDir !== 0) {
-          game.targetX = Math.max(
-            0,
-            Math.min(W, game.targetX + game.keyDir * 340 * dt)
-          );
         }
-        game.basketX += (game.targetX - game.basketX) * Math.min(1, dt * 14);
-        game.basketX = Math.max(
-          BASKET_W / 2,
-          Math.min(W - BASKET_W / 2, game.basketX)
-        );
-
-        game.spawnIn -= dt;
-        if (game.spawnIn <= 0) {
-          spawn();
-          var progress = 1 - game.timeLeft / ROUND;
-          game.spawnIn = 0.72 - progress * 0.36 + Math.random() * 0.2;
-        }
-
-        for (var b = game.blobs.length - 1; b >= 0; b -= 1) {
-          var blob = game.blobs[b];
-          blob.y += blob.vy * dt;
-
-          var caught =
-            blob.y + blob.r >= BASKET_Y &&
-            blob.y - blob.r <= BASKET_Y + BASKET_H &&
-            Math.abs(blob.x - game.basketX) < BASKET_W / 2 + blob.r * 0.6;
-
-          if (caught) {
-            game.combo += 1;
-            game.score += blob.points * (game.combo >= 5 ? 2 : 1);
-            for (var s = 0; s < 8; s += 1) {
-              var angle = Math.random() * Math.PI * 2;
-              game.sparks.push({
-                x: blob.x, y: BASKET_Y,
-                vx: Math.cos(angle) * 90,
-                vy: Math.sin(angle) * 90 - 40,
-                life: 0.5, color: blob.color
-              });
-            }
-            game.blobs.splice(b, 1);
-          } else if (blob.y - blob.r > H) {
-            game.combo = 0;
-            game.blobs.splice(b, 1);
-          }
-        }
-
-        for (var k = game.sparks.length - 1; k >= 0; k -= 1) {
-          var spark = game.sparks[k];
-          spark.life -= dt;
-          spark.x += spark.vx * dt;
-          spark.y += spark.vy * dt;
-          spark.vy += 260 * dt;
-          if (spark.life <= 0) game.sparks.splice(k, 1);
-        }
-
-        uiAccumulator += dt;
-        if (uiAccumulator > 0.1) {
-          uiAccumulator = 0;
-          ui.score.textContent = game.score;
-          ui.time.textContent = Math.ceil(game.timeLeft) + "s";
-          ui.controlHint.textContent =
-            game.combo >= 5
-              ? "move with your mouse, finger, or ← → keys · combo x2 🔥"
-              : "move with your mouse, finger, or ← → keys";
-        }
-
-        if (game.timeLeft <= 0) {
-          game.phase = "over";
-          ui.score.textContent = game.score;
-          ui.time.textContent = "0s";
-          var isBest = game.score > best;
-          if (isBest) {
-            best = game.score;
-            writeBest(best);
-            ui.best.textContent = best;
-          }
-          ui.result.hidden = false;
-          ui.result.textContent = game.score + " blobs, caught.";
-          ui.hint.textContent = isBest
-            ? "new personal best ✦"
-            : "best so far: " + best;
-          ui.start.textContent = "run it back";
-          ui.overlay.hidden = false;
-        }
-      }
-
-      ctx.clearRect(0, 0, W, H);
-
-      game.blobs.forEach(function (blob) {
-        ctx.beginPath();
-        ctx.fillStyle = blob.color;
-        ctx.globalAlpha = 0.92;
-        ctx.arc(blob.x, blob.y, blob.r, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.globalAlpha = 0.55;
-        ctx.beginPath();
-        ctx.fillStyle = "#ffffff";
-        ctx.arc(
-          blob.x - blob.r * 0.3,
-          blob.y - blob.r * 0.34,
-          blob.r * 0.24,
-          0,
-          Math.PI * 2
-        );
-        ctx.fill();
-        ctx.globalAlpha = 1;
-      });
-
-      game.sparks.forEach(function (spark) {
-        ctx.globalAlpha = Math.max(0, spark.life * 2);
-        ctx.fillStyle = spark.color;
-        ctx.beginPath();
-        ctx.arc(spark.x, spark.y, 2.6, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.globalAlpha = 1;
-      });
-
-      var gradient = ctx.createLinearGradient(
-        game.basketX - BASKET_W / 2, 0,
-        game.basketX + BASKET_W / 2, 0
-      );
-      gradient.addColorStop(0, palette[0]);
-      gradient.addColorStop(1, palette[1] || palette[0]);
-      ctx.fillStyle = gradient;
-      ctx.beginPath();
-      if (ctx.roundRect) {
-        ctx.roundRect(
-          game.basketX - BASKET_W / 2, BASKET_Y,
-          BASKET_W, BASKET_H, BASKET_H / 2
-        );
-      } else {
-        ctx.rect(
-          game.basketX - BASKET_W / 2, BASKET_Y, BASKET_W, BASKET_H
-        );
-      }
-      ctx.fill();
-
-      requestAnimationFrame(frameLoop);
+      }, { rootMargin: "-35% 0px -55% 0px", threshold: [0, 0.2, 0.6] });
+      sections.forEach(function (s) { io.observe(s); });
     }
-
-    requestAnimationFrame(frameLoop);
   })();
-</script>
 
+  /* ---------------------------------------------------------------
+     reveal on scroll — same two-mechanism approach as useReveal in
+     src/hooks.js (IntersectionObserver + a scroll sweep as a backstop)
+     --------------------------------------------------------------- */
+  (function reveal() {
+    if (reducedMotion || !window.innerHeight) return;
+    var targets = Array.prototype.slice.call(document.querySelectorAll("[data-reveal]"));
+    var pending = targets.filter(function (elm) { return elm.getBoundingClientRect().top > window.innerHeight * 0.9; });
+    if (!pending.length) return;
+
+    var waiting = pending.slice();
+    waiting.forEach(function (elm) { elm.classList.add("rv-pre"); });
+
+    var frame = 0;
+    function teardown() {
+      io.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    }
+    function revealEl(elm) {
+      var idx = waiting.indexOf(elm);
+      if (idx === -1) return;
+      waiting.splice(idx, 1);
+      io.unobserve(elm);
+      var delay = Number(elm.getAttribute("data-reveal-delay") || 0);
+      setTimeout(function () { elm.classList.remove("rv-pre"); }, delay);
+      if (!waiting.length) teardown();
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting || entry.boundingClientRect.top < 0) revealEl(entry.target);
+      });
+    }, { rootMargin: "0px 0px -12% 0px", threshold: 0 });
+
+    function sweep() {
+      frame = 0;
+      var trigger = window.innerHeight * 0.88;
+      waiting.slice().forEach(function (elm) { if (elm.getBoundingClientRect().top < trigger) revealEl(elm); });
+    }
+    function onScroll() { if (!frame) frame = requestAnimationFrame(sweep); }
+
+    waiting.forEach(function (elm) { io.observe(elm); });
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+  })();
+
+  /* ---------------------------------------------------------------
+     intro splash — typed name, then a real choice
+     --------------------------------------------------------------- */
+  (function splash() {
+    var root = document.getElementById("splash");
+    var typeP = document.getElementById("splashType");
+    var typed = document.getElementById("splashTyped");
+    var ask = document.getElementById("splashAsk");
+    var skip = document.getElementById("splashSkip");
+    var yes = document.getElementById("splashYes");
+    var no = document.getElementById("splashNo");
+    var audioEl = document.getElementById("audioEl");
+
+    document.body.style.overflow = "hidden";
+
+    function showAsk() {
+      typeP.style.display = "none";
+      skip.style.display = "none";
+      ask.hidden = false;
+    }
+
+    if (reducedMotion) {
+      showAsk();
+    } else {
+      var text = "rabia adeel";
+      var i = 0;
+      var timer = setInterval(function () {
+        i += 1;
+        typed.textContent = text.slice(0, i);
+        if (i >= text.length) {
+          clearInterval(timer);
+          setTimeout(showAsk, 420);
+        }
+      }, 65);
+      skip.addEventListener("click", function () { clearInterval(timer); finish(false); });
+    }
+
+    function finish(wantsListen) {
+      if (wantsListen && audioEl) {
+        audioEl.currentTime = 0;
+        audioEl.play().catch(function () {});
+      }
+      root.classList.add("splash--out");
+      document.body.style.overflow = "";
+      setTimeout(function () {
+        root.hidden = true;
+        if (wantsListen) player.open();
+      }, reducedMotion ? 0 : 380);
+    }
+
+    yes.addEventListener("click", function () { finish(true); });
+    no.addEventListener("click", function () { finish(false); });
+  })();
+
+  /* ---------------------------------------------------------------
+     floating mini-player — bound to the one real <audio> track
+     --------------------------------------------------------------- */
+  var player = (function () {
+    var host = document.getElementById("miniPlayer");
+    var audioEl = document.getElementById("audioEl");
+    var bubbleEq = document.getElementById("bubbleEq");
+    var autoCollapseTimer = null;
+
+    function clock(s) {
+      s = isNaN(s) ? 0 : s;
+      return Math.floor(s / 60) + ":" + String(Math.floor(s % 60)).padStart(2, "0");
+    }
+
+    function renderExpanded() {
+      host.innerHTML = "";
+      host.className = "mini-player is-expanded";
+
+      var collapse = el("button", { class: "mini-player__collapse", "aria-label": "Minimize player", text: "⌄" });
+      collapse.addEventListener("click", collapseToBubble);
+      host.appendChild(collapse);
+
+      var row = el("div", { class: "mini-player__row" });
+      row.appendChild(el("span", { class: "mini-player__glyph", "aria-hidden": "true", text: "❖" }));
+      var titleCol = el("div", { class: "stack-col", style: "gap:.1rem;min-width:0" });
+      titleCol.appendChild(el("p", { class: "mini-player__title", text: "Diva" }));
+      titleCol.appendChild(el("p", { class: "mini-player__artist", text: "Beyoncé" }));
+      row.appendChild(titleCol);
+      var eq = el("div", { class: "eq", "aria-hidden": "true" });
+      eq.dataset.paused = String(audioEl.paused);
+      eq.appendChild(el("i")); eq.appendChild(el("i")); eq.appendChild(el("i")); eq.appendChild(el("i")); eq.appendChild(el("i"));
+      row.appendChild(eq);
+      host.appendChild(row);
+
+      var bar = el("div", { class: "player__bar" });
+      var barFill = el("span", { style: "width:0%" });
+      bar.appendChild(barFill);
+      host.appendChild(bar);
+
+      var times = el("div", { class: "mini-player__times" });
+      var elapsedSpan = el("span", { text: clock(audioEl.currentTime) });
+      var durationSpan = el("span", { text: clock(audioEl.duration) });
+      times.appendChild(elapsedSpan);
+      times.appendChild(durationSpan);
+      host.appendChild(times);
+
+      var controls = el("div", { class: "mini-player__controls" });
+      var playBtn = el("button", { class: "btn btn--primary", "aria-label": "Play/Pause", style: "width:2.5rem;height:2.5rem;padding:0;justify-content:center;border-radius:50%", text: audioEl.paused ? "▶" : "❚❚" });
+      playBtn.addEventListener("click", function () {
+        if (audioEl.paused) audioEl.play().catch(function () {}); else audioEl.pause();
+      });
+      var closeBtn = el("button", { class: "btn btn--icon", "aria-label": "Stop playing", text: "✕" });
+      closeBtn.addEventListener("click", function () { audioEl.pause(); host.hidden = true; });
+      controls.appendChild(playBtn);
+      controls.appendChild(closeBtn);
+      host.appendChild(controls);
+
+      function sync() {
+        eq.dataset.paused = String(audioEl.paused);
+        playBtn.textContent = audioEl.paused ? "▶" : "❚❚";
+        elapsedSpan.textContent = clock(audioEl.currentTime);
+        durationSpan.textContent = clock(audioEl.duration);
+        var pct = audioEl.duration ? Math.min(100, (audioEl.currentTime / audioEl.duration) * 100) : 0;
+        barFill.style.width = pct + "%";
+      }
+      audioEl.addEventListener("timeupdate", sync);
+      audioEl.addEventListener("loadedmetadata", sync);
+      audioEl.addEventListener("play", sync);
+      audioEl.addEventListener("pause", sync);
+      sync();
+
+      autoCollapseTimer = setTimeout(collapseToBubble, 4500);
+    }
+
+    function collapseToBubble() {
+      clearTimeout(autoCollapseTimer);
+      host.innerHTML = "";
+      host.className = "mini-player";
+      var bubble = el("div", { class: "mini-player__bubble" });
+      var eq = el("span", { class: "eq", "aria-hidden": "true" });
+      eq.dataset.paused = String(audioEl.paused);
+      eq.appendChild(el("i")); eq.appendChild(el("i")); eq.appendChild(el("i")); eq.appendChild(el("i")); eq.appendChild(el("i"));
+      bubble.appendChild(eq);
+      bubble.addEventListener("click", renderExpanded);
+      host.appendChild(bubble);
+
+      function syncBubble() { eq.dataset.paused = String(audioEl.paused); }
+      audioEl.addEventListener("play", syncBubble);
+      audioEl.addEventListener("pause", syncBubble);
+    }
+
+    return {
+      open: function () { host.hidden = false; renderExpanded(); }
+    };
+  })();
+})();
+</script>
 </body>
 </html>
