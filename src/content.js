@@ -15,6 +15,7 @@ export const profile = {
     "Full-stack developer shipping AI-powered products end to end — from reinforcement-learning agents to the SaaS platforms and healthcare systems people actually run on.",
   location: "Lahore, PK",
   status: "open to AI research + international roles",
+  availability: "open to remote contract work",
   avatarGlyph: "R",
   // Background removed (see public/images/ — start from a plain, even
   // background if you swap this file, so the cutout stays clean).

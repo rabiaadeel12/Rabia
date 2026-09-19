@@ -32,6 +32,9 @@ export default function Hero() {
           <div className="chip-row" style={{ gap: "0.55rem" }}>
             <span className="chip chip--lilac">{profile.role}</span>
             <span className="chip chip--mint">{profile.status}</span>
+            {profile.availability && (
+              <span className="chip chip--sky">{profile.availability}</span>
+            )}
             {profile.location && <span className="chip">{profile.location}</span>}
           </div>
 
