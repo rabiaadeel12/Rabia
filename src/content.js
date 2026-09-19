@@ -9,12 +9,16 @@
 export const profile = {
   name: "Rabia Adeel",
   handle: "rabia",
-  role: "final-year CS student · AI/ML developer at NexoDynamix",
+  role: "AI/ML Engineer & Full-Stack Developer",
+  verb: "builds AI products.",
   tagline:
-    "I build systems that think, decide, and act on their own — then turn them into products people actually use.",
+    "Full-stack developer shipping AI-powered products end to end — from reinforcement-learning agents to the SaaS platforms and healthcare systems people actually run on.",
   location: "Lahore, PK",
   status: "open to AI research + international roles",
   avatarGlyph: "R",
+  // Background removed (see public/images/ — start from a plain, even
+  // background if you swap this file, so the cutout stays clean).
+  heroPhoto: "/images/rabia-cutout.png",
   // Lives in public/, so it is served from the site root. Replace the file
   // to update the CV — the filename is what visitors download.
   cv: "/Rabia_Adeel_CV.pdf",
@@ -25,7 +29,7 @@ export const about = {
   // Your words, as you wrote them.
   paragraphs: [
     "I'm a full-stack developer with a strong focus on AI, especially agentic systems and smart solutions. I like building things that can think, decide, and act on their own, and turning that into products people actually find useful.",
-    "My background spans web and mobile development, and over time I've moved more and more toward AI, both in the work I ship and in the research I explore and publish. Working across the full process, from the first idea to the final product, is what I enjoy most. It means I get to stay close to both the thinking and the building.",
+    "My background spans web and mobile development, and over time I've moved more and more toward AI, both in the work I ship and in the research I explore and publish — including a co-authored paper in Symmetry on Q-learning-based optimization. Working across the full process, from the first idea to the final product, is what I enjoy most. It means I get to stay close to both the thinking and the building.",
     "I'm curious by nature and I like problems that don't have obvious answers. Whether that's designing a system that adapts on its own or figuring out how to make something complex feel simple to use, I'm happiest when I'm learning something new along the way.",
     "Right now I'm building AI powered solutions professionally while looking to grow further into AI through research and international opportunities.",
     "If you're working on something interesting in this space, or just want to talk about where AI is headed, I'd love to connect.",
@@ -33,18 +37,20 @@ export const about = {
 };
 
 /* Facts a recruiter scans for, in the hero. Real numbers only — if you can't
-   source it from the CV or a live site, it doesn't belong here. */
+   source it from the CV or a live site, it doesn't belong here.
+   The project count is filled in below, once `projects` exists, so it
+   can never drift out of sync with the cards themselves again. */
 export const highlights = [
-  { figure: "7", label: "projects running in production" },
+  { figure: "", label: "projects running in production" },
   { figure: "95.3", label: "percentile, HEC national skills test" },
-  { figure: "3.59", label: "CGPA, final-year computer science" },
+  { figure: "3.57", label: "CGPA, B.S. Computer Science" },
 ];
 
 /* The About sidebar: where things actually stand right now. */
 export const snapshot = [
-  { key: "now", value: "AI/ML developer at NexoDynamix" },
-  { key: "studying", value: "B.S. Computer Science at NUML, final year" },
-  { key: "thesis", value: "Reinforcement learning for wealth management" },
+  { key: "now", value: "AI Engineer Trainee at Stewart Technology & Business Services" },
+  { key: "studied", value: "B.S. Computer Science, NUML — CGPA 3.57" },
+  { key: "published", value: "Co-author, Symmetry journal (IF 2.2)" },
   { key: "based in", value: "Lahore, Pakistan" },
   { key: "open to", value: "AI research roles, internationally" },
 ];
@@ -67,16 +73,18 @@ export const stack = [
     title: "ai & ml",
     color: "var(--lilac)",
     items: [
-      "Reinforcement Learning",
-      "Machine Learning",
-      "data processing",
+      "Reinforcement Learning (PPO)",
+      "PyTorch",
+      "TensorFlow",
+      "Scikit-learn",
+      "stable-baselines3",
       "Python",
     ],
   },
   {
     title: "product & web",
     color: "var(--cotton)",
-    items: ["React", "TypeScript", "Tailwind", "Vite", "Chart.js"],
+    items: ["React", "TypeScript", "Flutter", "Tailwind", "Vite", "Chart.js"],
   },
   {
     title: "server & data",
@@ -84,6 +92,7 @@ export const stack = [
     items: [
       "Node",
       "Express",
+      "Flask",
       "REST APIs",
       "Firestore",
       "MongoDB",
@@ -94,7 +103,16 @@ export const stack = [
   {
     title: "ship it",
     color: "var(--mint)",
-    items: ["Git", "GitHub", "Vercel", "Firebase Hosting", "Postman", "Figma"],
+    items: [
+      "Git",
+      "GitHub",
+      "Docker",
+      "Vercel",
+      "Railway",
+      "Firebase Hosting",
+      "Postman",
+      "Figma",
+    ],
   },
 ];
 
@@ -107,6 +125,7 @@ export const projects = [
       "The AI-driven records and patient-management platform at NexoDynamix, which I led development on — optimised scheduling, resource allocation, and large-scale handling of sensitive data under healthcare compliance rules.",
     tags: ["AI/ML", "React", "Firebase", "scheduling"],
     status: "live",
+    image: "/images/projects/nexohealth.png",
     glyph: "◈",
     gradient: "linear-gradient(140deg, var(--lilac), var(--sky))",
     link: "https://health.nexodynamix.com",
@@ -119,6 +138,7 @@ export const projects = [
       "The full web presence for a non-profit multi-specialty hospital: fifteen departments, twenty-plus consultant profiles with live availability and fees, appointment booking, and a patient portal for lab reports — all run from an admin CMS, so staff publish without a developer.",
     tags: ["React 19", "Firebase", "AWS S3", "role-based auth"],
     status: "live",
+    image: "/images/projects/mafaza-tul-hayat.png",
     glyph: "✚",
     gradient: "linear-gradient(140deg, var(--mint), var(--sky))",
     link: "https://mafazatulhayat.com",
@@ -127,9 +147,10 @@ export const projects = [
   {
     title: "Intelligent Wealth Management",
     blurb:
-      "My final-year thesis, built as a working product: a reinforcement-learning system for personal finance that tracks assets in real time, categorises spending, and turns portfolio state into recommendations you can act on.",
-    tags: ["Reinforcement Learning", "React", "Firebase", "Chart.js"],
+      "My thesis, built as a working product: a PPO reinforcement-learning agent trained on 94 KSE-100 stocks, serving BUY/SELL/HOLD signals through a Flask API with a daily auto-retraining pipeline. Paired with a React/Firebase PWA that tracks personal investments across seven asset classes — stocks, crypto, commodities, mutual funds, certificates, real estate, vehicles — and benchmarks risk-adjusted returns against the market.",
+    tags: ["Reinforcement Learning", "PPO", "Flask", "React", "Firebase"],
     status: "research",
+    image: "/images/projects/iwm.png",
     glyph: "◍",
     gradient: "linear-gradient(140deg, var(--cotton), var(--lilac))",
     link: "",
@@ -142,6 +163,7 @@ export const projects = [
       "A digital health platform for Pakistan — online consultations, holistic care packages, second opinions, and separate education centres for clinicians and patients, all behind an admin-controlled CMS.",
     tags: ["React", "Vite", "Firestore", "Firebase Auth"],
     status: "live",
+    image: "/images/projects/sehatx.png",
     glyph: "❋",
     gradient: "linear-gradient(140deg, var(--sky), var(--mint))",
     link: "https://sehatx.com",
@@ -153,6 +175,7 @@ export const projects = [
       "The company site for the venture I build at, presenting three product lines — the RL wealth platform, the healthcare CMS, and an ERP — alongside a rotating project showcase.",
     tags: ["React", "Framer Motion", "Tailwind"],
     status: "live",
+    image: "/images/projects/nexodynamix.png",
     glyph: "▲",
     gradient: "linear-gradient(140deg, var(--butter), var(--cotton))",
     link: "https://nexodynamix.com",
@@ -164,6 +187,7 @@ export const projects = [
       "Academic portfolio for an AI and optimization researcher — publications, funded projects, editorial appointments and teaching history, organised so collaborators can find the work relevant to them.",
     tags: ["React", "Framer Motion", "Tailwind"],
     status: "live",
+    image: "/images/projects/mudassar-rauf.png",
     glyph: "✎",
     gradient: "linear-gradient(140deg, var(--butter), var(--mint))",
     link: "https://mudassarrauf.com",
@@ -175,37 +199,45 @@ export const projects = [
       "Lead-generation site for a Lahore solar installer, built around a savings estimator that turns a monthly electricity bill into system size, install cost and payback period in real time.",
     tags: ["React", "Vite", "Vercel"],
     status: "live",
+    image: "/images/projects/intech-solutions.png",
     glyph: "☀",
     gradient: "linear-gradient(140deg, var(--butter), var(--sky))",
     link: "https://intech-solution-alpha.vercel.app",
     repo: "https://github.com/rabiaadeel12/intech-solution",
   },
-  {
-    title: "SB Solar Energy",
-    blurb:
-      "The same solar lead-gen system shipped for a second installer — rebranded end to end, with the estimator and net-metering content retuned for a different client's offering.",
-    tags: ["React", "Vite", "Vercel"],
-    status: "live",
-    glyph: "◎",
-    gradient: "linear-gradient(140deg, var(--cotton), var(--sky))",
-    link: "https://sbsolar-jade.vercel.app",
-    repo: "https://github.com/rabiaadeel12/Sbsolar",
-  },
 ];
+
+highlights[0].figure = String(projects.filter((p) => p.status === "live").length);
 
 /* Real credentials from the CV — no invented publications.
    Add papers here as they're published. */
 export const credentials = [
   {
+    when: "2026",
+    title: "AI Engineer Trainee — Stewart Technology & Business Services",
+    kind: "experience",
+  },
+  {
     when: "2022 – 26",
-    title: "B.S. (Hons.) Computer Science — NUML, CGPA 3.59",
+    title: "B.S. (Hons.) Computer Science — NUML, CGPA 3.57",
     kind: "degree",
+  },
+  {
+    when: "2026",
+    title:
+      "Co-author — Symmetry journal (Impact Factor 2.2), Q-learning-based optimization research",
+    kind: "publication",
   },
   {
     when: "2026",
     title:
       "Thesis — Intelligent Wealth Management System Using Reinforcement Learning",
     kind: "thesis",
+  },
+  {
+    when: "prior",
+    title: "Software Developer — NexoDynamix",
+    kind: "experience",
   },
   {
     when: "national",
@@ -224,21 +256,24 @@ export const credentials = [
   },
 ];
 
-/* A vibe widget, not a live Spotify feed — it plays no audio.
-   PLACEHOLDER: put your real build playlist here. */
-export const playlist = [
-  { title: "Nightcall", artist: "Kavinsky", seconds: 258, glyph: "◐" },
-  { title: "Redbone", artist: "Childish Gambino", seconds: 327, glyph: "❂" },
-  { title: "Sunflower", artist: "Rex Orange County", seconds: 178, glyph: "✺" },
-  { title: "Ivy", artist: "Frank Ocean", seconds: 249, glyph: "✿" },
-  { title: "Alright", artist: "Kendrick Lamar", seconds: 219, glyph: "✦" },
-];
+/* The one real track the floating player offers — src set, so it
+   actually plays. */
+export const track = {
+  title: "Diva",
+  artist: "Beyoncé",
+  glyph: "❖",
+  src: "/audio/diva.m4a",
+};
 
-/* PLACEHOLDER: LinkedIn. Your phone number is deliberately not here —
-   a public page invites scraping in a way a PDF CV does not. */
+/* Your phone number is deliberately not here — a public page invites
+   scraping in a way a PDF CV does not. */
 export const socials = [
   { label: "GitHub", href: "https://github.com/rabiaadeel12", glyph: "⌥" },
-  { label: "LinkedIn", href: "#", glyph: "in" },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/rabia-adeel12/",
+    glyph: "in",
+  },
   { label: "Email", href: "mailto:rabiadeel12@gmail.com", glyph: "✉" },
 ];
 
@@ -246,7 +281,6 @@ export const nav = [
   { label: "about", href: "#about" },
   { label: "stack", href: "#stack" },
   { label: "work", href: "#work" },
-  { label: "research", href: "#research" },
-  { label: "currently", href: "#currently" },
+  { label: "background", href: "#research" },
   { label: "contact", href: "#contact" },
 ];

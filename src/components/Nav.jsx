@@ -15,24 +15,21 @@ export default function Nav() {
         aria-hidden="true"
       />
       <nav className="nav" aria-label="Sections">
-        <a className="nav__brand" href="#top">
-          {profile.handle}
-          <span style={{ color: "var(--cotton)" }}>.</span>
-        </a>
-        {nav.map((item, i) => (
-          <a
-            key={item.href}
-            href={item.href}
-            className={[
-              item.href.slice(1) === active ? "is-active" : "",
-              i > 3 ? "nav__hide-sm" : "",
-            ]
-              .filter(Boolean)
-              .join(" ")}
-          >
-            {item.label}
+        <div className="nav__scroll">
+          <a className="nav__brand" href="#top">
+            {profile.handle}
+            <span style={{ color: "var(--cotton)" }}>.</span>
           </a>
-        ))}
+          {nav.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className={item.href.slice(1) === active ? "is-active" : ""}
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
       </nav>
     </>
   );

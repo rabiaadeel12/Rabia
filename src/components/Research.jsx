@@ -5,7 +5,7 @@ export default function Research() {
     <section className="shell section" id="research">
       <div className="stack-col" style={{ gap: "1.4rem" }}>
         <div className="stack-col" style={{ gap: "0.8rem" }} data-reveal>
-          <h2 className="h-lg">Education &amp; research</h2>
+          <h2 className="h-lg">Background</h2>
         </div>
 
         <div className="writing" data-reveal>

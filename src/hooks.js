@@ -1,8 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const reducedMotion = () =>
   typeof window !== "undefined" &&
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/** True on touch/coarse-pointer devices — hover-only effects skip these. */
+export const isCoarsePointer = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(pointer: coarse)").matches;
+
+export { reducedMotion as isReducedMotion };
 
 /**
  * Reveal-on-scroll that never leaves the page blank.
@@ -111,6 +118,50 @@ export function useScrollProgress() {
   return progress;
 }
 
+/**
+ * True while scrolled somewhere between the hero and the contact section —
+ * i.e. never while the hero's own heading/buttons are on screen (where a
+ * fixed corner widget would sit right on top of them) and never over the
+ * closing CTA either.
+ */
+export function usePetVisible() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const hero = document.getElementById("top");
+    const contact = document.getElementById("contact");
+    if (!hero || !contact) return undefined;
+
+    let pastHero = false;
+    let atContact = false;
+    const update = () => setVisible(pastHero && !atContact);
+
+    const heroObserver = new IntersectionObserver(
+      ([entry]) => {
+        pastHero = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+        update();
+      },
+      { threshold: 0 }
+    );
+    const contactObserver = new IntersectionObserver(
+      ([entry]) => {
+        atContact = entry.isIntersecting;
+        update();
+      },
+      { threshold: 0 }
+    );
+
+    heroObserver.observe(hero);
+    contactObserver.observe(contact);
+    return () => {
+      heroObserver.disconnect();
+      contactObserver.disconnect();
+    };
+  }, []);
+
+  return visible;
+}
+
 /** Which section id is currently in view, for nav highlighting. */
 export function useActiveSection(ids) {
   const [active, setActive] = useState(ids[0]);
@@ -136,4 +187,43 @@ export function useActiveSection(ids) {
   }, [ids]);
 
   return active;
+}
+
+/**
+ * 3D tilt-on-hover for a card. Writes the pointer position as CSS custom
+ * properties (--tilt-x/--tilt-y for rotation, --tilt-glow-x/y for a glow
+ * that tracks the cursor) so the actual transform lives in CSS. Skipped on
+ * touch devices and prefers-reduced-motion, where there's no hover to drive it.
+ */
+export function useTilt(maxDeg = 9) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || isCoarsePointer() || reducedMotion()) return;
+
+    const onMove = (e) => {
+      const rect = el.getBoundingClientRect();
+      const px = (e.clientX - rect.left) / rect.width;
+      const py = (e.clientY - rect.top) / rect.height;
+      el.style.setProperty("--tilt-x", `${((0.5 - py) * maxDeg * 2).toFixed(2)}deg`);
+      el.style.setProperty("--tilt-y", `${((px - 0.5) * maxDeg * 2).toFixed(2)}deg`);
+      el.style.setProperty("--tilt-glow-x", `${(px * 100).toFixed(1)}%`);
+      el.style.setProperty("--tilt-glow-y", `${(py * 100).toFixed(1)}%`);
+    };
+
+    const onLeave = () => {
+      el.style.setProperty("--tilt-x", "0deg");
+      el.style.setProperty("--tilt-y", "0deg");
+    };
+
+    el.addEventListener("pointermove", onMove);
+    el.addEventListener("pointerleave", onLeave);
+    return () => {
+      el.removeEventListener("pointermove", onMove);
+      el.removeEventListener("pointerleave", onLeave);
+    };
+  }, [maxDeg]);
+
+  return ref;
 }
