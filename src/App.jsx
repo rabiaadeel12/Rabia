@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import Cursor from "./components/Cursor.jsx";
 import IntroSplash from "./components/IntroSplash.jsx";
 import FloatingPlayer from "./components/FloatingPlayer.jsx";
@@ -47,6 +48,8 @@ export default function App() {
         <Research />
         <Contact />
       </div>
+
+      <Analytics />
     </>
   );
 }
