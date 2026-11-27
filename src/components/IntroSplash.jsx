@@ -61,21 +61,34 @@ export default function IntroSplash({ onDone }) {
           </p>
         ) : (
           <div className="splash__ask">
-            <p className="eyebrow" style={{ justifyContent: "center" }}>
-              before you look around
-            </p>
-            <h2 className="h-md">Want something on while you get to know me?</h2>
-            <p className="mono dim splash__hint">
-              {track.title} · {track.artist}, on loop
-            </p>
-            <div className="splash__actions">
-              <button className="btn btn--primary" onClick={() => finish(true)}>
-                yeah!
-              </button>
-              <button className="btn btn--ghost" onClick={() => finish(false)}>
-                just show me the site
-              </button>
-            </div>
+            {track.src ? (
+              <>
+                <p className="eyebrow" style={{ justifyContent: "center" }}>
+                  before you look around
+                </p>
+                <h2 className="h-md">Want something on while you get to know me?</h2>
+                <p className="mono dim splash__hint">
+                  {track.title} · {track.artist}, on loop
+                </p>
+                <div className="splash__actions">
+                  <button className="btn btn--primary" onClick={() => finish(true)}>
+                    yeah!
+                  </button>
+                  <button className="btn btn--ghost" onClick={() => finish(false)}>
+                    just show me the site
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <h2 className="h-md">Ready to look around?</h2>
+                <div className="splash__actions">
+                  <button className="btn btn--primary" onClick={() => finish(false)}>
+                    let's go
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         )}
       </div>
