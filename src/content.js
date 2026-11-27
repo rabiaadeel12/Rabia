@@ -14,8 +14,8 @@ export const profile = {
   tagline:
     "Full-stack developer shipping AI-powered products end to end, from reinforcement-learning agents to the SaaS platforms and healthcare systems people actually run on.",
   location: "Lahore, PK",
-  status: "open to AI research + international roles",
-  availability: "open to remote contract work",
+  status: "open to remote AI/ML + full-stack roles",
+  availability: "available for remote positions worldwide",
   avatarGlyph: "R",
   // Background removed (see public/images/ — start from a plain, even
   // background if you swap this file, so the cutout stays clean).
@@ -32,8 +32,8 @@ export const about = {
     "I'm a full-stack developer with a strong focus on AI, especially agentic systems and smart solutions. I like building things that can think, decide, and act on their own, and turning that into products people actually find useful.",
     "My background spans web and mobile development, and over time I've moved more and more toward AI, both in the work I ship and in the research I explore and publish, including a co-authored paper in Symmetry on Q-learning-based optimization. Working across the full process, from the first idea to the final product, is what I enjoy most. It means I get to stay close to both the thinking and the building.",
     "I'm curious by nature and I like problems that don't have obvious answers. Whether that's designing a system that adapts on its own or figuring out how to make something complex feel simple to use, I'm happiest when I'm learning something new along the way.",
-    "Right now I'm building AI powered solutions professionally while looking to grow further into AI through research and international opportunities.",
-    "If you're working on something interesting in this space, or just want to talk about where AI is headed, I'd love to connect.",
+    "Right now I'm building AI-powered solutions professionally, and I'm looking for remote AI engineering and full-stack roles where I can contribute across the whole product.",
+    "If you're working on something in this space, or hiring remotely, I'd love to connect.",
   ],
 };
 
@@ -43,7 +43,7 @@ export const about = {
    can never drift out of sync with the cards themselves again. */
 export const highlights = [
   { figure: "", label: "projects running in production" },
-  { figure: "95.3", label: "percentile, HEC national skills test" },
+  { figure: "95.3", label: "percentile, Pakistan CS Competency Exam (HEC)" },
   { figure: "3.57", label: "CGPA, B.S. Computer Science" },
 ];
 
@@ -53,7 +53,7 @@ export const snapshot = [
   { key: "studied", value: "B.S. Computer Science, NUML, CGPA 3.57" },
   { key: "published", value: "Co-author, Symmetry journal (IF 2.2)" },
   { key: "based in", value: "Lahore, Pakistan" },
-  { key: "open to", value: "AI research roles, internationally" },
+  { key: "open to", value: "remote AI/ML engineering & full-stack roles" },
 ];
 
 export const marquee = [
@@ -173,7 +173,7 @@ export const projects = [
   {
     title: "NexoDynamix",
     blurb:
-      "The company site for the venture I build at, presenting three product lines (the RL wealth platform, the healthcare CMS, and an ERP) alongside a rotating project showcase.",
+      "The company site for the venture I built at, which presented three product lines (the RL wealth platform, the healthcare CMS, and an ERP) alongside a rotating project showcase.",
     tags: ["React", "Framer Motion", "Tailwind"],
     status: "live",
     image: "/images/projects/nexodynamix.png",
@@ -242,16 +242,16 @@ export const credentials = [
   },
   {
     when: "national",
-    title: "HEC Skill Competency Test: 95.3rd percentile",
+    title: "Pakistan CS Competency Exam (HEC): 95.3rd percentile",
     kind: "ranking",
   },
   {
-    when: "current",
+    when: "2024 – 26",
     title: "Vice President, ACM NUML Lahore Chapter",
     kind: "leadership",
   },
   {
-    when: "current",
+    when: "2024 – 26",
     title: "Core team, Google Developer Student Clubs, NUML Lahore",
     kind: "community",
   },
@@ -263,7 +263,7 @@ export const track = {
   title: "Diva",
   artist: "Beyoncé",
   glyph: "❖",
-  src: "/audio/diva.m4a",
+  src: "",
 };
 
 /* Your phone number is deliberately not here — a public page invites
