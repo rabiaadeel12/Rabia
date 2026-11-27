@@ -11,10 +11,11 @@ import Projects from "./components/Projects.jsx";
 import Research from "./components/Research.jsx";
 import Contact from "./components/Contact.jsx";
 import { useReveal } from "./hooks.js";
+import { track } from "./content.js";
 
 export default function App() {
   useReveal();
-  const [showIntro, setShowIntro] = useState(true);
+  const [showIntro, setShowIntro] = useState(!!track.src);
   const [listening, setListening] = useState(false);
 
   return (
